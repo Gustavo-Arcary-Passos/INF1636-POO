@@ -37,9 +37,9 @@ public class IniciarJogo {
         }
 
         // cria os jogadores
-        jogador[] jogadores = new jogador[num_jogadores];
+        Jogador[] jogadores = new Jogador[num_jogadores];
         for (int i = 0; i < num_jogadores; i++) {
-            jogadores[i] = new jogador(nomes[i], cores[i]);
+            jogadores[i] = new Jogador(nomes[i], cores[i]);
         }
 
         // imprime os nomes e cores dos jogadores

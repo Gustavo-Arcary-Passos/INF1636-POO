@@ -12,11 +12,11 @@ public class api {
         front.add("Peru");
         front.add("Venezuela");
         front.add("Nigeria");
-		territorio Brasil = new territorio("Brasil","America do Sul", front);
+		Territorio Brasil = new Territorio("Brasil","America do Sul", front);
 		System.out.println(Brasil.get_nome());
-		System.out.println(Brasil.get_regiao());
+		System.out.println(Brasil.get_Regiao());
 		System.out.println(Brasil.get_exercitos());
-		System.out.println(Brasil.get_jogador());
+		System.out.println(Brasil.get_Jogador());
 		
 		
 	}

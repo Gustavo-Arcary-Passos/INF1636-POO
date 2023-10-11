@@ -11,20 +11,20 @@ import java.util.*;
  * @param regiao
  * @param fronteiras
  */
-class territorio {
+class Territorio {
 	private String nome;
 	private int exercitos;
-	private jogador jogador;
+	private Jogador jogador;
 	private List<String> fronteiras;
 	private String regiao;
 
-	public territorio(String nome, String regiao, List<String> fronteiras) {
+	public Territorio(String nome, String regiao, List<String> fronteiras) {
 		this.fronteiras = fronteiras;
 		this.nome = nome;
 		this.regiao = regiao;
 	}
 
-	public void conquista(jogador conquistador, int exercito) {
+	public void conquista(Jogador conquistador, int exercito) {
 		this.jogador = conquistador;
 		this.exercitos = exercito;
 	}
@@ -38,7 +38,7 @@ class territorio {
 		return false;
 	}
 
-	public void add_exercito(jogador jgd, int qtd) {
+	public void add_exercito(Jogador jgd, int qtd) {
 		if (jgd != this.jogador) {
 			return;
 		}
@@ -49,7 +49,7 @@ class territorio {
 		return this.nome;
 	}
 
-	public String get_regiao() {
+	public String get_Regiao() {
 		return this.regiao;
 	}
 
@@ -57,12 +57,12 @@ class territorio {
 		return this.exercitos;
 	}
 
-	public jogador get_jogador() {
+	public Jogador get_Jogador() {
 		return this.jogador;
 	}
 
 	// DEBUG: set_jogador
-	public void set_jogador(jogador jgd) {
+	public void set_Jogador(Jogador jgd) {
 		this.jogador = jgd;
 	}
 }

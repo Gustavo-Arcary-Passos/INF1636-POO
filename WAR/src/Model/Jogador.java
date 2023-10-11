@@ -2,13 +2,13 @@ package Model;
 
 import java.util.*;
 
-class jogador {
+class Jogador {
     private String nome;
     private String cor;
-    private List<territorio> domina;
+    private List<Territorio> domina;
     
-    public boolean verifica_territorio(territorio pais) {
-    	for (territorio terr : this.domina) {
+    public boolean verifica_territorio(Territorio pais) {
+    	for (Territorio terr : this.domina) {
     		if(terr.equals(pais)) {
     			return true;
     		}
@@ -16,7 +16,7 @@ class jogador {
     	return false;
     }
 
-    public jogador(String nome, String cor) {
+    public Jogador(String nome, String cor) {
         this.nome = nome;
         this.cor = cor;
     }

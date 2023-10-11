@@ -11,17 +11,17 @@ public class testestemporarios {
         fronteiras.add("Brasil");
         fronteiras.add("Peru");
         fronteiras.add("Colombia");
-        territorio venezuela = new territorio("Venezuela", "America do sul", fronteiras);
-        jogador j1 = new jogador("j1", "azul");
+        Territorio venezuela = new Territorio("Venezuela", "America do sul", fronteiras);
+        Jogador j1 = new Jogador("j1", "azul");
 
-        venezuela.set_jogador(j1);
+        venezuela.set_Jogador(j1);
 
         System.out.println("Território: " + venezuela.get_nome());
-        System.out.println("Região: " + venezuela.get_regiao());
+        System.out.println("Região: " + venezuela.get_Regiao());
         System.out.println("Exércitos: " + venezuela.get_exercitos());
 
         System.out.println("Jogador que domina:");
-        System.out.println(venezuela.get_jogador().get_cor());
+        System.out.println(venezuela.get_Jogador().get_cor());
 
     }
 }

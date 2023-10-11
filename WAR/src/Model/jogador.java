@@ -9,7 +9,7 @@ class jogador {
     
     public boolean verifica_territorio(territorio pais) {
     	for (territorio terr : this.domina) {
-    		if(terr.equals(pais))) {
+    		if(terr.equals(pais)) {
     			return true;
     		}
     	}

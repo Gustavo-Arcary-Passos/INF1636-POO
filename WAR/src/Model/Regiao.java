@@ -2,10 +2,10 @@ package Model;
 
 import java.util.*;
 
-abstract class Regiao {
-	private String nome;
-	private List<Territorio> paises;
-	private int exercito_extra;
+abstract class Regiao { // também conhecido como continente
+	private String nome; //nome do continente
+	private List<Territorio> paises; // paises no continente
+	private int exercito_extra; // exercitos extra que o dominio do continente inteiro dá
 	public String get_nome(){
 		return this.nome;
 	}
@@ -25,4 +25,5 @@ abstract class Regiao {
 		}
 		return true;
 	}
+	
 }

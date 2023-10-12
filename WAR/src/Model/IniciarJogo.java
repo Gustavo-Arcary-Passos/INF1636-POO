@@ -1,6 +1,6 @@
 package Model;
 
-public class IniciarJogo {
+ class IniciarJogo {
 
     // pergunta ao usuario quantos jogadores vão jogar, entre 4 e 6
     // cria os jogadores

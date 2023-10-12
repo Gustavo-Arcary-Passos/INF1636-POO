@@ -2,7 +2,7 @@ package Model;
 
 import java.util.*;
 
-public class testestemporarios {
+class testestemporarios {
 
     // fiz esse arquvo para poder testar coisinhas
 

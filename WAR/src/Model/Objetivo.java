@@ -1,6 +1,6 @@
 package Model;
 
-public abstract class Objetivo {
+abstract class Objetivo {
 
     Jogador jogador;
 

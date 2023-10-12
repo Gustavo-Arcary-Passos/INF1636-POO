@@ -3,9 +3,9 @@ package Model;
 import java.util.*;
 
 abstract class Regiao { // também conhecido como continente
-	private String nome; //nome do continente
-	private List<Territorio> paises; // paises no continente
-	private int exercito_extra; // exercitos extra que o dominio do continente inteiro dá
+	protected String nome; //nome do continente
+	protected List<Territorio> paises; // paises no continente
+	protected int exercito_extra; // exercitos extra que o dominio do continente inteiro dá
 	public String get_nome(){
 		return this.nome;
 	}
@@ -16,6 +16,9 @@ abstract class Regiao { // também conhecido como continente
 		this.nome = nome;
 		this.paises = paises;
 		this.exercito_extra = exercito_extra;
+	}
+	public Regiao() {
+		
 	}
 	public boolean verifica_monopolio(Jogador jogador) {
 		for(Territorio terr : paises) {

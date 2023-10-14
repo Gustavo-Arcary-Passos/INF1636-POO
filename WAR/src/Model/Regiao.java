@@ -6,6 +6,7 @@ abstract class Regiao { // também conhecido como continente
 	protected String nome; //nome do continente
 	protected List<Territorio> paises; // paises no continente
 	protected int exercito_extra; // exercitos extra que o dominio do continente inteiro dá
+	
 	public String get_nome(){
 		return this.nome;
 	}
@@ -18,7 +19,9 @@ abstract class Regiao { // também conhecido como continente
 		this.exercito_extra = exercito_extra;
 	}
 	public Regiao() {
-		
+		this.nome = ""; // Initialize with default values
+	    this.paises = new ArrayList<>();
+	    this.exercito_extra = 0;
 	}
 	public boolean verifica_monopolio(Jogador jogador) {
 		for(Territorio terr : paises) {
@@ -28,5 +31,4 @@ abstract class Regiao { // também conhecido como continente
 		}
 		return true;
 	}
-	
 }

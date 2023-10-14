@@ -38,11 +38,12 @@ class Territorio {
 		return false;
 	}
 
-	public void add_exercito(Jogador jgd, int qtd) {
+	public boolean add_exercito(Jogador jgd, int qtd) {
 		if (jgd != this.jogador) {
-			return;
+			return false;
 		}
 		this.exercitos += qtd;
+		return true;
 	}
 
 	public String get_nome() {

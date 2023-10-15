@@ -39,10 +39,7 @@ class Territorio {
 		return false;
 	}
 
-	public boolean add_exercito(Jogador jgd, int qtd) {
-		if (jgd != this.jogador) {
-			return false;
-		}
+	public boolean add_exercito(int qtd) {
 		this.exercitos += qtd;
 		return true;
 	}

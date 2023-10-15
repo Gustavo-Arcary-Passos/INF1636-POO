@@ -71,6 +71,9 @@ class Jogador {
     public void add_exercito(int qtd) {
     	this.qtd_exercitos += qtd;
     }
+    public void add_exercito() { //add exercito de acordo com metade dos territórios
+    	this.qtd_exercitos += this.domina.size()/2;
+    }
     public void troca_cartas_exercitos(int um,int dois,int tres,ConjuntoCartaConquista cartas) {
     	List<CartaConquista> trocadas = new ArrayList<CartaConquista>();
     	trocadas.add(this.cartaTroca.get(um));
@@ -80,5 +83,25 @@ class Jogador {
     	if(cartas.verifica_troca(trocadas)) {
     		this.add_exercito(cartas.trocas(trocadas)) ;
     	}
+    	//implementar a remoção das cartas
+    	/* this.cartaTroca.remove(um);
+    	 * this.cartaTroca.remove(dois);
+    	 * this.cartaTroca.remoce(tres);
+    	 */
     }
+    public boolean posiciona_exercito(int qtd, Territorio destino) {
+    	//tem que conferir se qtd é < qtd_exercito
+    	if(qtd>this.qtd_exercitos) {
+    		return false;
+    	}
+    	for(Territorio terr : this.domina) {
+    		if(terr.equals(destino)) {
+    			 destino.add_exercito(qtd);
+    			 this.qtd_exercitos -=qtd;
+    			 return true;
+    		}
+    	}
+    	return false;
+    }
+    
 }

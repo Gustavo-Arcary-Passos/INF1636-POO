@@ -9,19 +9,19 @@ class DeckObjetivos {
     private List<Objetivo> objetivos;
     
     //Temos que passar uma referência aos continentes criados para verificar alguns objetivos
-    public DeckObjetivos(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa, List<Jogador> todos_jogadores) {
-    	objetivos.add(new Objetivo1(todos_jogadores));
-    	objetivos.add(new Objetivo2(todos_jogadores));
-    	objetivos.add(new Objetivo3(todos_jogadores));
-    	objetivos.add(new Objetivo4(todos_jogadores));
-    	objetivos.add(new Objetivo5(todos_jogadores));
-    	objetivos.add(new Objetivo6(todos_jogadores));
-    	objetivos.add(new Objetivo7(asia, oceania, africa, americasul, americanorte, europa));
-    	objetivos.add(new Objetivo8(asia, oceania, africa, americasul, americanorte, europa));
-    	objetivos.add(new Objetivo9(asia, oceania, africa, americasul, americanorte, europa));
-    	objetivos.add(new Objetivo10(asia, oceania, africa,  americasul, americanorte, europa));
-    	objetivos.add(new Objetivo11(asia, oceania, africa,  americasul, americanorte, europa));
-    	objetivos.add(new Objetivo12(asia, oceania, africa, americasul, americanorte, europa));
+    public DeckObjetivos(List<Regiao> mapa, List<Jogador> todos_jogadores) {
+    	objetivos.add(new Objetivo1(todos_jogadores, null));
+    	objetivos.add(new Objetivo2(todos_jogadores, null));
+    	objetivos.add(new Objetivo3(todos_jogadores, null));
+    	objetivos.add(new Objetivo4(todos_jogadores, null));
+    	objetivos.add(new Objetivo5(todos_jogadores, null));
+    	objetivos.add(new Objetivo6(todos_jogadores,null));
+    	objetivos.add(new Objetivo7(null, mapa));
+    	objetivos.add(new Objetivo8(null, mapa));
+    	objetivos.add(new Objetivo9(null, mapa));
+    	objetivos.add(new Objetivo10(null, mapa));
+    	objetivos.add(new Objetivo11(null, mapa));
+    	objetivos.add(new Objetivo12(null, mapa));
     	objetivos.add(new Objetivo13());
     	objetivos.add(new Objetivo14());
     }
@@ -35,11 +35,8 @@ class DeckObjetivos {
 }
 
 class Objetivo1 extends Objetivo {
-	public Objetivo1(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
-	}
-	public Objetivo1(List<Jogador> todos_jogadores) {
-		super(todos_jogadores);
+	public Objetivo1(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	//exterminar o azul, se for o azul ou outro jogador tiver eliminado o azul, 24 territorios
 	public boolean verifica_status() {
@@ -63,11 +60,8 @@ class Objetivo1 extends Objetivo {
 	}
 }
 class Objetivo2 extends Objetivo {
-	public Objetivo2(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
-	}
-	public Objetivo2(List<Jogador> todos_jogadores) {
-		super(todos_jogadores);
+	public Objetivo2(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	 //exterminar o amarelo, se for o amarelo ou outro jogador tiver eliminado o amarelo, 24 territorios
 	public boolean verifica_status() {
@@ -91,11 +85,8 @@ class Objetivo2 extends Objetivo {
 	}
 }
 class Objetivo3 extends Objetivo {
-	public Objetivo3(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
-	}
-	public Objetivo3(List<Jogador> todos_jogadores) {
-		super(todos_jogadores);
+	public Objetivo3(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	//exterminar o branco, se for o branco ou outro jogador tiver eliminado o branco, 24 territorios
 	public boolean verifica_status() {
@@ -119,11 +110,8 @@ class Objetivo3 extends Objetivo {
 	}
 }
 class Objetivo4 extends Objetivo {
-	public Objetivo4(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
-	}
-	public Objetivo4(List<Jogador> todos_jogadores) {
-		super(todos_jogadores);
+	public Objetivo4(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	//exterminar o verde, se for o verde ou outro jogador tiver eliminado o verde, 24 territorios 
 	public boolean verifica_status() {
@@ -147,11 +135,8 @@ class Objetivo4 extends Objetivo {
 	}
 }
 class Objetivo5 extends Objetivo {
-	public Objetivo5(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
-	}
-	public Objetivo5(List<Jogador> todos_jogadores) {
-		super(todos_jogadores);
+	public Objetivo5(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
@@ -175,12 +160,8 @@ class Objetivo5 extends Objetivo {
 	//exterminar o preto, se for o preto ou outro jogador tiver eliminado o preto, 24 territorios
 }
 class Objetivo6 extends Objetivo {
-	public Objetivo6(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
-	}
-	
-	public Objetivo6(List<Jogador> todos_jogadores) {
-		super(todos_jogadores);
+	public Objetivo6(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	
 	//exterminar o vermelho, se for o vermelho ou outro jogador tiver eliminado o vermelho, 24 territorios
@@ -205,8 +186,8 @@ class Objetivo6 extends Objetivo {
 	}
 }
 class Objetivo7 extends Objetivo {
-	public Objetivo7(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
+	public Objetivo7(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	 //conquistar a américa do Norte e a África
 	public boolean verifica_status() {
@@ -219,8 +200,8 @@ class Objetivo7 extends Objetivo {
 	}
 }
 class Objetivo8 extends Objetivo {
-	public Objetivo8(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
+	public Objetivo8(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	 //conquistar ásia e africa
 	public boolean verifica_status() {
@@ -233,8 +214,8 @@ class Objetivo8 extends Objetivo {
 	}
 }
 class Objetivo9 extends Objetivo {
-	public Objetivo9(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
+	public Objetivo9(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	 //conquistar a américa do norte e a oceania
 	public boolean verifica_status() {
@@ -247,8 +228,8 @@ class Objetivo9 extends Objetivo {
 	}
 }
 class Objetivo10 extends Objetivo {
-	public Objetivo10(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
+	public Objetivo10(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	 //Europa, américa do Sul e continente aleatorio
 	public boolean verifica_status() {
@@ -272,8 +253,8 @@ class Objetivo10 extends Objetivo {
 	}
 }
 class Objetivo11 extends Objetivo {
-	public Objetivo11(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
+	public Objetivo11(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	 //Asia e America do Sul
 	public boolean verifica_status() {
@@ -286,8 +267,8 @@ class Objetivo11 extends Objetivo {
 	}
 }
 class Objetivo12 extends Objetivo {
-	public Objetivo12(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-		super(asia, oceania, africa, americasul, americanorte, europa);
+	public Objetivo12(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+		super(todos_jogadores,mapa);
 	}
 	 //Europa Oceania e +1
 	public boolean verifica_status() {

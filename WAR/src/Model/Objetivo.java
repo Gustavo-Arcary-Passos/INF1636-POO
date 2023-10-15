@@ -10,18 +10,30 @@ abstract class Objetivo {
     public Objetivo() {
        
     }
-    public Objetivo(Regiao asia, Regiao oceania, Regiao africa, Regiao americasul, Regiao americanorte, Regiao europa) {
-    	this.asia = asia;
-    	this.oceania = oceania;
-    	this.africa = africa;
-    	this.americasul = americasul;
-    	this.americanorte = americanorte;
-    	this.europa = europa;
-    }
-    public Objetivo(List<Jogador> todos_jogadores) {
+    public Objetivo(List<Jogador> todos_jogadores, List<Regiao> mapa) {
     	this.todos_jogadores = new ArrayList<Jogador>();
     	for(Jogador el : todos_jogadores) {
     		this.todos_jogadores.add(el);
+    	}
+    	for(Regiao reg : mapa) {
+    		if(reg.get_nome().equals("África")) {
+    			this.africa= reg; 
+    		}
+    		if(reg.get_nome().equals("Ásia")) {
+    			this.asia = reg;
+    		}
+    		if(reg.get_nome().equals("América do Norte")) {
+    			this.americanorte = reg;
+    		}
+    		if(reg.get_nome().equals("América do Sul")) {
+    			this.americasul = reg;
+    		}
+    		if(reg.get_nome().equals("Europa")) {
+    			this.europa = reg;
+    		}
+    		if(reg.get_nome().equals("Oceania")) {
+    			this.oceania = reg;
+    		}
     	}
     }
     	

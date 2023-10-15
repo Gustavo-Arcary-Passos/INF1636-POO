@@ -5,8 +5,18 @@ import java.util.*;
 public class api {
 
 	public static void main(String[] args) {
+		//cria mapa
 		List<Regiao> mapa_mundo = api.inicializa_mundo();
+		//cria jogadores
 		List<Jogador> jogadores_ativos = api.inicializa_jogadores();
+		//embaralha a ordem dos jogadores, que vai ser também a ordem de jogada
+		Collections.shuffle(jogadores_ativos);
+		//sorteia os objetivos
+		DeckObjetivos deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
+		for(Jogador el : jogadores_ativos) {
+			deckobj.sorteia_objetivo(el);
+		}
+		
 		
 	}
 	

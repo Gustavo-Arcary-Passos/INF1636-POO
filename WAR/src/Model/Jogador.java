@@ -6,9 +6,9 @@ class Jogador {
     private String nome;
     private String cor;
     protected List<Territorio> domina;
+    protected List<CartaConquista> cartaTroca;
     private Jogador destruido_por;
     private Objetivo objetivo;
-    
     
     public boolean verifica_territorio(Territorio pais) {
     	for (Territorio terr : this.domina) {
@@ -54,5 +54,8 @@ class Jogador {
     }
     public Objetivo get_objetivo() {
     	return objetivo;
+    }
+    public void add_carta(CartaConquista carta) {
+    	this.cartaTroca.add(carta);
     }
 }

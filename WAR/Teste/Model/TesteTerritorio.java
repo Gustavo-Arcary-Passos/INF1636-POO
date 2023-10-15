@@ -19,11 +19,10 @@ public class TesteTerritorio {
 	@Test
 	public void testa_add_exercito(){
 		Jogador jogador = new Jogador("Jogador", "Azul");
-		Jogador jogador2 = new Jogador("Jogador2", "Preto");
 		Territorio BrasilTeste = new Territorio("Brasil", "América do Sul", new ArrayList<>(Arrays.asList("Argentina", "Peru", "Venezuela", "Nigéria")));
 		BrasilTeste.set_Jogador(jogador);
-		assertTrue(BrasilTeste.add_exercito(jogador, 10));
-		assertFalse(BrasilTeste.add_exercito(jogador2, 10));
+		BrasilTeste.add_exercito(10);
+		assertEquals(BrasilTeste.get_exercitos(), 10);
 	}
 	
 	@Test
@@ -43,7 +42,7 @@ public class TesteTerritorio {
 		Jogador jogador = new Jogador("Jogador", "Azul");
 		Territorio BrasilTeste = new Territorio("Brasil", "América do Sul", new ArrayList<>(Arrays.asList("Argentina", "Peru", "Venezuela", "Nigéria")));
 		BrasilTeste.set_Jogador(jogador);
-		BrasilTeste.add_exercito(jogador,2);
+		BrasilTeste.add_exercito(2);
 		assertEquals(BrasilTeste.get_Jogador(),jogador);
 		assertEquals(BrasilTeste.get_nome(),"Brasil");
 		assertEquals(BrasilTeste.get_exercitos(),2);

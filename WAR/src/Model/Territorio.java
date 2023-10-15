@@ -39,9 +39,8 @@ class Territorio {
 		return false;
 	}
 
-	public boolean add_exercito(int qtd) {
+	public void add_exercito(int qtd) {
 		this.exercitos += qtd;
-		return true;
 	}
 
 	public String get_nome() {

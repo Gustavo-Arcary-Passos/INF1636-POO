@@ -16,7 +16,7 @@ class Territorio {
 	private int exercitos;
 	private Jogador jogador;
 	private List<String> fronteiras;
-	private String regiao;55
+	private String regiao;
 
 	public Territorio(String nome, String regiao, List<String> fronteiras) {
 		this.fronteiras = fronteiras;

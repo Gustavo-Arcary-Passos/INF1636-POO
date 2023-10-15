@@ -25,10 +25,11 @@ class DeckObjetivos {
     	objetivos.add(new Objetivo13());
     	objetivos.add(new Objetivo14());
     }
-    public Objetivo get_Objetivo(Jogador jogador){
+    public void sorteia_objetivo(Jogador jogador){
     	Random rand = new Random();
-    	jogador.recebe_objetivo(objetivos.get(rand.nextInt(objetivos.size())));)
+    	jogador.recebe_objetivo(objetivos.get(rand.nextInt(objetivos.size())));
     	jogador.get_objetivo().ganha_dono(jogador);
+    	objetivos.remove(jogador.get_objetivo());
     }
     
 }

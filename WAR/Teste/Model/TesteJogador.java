@@ -104,16 +104,20 @@ public class TesteJogador {
 	{
 		Jogador jogador = new Jogador("Jogador","Azul");
 		Jogador jogador2 = new Jogador("Joel Lambretinha", "Preto");
+		Territorio Mexico = new Territorio("México", "América do Norte", new ArrayList<>(Arrays.asList("Venezuela", "Califórnia", "Texas")));
 		AmericadoSul amesul = new AmericadoSul();
 		jogador.ganha_territorio(amesul.get_territorio("Brasil"));
 		jogador.ganha_territorio(amesul.get_territorio("Argentina"));
 		jogador.ganha_territorio(amesul.get_territorio("Peru"));
 		jogador.ganha_territorio(amesul.get_territorio("Venezuela"));
+		jogador.ganha_territorio(Mexico);
 		assertTrue(amesul.verifica_monopolio(jogador));
 		assertFalse(amesul.verifica_monopolio(jogador2));
 		jogador.add_exercito_regiao("América do Sul",amesul.get_exercito_extra());
 		assertEquals(jogador.get__exercito_regiao("América do Sul"),3);
 		assertTrue(jogador.posiciona_exercito_regiao("América do Sul","Brasil",2));
+		assertFalse(jogador.posiciona_exercito_regiao("América do Sul","México",1));
+		assertEquals(jogador.get__exercito_regiao("América do Sul"),1);
 		assertTrue(jogador.posiciona_exercito_regiao("América do Sul","Argentina",1));
 		assertEquals(jogador.get__exercito_regiao("América do Sul"),0);
 	}

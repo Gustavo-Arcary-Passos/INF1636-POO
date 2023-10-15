@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 class ConjuntoCartaConquista {
-	protected List<CartaConquista> cartas = new ArrayList<CartaConquista>();;
-	protected int troca;// 4 6 8 10 12 15 20 20+5 20+10 ...
+	protected List<CartaConquista> cartas = new ArrayList<CartaConquista>();
+	protected int troca;
 	protected int max_cartas;
 	protected int qtd;
 	
@@ -74,8 +74,9 @@ class ConjuntoCartaConquista {
 	public void tira_uma_carta(Jogador jogador){
 		Random rand = new Random();
 		CartaConquista carta = cartas.get(rand.nextInt(cartas.size()));
-		jogador.add_carta(carta);
-		cartas.remove(carta);
+		if(jogador.add_carta(carta)) {
+			cartas.remove(carta);
+		}
 	}
 	
 	public boolean verifica_troca(List<CartaConquista> descartadas) {

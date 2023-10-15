@@ -25,6 +25,7 @@ class Territorio {
 	}
 
 	public void conquista(Jogador conquistador, int exercito) {
+		conquistador.conquistou_na_rodada();
 		this.jogador = conquistador;
 		this.exercitos = exercito;
 	}

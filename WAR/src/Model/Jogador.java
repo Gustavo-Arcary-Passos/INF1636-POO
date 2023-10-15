@@ -7,8 +7,10 @@ class Jogador {
     private String cor;
     protected List<Territorio> domina;
     protected List<CartaConquista> cartaTroca;
+    protected boolean conquistou_territorio_rodada;
     private Jogador destruido_por;
     private Objetivo objetivo;
+    protected int qtd_exercitos;
     
     public boolean verifica_territorio(Territorio pais) {
     	for (Territorio terr : this.domina) {
@@ -55,7 +57,28 @@ class Jogador {
     public Objetivo get_objetivo() {
     	return objetivo;
     }
-    public void add_carta(CartaConquista carta) {
-    	this.cartaTroca.add(carta);
+    public boolean add_carta(CartaConquista carta) {
+    	if(this.conquistou_territorio_rodada) {
+    		this.conquistou_territorio_rodada = false;
+    		this.cartaTroca.add(carta);
+    		return true;
+    	}
+    	return false;
+    }
+    public void conquistou_na_rodada() {
+    	this.conquistou_territorio_rodada = true;
+    }
+    public void add_exercito(int qtd) {
+    	this.qtd_exercitos += qtd;
+    }
+    public void troca_cartas_exercitos(int um,int dois,int tres,ConjuntoCartaConquista cartas) {
+    	List<CartaConquista> trocadas = new ArrayList<CartaConquista>();
+    	trocadas.add(this.cartaTroca.get(um));
+    	trocadas.add(this.cartaTroca.get(dois));
+    	trocadas.add(this.cartaTroca.get(tres));
+    	
+    	if(cartas.verifica_troca(trocadas)) {
+    		this.add_exercito(cartas.trocas(trocadas)) ;
+    	}
     }
 }

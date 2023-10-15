@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -37,13 +38,48 @@ public class TesteJogador {
 	@Test
 	public void teste_troca_cartas_exercito()
 	{
-		
+		ConjuntoCartaConquista deck = new ConjuntoCartaConquista();
+		Jogador jogador = new Jogador("Jogador", "Azul");
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		List<CartaConquista> cartas = new ArrayList<CartaConquista>();
+		cartas.add(jogador.cartaTroca.get(0));
+		cartas.add(jogador.cartaTroca.get(1));
+		cartas.add(jogador.cartaTroca.get(2));
+		if(deck.verifica_troca(cartas)) {
+			jogador.troca_cartas_exercitos(0,1,2,deck);
+			assertEquals(jogador.get_exercito(),4);
+		}else {
+			assertEquals(jogador.get_exercito(),0);
+		}
 	}
 	
 	@Test
 	public void teste_ganha_exercito_inicio_rodada()
 	{
-		
+		Jogador jogador = new Jogador("Jogador", "Azul");
+		Territorio Mexico = new Territorio("México", "América do Norte", new ArrayList<>(Arrays.asList("Venezuela", "Califórnia", "Texas")));
+		Territorio California = new Territorio("Califórnia", "América do Norte", new ArrayList<>(Arrays.asList("Vancouver", "Texas", "México")));
+		Territorio Texas = new Territorio("Texas", "América do Norte", new ArrayList<>(Arrays.asList("México", "Califórnia", "Vancouver", "Nova York", "Quebec")));
+		Territorio Quebec = new Territorio("Quebec", "América do Norte", new ArrayList<>(Arrays.asList("Nova York", "Texas", "Vancouver", "Groenlândia")));
+		jogador.ganha_territorio(Quebec);
+		jogador.ganha_territorio(Texas);
+		jogador.ganha_territorio(California);
+		jogador.ganha_territorio(Mexico);
+		jogador.add_exercito();
+		assertEquals(jogador.get_exercito(),2);
+		Territorio Nova_York = new Territorio("Nova York", "América do Norte", new ArrayList<>(Arrays.asList("Texas", "Quebec")));
+		jogador.ganha_territorio(Nova_York);
+		jogador.add_exercito();
+		assertEquals(jogador.get_exercito(),4);
 	}
 
 }

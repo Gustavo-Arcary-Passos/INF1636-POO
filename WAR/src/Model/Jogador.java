@@ -30,7 +30,7 @@ class Jogador {
     public Jogador(String nome, String cor) {
         this.nome = nome;
         this.cor = cor;
-        this.destruido_por=null;
+        this.destruido_por= null;
         this.domina = new ArrayList<Territorio>();
         this.cartaTroca = new ArrayList<CartaConquista>();
     }
@@ -47,6 +47,7 @@ class Jogador {
     	domina.remove(perdido);
     }
     public void ganha_territorio(Territorio ganhado) {
+    	ganhado.set_Jogador(this);
     	domina.add(ganhado);
     }
     public boolean verifica_destruido() {
@@ -66,6 +67,9 @@ class Jogador {
     }
     public Objetivo get_objetivo() {
     	return objetivo;
+    }
+    public List<CartaConquista> get_carta(){
+    	return this.cartaTroca;
     }
     public boolean add_carta(CartaConquista carta) {
     	if(this.conquistou_territorio_rodada) {

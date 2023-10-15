@@ -31,4 +31,12 @@ abstract class Regiao { // também conhecido como continente
 		}
 		return true;
 	}
+	public Territorio get_territorio(String nome) {
+		for(Territorio terr : paises) {
+			if(terr.get_nome().equals(nome)) { 
+				return terr;
+			}
+		}
+		return null;
+	}
 }

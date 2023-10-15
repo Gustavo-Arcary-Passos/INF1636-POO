@@ -139,12 +139,10 @@ class Jogador {
     	
     	if(cartas.verifica_troca(trocadas)) {
     		this.add_exercito(cartas.trocas(trocadas)) ;
+    		this.cartaTroca.remove(um);
+        	this.cartaTroca.remove(dois);
+        	this.cartaTroca.remove(tres);
     	}
-    	//implementar a remoção das cartas
-    	/* this.cartaTroca.remove(um);
-    	 * this.cartaTroca.remove(dois);
-    	 * this.cartaTroca.remoce(tres);
-    	 */
     }
     public boolean posiciona_exercito(int qtd, Territorio destino) {
     	//tem que conferir se qtd é < qtd_exercito

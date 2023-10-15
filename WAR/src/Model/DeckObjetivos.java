@@ -10,18 +10,19 @@ class DeckObjetivos {
     
     //Temos que passar uma referência aos continentes criados para verificar alguns objetivos
     public DeckObjetivos(List<Regiao> mapa, List<Jogador> todos_jogadores) {
-    	objetivos.add(new Objetivo1(todos_jogadores, null));
-    	objetivos.add(new Objetivo2(todos_jogadores, null));
-    	objetivos.add(new Objetivo3(todos_jogadores, null));
-    	objetivos.add(new Objetivo4(todos_jogadores, null));
-    	objetivos.add(new Objetivo5(todos_jogadores, null));
-    	objetivos.add(new Objetivo6(todos_jogadores,null));
-    	objetivos.add(new Objetivo7(null, mapa));
-    	objetivos.add(new Objetivo8(null, mapa));
-    	objetivos.add(new Objetivo9(null, mapa));
-    	objetivos.add(new Objetivo10(null, mapa));
-    	objetivos.add(new Objetivo11(null, mapa));
-    	objetivos.add(new Objetivo12(null, mapa));
+    	objetivos = new ArrayList<Objetivo>();
+    	objetivos.add(new Objetivo1(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo2(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo3(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo4(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo5(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo6(todos_jogadores,mapa));
+    	objetivos.add(new Objetivo7(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo8(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo9(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo10(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo11(todos_jogadores, mapa));
+    	objetivos.add(new Objetivo12(todos_jogadores, mapa));
     	objetivos.add(new Objetivo13());
     	objetivos.add(new Objetivo14());
     }

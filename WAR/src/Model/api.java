@@ -9,15 +9,49 @@ public class api {
 		List<Regiao> mapa_mundo = api.inicializa_mundo();
 		//cria jogadores
 		List<Jogador> jogadores_ativos = api.inicializa_jogadores();
+		
+		DeckObjetivos deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
 		//embaralha a ordem dos jogadores, que vai ser também a ordem de jogada
 		Collections.shuffle(jogadores_ativos);
-		//sorteia os objetivos
-		DeckObjetivos deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
+		//sorteia os objetivos para cada jogador
+		sorteia_obj_todos_jogadores(jogadores_ativos,deckobj);
+		//sorteio de todas os territorios para os jogadores
+		sorteia_todos_territorios(mapa_mundo,jogadores_ativos);
+		for(Jogador jogadores : jogadores_ativos) {
+			System.out.println(jogadores.domina.size());
+		}
+	}
+	
+	protected static void sorteia_todos_territorios(List<Regiao> mapa_mundo, List<Jogador> jogadores_ativos) {
+		List<String> territorios = new ArrayList<String>(Arrays.asList("Argélia","Nigéria","Angola","Egito","Somália","África do Sul","Letônia","Estônia","Turquia","Sibéria","Rússia","Cazaquistão","Arábia Saudita","Bangladesh","China","Coreia do Norte","Coreia do Sul","Índia","Irã","Iraque","Japão","Jordânia","Mongólia","Tailândia","México","Califórnia","Texas","Vancouver","Nova York","Quebec","Alasca","Calgary","Groenlândia","Brasil","Argentina","Peru","Venezuela","Reino Unido","França","Espanha","Itália","Suécia","Polônia","Romênia","Ucrânia","Austrália","Indonésia","Nova Zelândia","Perth","Paquistão","Síria"));
+		Territorio escolhido;
+		String terr;
+		Random rand = new Random();
+		int valor = 0;
+		int pos;
+		Jogador atual;
+		while(territorios.size() != 0) {
+			terr = territorios.get(rand.nextInt(territorios.size()));
+			territorios.remove(terr);
+			for(Regiao reg : mapa_mundo) {
+				escolhido = reg.get_territorio(terr);
+				if(escolhido != null) {
+					pos = valor%jogadores_ativos.size();
+					atual = jogadores_ativos.get(pos);
+					atual.ganha_territorio(escolhido);
+					escolhido.set_Jogador(atual);
+					escolhido.add_exercito(1);
+					valor++;
+					break;
+				}
+			}
+		}
+	}
+	
+	protected static void sorteia_obj_todos_jogadores(List<Jogador> jogadores_ativos,DeckObjetivos deckobj) {
 		for(Jogador el : jogadores_ativos) {
 			deckobj.sorteia_objetivo(el);
 		}
-		
-		
 	}
 	
 	protected static List<Regiao> inicializa_mundo(){

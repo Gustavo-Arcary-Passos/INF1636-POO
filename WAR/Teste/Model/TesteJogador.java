@@ -111,5 +111,10 @@ public class TesteJogador {
 		jogador.ganha_territorio(amesul.get_territorio("Venezuela"));
 		assertTrue(amesul.verifica_monopolio(jogador));
 		assertFalse(amesul.verifica_monopolio(jogador2));
+		jogador.add_exercito_regiao("América do Sul",amesul.get_exercito_extra());
+		assertEquals(jogador.get__exercito_regiao("América do Sul"),3);
+		assertTrue(jogador.posiciona_exercito_regiao("América do Sul","Brasil",2));
+		assertTrue(jogador.posiciona_exercito_regiao("América do Sul","Argentina",1));
+		assertEquals(jogador.get__exercito_regiao("América do Sul"),0);
 	}
 }

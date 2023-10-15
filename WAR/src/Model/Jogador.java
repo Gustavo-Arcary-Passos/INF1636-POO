@@ -7,6 +7,7 @@ class Jogador {
     private String cor;
     protected List<Territorio> domina;
     protected List<CartaConquista> cartaTroca;
+    protected List<ExercitoRegiao> exercitos_regiao;
     protected boolean conquistou_territorio_rodada;
     private Jogador destruido_por;
     private Objetivo objetivo;
@@ -33,6 +34,13 @@ class Jogador {
         this.destruido_por= null;
         this.domina = new ArrayList<Territorio>();
         this.cartaTroca = new ArrayList<CartaConquista>();
+        this.exercitos_regiao = new ArrayList<ExercitoRegiao>();
+        this.exercitos_regiao.add(new ExercitoRegiao("Ásia"));
+        this.exercitos_regiao.add(new ExercitoRegiao("América do Norte"));
+        this.exercitos_regiao.add(new ExercitoRegiao("América do Sul"));
+        this.exercitos_regiao.add(new ExercitoRegiao("Europa"));
+        this.exercitos_regiao.add(new ExercitoRegiao("Oceania"));
+        this.exercitos_regiao.add(new ExercitoRegiao("África"));
     }
 
     public String get_nome() {
@@ -87,6 +95,41 @@ class Jogador {
     }
     public void add_exercito() { //add exercito de acordo com metade dos territórios
     	this.qtd_exercitos += this.domina.size()/2;
+    }
+    public int get__exercito_regiao(String regiao) {
+    	for(ExercitoRegiao exercito : this.exercitos_regiao) {
+    		if(exercito.get_regiao() == regiao) {
+    			return exercito.get_exercito();
+    		}
+    	}
+    	return 0;
+    }
+    public void add_exercito_regiao(String regiao,int qtd) {
+    	for(ExercitoRegiao exercito : this.exercitos_regiao) {
+    		if(exercito.get_regiao() == regiao) {
+    			exercito.add_exercito(qtd);
+    		}
+    	}
+    }
+    public boolean posiciona_exercito_regiao(String regiao,String territorio,int qtd) {
+    	int exercitos_regiao = 0;
+    	for(ExercitoRegiao exercito : this.exercitos_regiao) {
+    		if(exercito.get_regiao() == regiao) {
+    			
+    			exercitos_regiao = exercito.get_exercito();
+    		}
+    	}
+    	if(qtd > exercitos_regiao) {
+    		return false;
+    	}
+    	for(Territorio terr : this.domina) {
+    		if(terr.get_nome().equals(territorio) && terr.get_Regiao().equals(regiao)) {
+    			terr.add_exercito(qtd);
+    			this.add_exercito_regiao(regiao,-qtd);
+    			return true;
+    		}
+    	}
+    	return false;
     }
     public void troca_cartas_exercitos(int um,int dois,int tres,ConjuntoCartaConquista cartas) {
     	List<CartaConquista> trocadas = new ArrayList<CartaConquista>();

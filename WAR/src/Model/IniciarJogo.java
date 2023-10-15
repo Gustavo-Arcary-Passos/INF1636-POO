@@ -19,12 +19,10 @@ package Model;
     public static void main(String[] args) {
         System.out.println("Bem vindo ao War! Quantos jogadores vão jogar? (entre 4 e 6)");
         int num_jogadores = 0;
-
+        num_jogadores = Integer.parseInt(System.console().readLine());
         while (num_jogadores < 4 || num_jogadores > 6) {
+        	System.out.println("Número inválido. Digite novamente.");
             num_jogadores = Integer.parseInt(System.console().readLine());
-            if (num_jogadores < 4 || num_jogadores > 6) {
-                System.out.println("Número inválido. Digite novamente.");
-            }
         }
 
         // para cada jogador, pede o nome e define a cor

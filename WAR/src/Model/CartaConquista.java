@@ -75,8 +75,17 @@ class ConjuntoCartaConquista {
 		Random rand = new Random();
 		CartaConquista carta = cartas.get(rand.nextInt(cartas.size()));
 		if(jogador.add_carta(carta)) {
+			
 			cartas.remove(carta);
 		}
+	}
+	
+	public List<CartaConquista> get_cartas() {
+		return this.cartas;
+	}
+	
+	public int get_max_cartas() {
+		return this.max_cartas;
 	}
 	
 	public boolean verifica_troca(List<CartaConquista> descartadas) {

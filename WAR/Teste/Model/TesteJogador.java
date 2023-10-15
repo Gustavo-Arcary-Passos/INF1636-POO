@@ -102,7 +102,14 @@ public class TesteJogador {
 	@Test
 	public void teste_monopolio()
 	{
-		Jogador jogador = new Jogador("Jogador", "Azul");
-		
+		Jogador jogador = new Jogador("Jogador","Azul");
+		Jogador jogador2 = new Jogador("Joel Lambretinha", "Preto");
+		AmericadoSul amesul = new AmericadoSul();
+		jogador.ganha_territorio(amesul.get_territorio("Brasil"));
+		jogador.ganha_territorio(amesul.get_territorio("Argentina"));
+		jogador.ganha_territorio(amesul.get_territorio("Peru"));
+		jogador.ganha_territorio(amesul.get_territorio("Venezuela"));
+		assertTrue(amesul.verifica_monopolio(jogador));
+		assertFalse(amesul.verifica_monopolio(jogador2));
 	}
 }

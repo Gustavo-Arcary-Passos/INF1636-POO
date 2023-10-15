@@ -62,8 +62,8 @@ public class api {
         	}
         	
         }
+        scan.close();
         return jogadores;
-    
 	}
 	
 }

@@ -53,4 +53,35 @@ public class TesteCartaConquista {
 		cartas.add(new CartaQuadrado());
 		assertFalse(deck.verifica_troca(cartas));
 	}
+	
+	@Test
+	public void teste_tira_uma_carta()
+	{
+		Jogador jogador = new Jogador("Jogador", "Azul");
+		ConjuntoCartaConquista deck = new ConjuntoCartaConquista();
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		assertEquals(deck.get_cartas().size(),52);
+	}
+	
+	@Test
+	public void teste_max_cartas()
+	{
+		Jogador jogador = new Jogador("Jogador", "Azul");
+		ConjuntoCartaConquista deck = new ConjuntoCartaConquista();
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		jogador.conquistou_na_rodada();
+		deck.tira_uma_carta(jogador);
+		assertEquals(jogador.get_carta().size(),deck.get_max_cartas()+1);
+		// Obrigar a forcar a troca de cartas por exercitos
+	}
 }

@@ -20,7 +20,7 @@ abstract class Regiao { // também conhecido como continente
 	}
 	public Regiao() {
 		this.nome = ""; // Initialize with default values
-	    this.paises = new ArrayList<>();
+	    this.paises = new ArrayList<Territorio>();
 	    this.exercito_extra = 0;
 	}
 	public boolean verifica_monopolio(Jogador jogador) {

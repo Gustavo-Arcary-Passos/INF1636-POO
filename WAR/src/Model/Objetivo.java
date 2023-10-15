@@ -1,7 +1,7 @@
 package Model;
 
 abstract class Objetivo {
-	private Jogador dono;
+	protected Jogador dono;
     // construtor
     public Objetivo() {
        

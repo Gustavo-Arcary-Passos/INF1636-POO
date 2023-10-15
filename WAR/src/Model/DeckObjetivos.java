@@ -75,7 +75,27 @@ protected class Objetivo12 extends Objetivo {
 }
 protected class Objetivo13 extends Objetivo {
 	 //18 territorios e 2 exercitos em cada
+	public boolean verifica_status() {
+		if(dono.qtd_territorios()>=18) {
+			for(Territorio terr : dono.domina) {
+				if(terr.get_exercitos()<2) {
+					return false;
+				}
+			}
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
 }
 protected class Objetivo14 extends Objetivo {
-	 //24 territorios
+	//24 territorios
+	public boolean verifica_status() {
+		if(dono.qtd_territorios()>=24) {
+			return true;
+		}
+		return false;
+	}
 }

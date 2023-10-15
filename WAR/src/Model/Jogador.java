@@ -5,7 +5,7 @@ import java.util.*;
 class Jogador {
     private String nome;
     private String cor;
-    private List<Territorio> domina;
+    protected List<Territorio> domina;
     private Jogador destruido_por;
     private Objetivo objetivo;
     
@@ -17,6 +17,10 @@ class Jogador {
     		}
     	}
     	return false;
+    }
+    
+    public int qtd_territorios() {
+    	return domina.size();
     }
 
     public Jogador(String nome, String cor) {

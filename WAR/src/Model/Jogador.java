@@ -29,6 +29,8 @@ class Jogador {
         this.nome = nome;
         this.cor = cor;
         this.destruido_por=null;
+        this.domina = new ArrayList<Territorio>();
+        this.cartaTroca = new ArrayList<CartaConquista>();
     }
 
     public String get_nome() {
@@ -41,6 +43,9 @@ class Jogador {
     
     public void perde_territorio(Territorio perdido) {
     	domina.remove(perdido);
+    }
+    public void ganha_territorio(Territorio ganhado) {
+    	domina.add(ganhado);
     }
     public boolean verifica_destruido() {
     	if(destruido_por==null) {

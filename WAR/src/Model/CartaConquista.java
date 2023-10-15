@@ -91,6 +91,30 @@ class ConjuntoCartaConquista {
 		} else if (cartaUm.get_tipo() != cartaDois.get_tipo() && cartaUm.get_tipo() != cartaTres.get_tipo() && cartaDois.get_tipo() != cartaTres.get_tipo()) {
 			return true;
 		}
+		// Casos de alguma carta ou mais serem curingas
+		if(cartaUm.get_tipo() == "Curinga") {
+			if(cartaDois.get_tipo() == cartaTres.get_tipo()) {
+				return true;
+			}
+			if(cartaDois.get_tipo() == "Curinga" || cartaTres.get_tipo() == "Curinga") {
+				return true;
+			}
+		} else if (cartaDois.get_tipo() == "Curinga") {
+			if(cartaUm.get_tipo() == cartaTres.get_tipo()) {
+				return true;
+			}
+			if(cartaUm.get_tipo() == "Curinga" || cartaTres.get_tipo() == "Curinga") {
+				return true;
+			}
+		} else if (cartaTres.get_tipo() == "Curinga") {
+			if(cartaDois.get_tipo() == cartaUm.get_tipo()) {
+				return true;
+			}
+			if(cartaDois.get_tipo() == "Curinga" || cartaUm.get_tipo() == "Curinga") {
+				return true;
+			}
+		}
+		
 		
 		return false;
 	}
@@ -128,7 +152,7 @@ class CartaTriangulo extends CartaConquista {
 
 class CartaQuadrado extends CartaConquista {
 	public void set_tipo() {
-		this.tipo = "Triangulo";
+		this.tipo = "Quadrado";
 	}
 }
 

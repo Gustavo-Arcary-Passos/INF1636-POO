@@ -1,12 +1,14 @@
 package Model;
 
+import java.util.*;
+
 class Cor {
-	static String[] cores = { "azul", "vermelho", "verde", "amarelo", "preto", "branco" };
+	//static List<String> cores = new ArrayList<>(Arrays.asList("azul", "vermelho", "verde", "amarelo", "preto", "branco"));
 	
-	public static boolean existe_cor(String cor) {
+	public static boolean existe_cor(String cor,List<String> cores) {
 		for(String existe : cores) {
-			if(existe == cor) {
-				existe =null;
+			if(existe.equals(cor)) {
+				cores.remove(existe);
 				return true;
 			}
 		}

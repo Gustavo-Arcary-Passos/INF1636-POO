@@ -81,5 +81,28 @@ public class TesteJogador {
 		jogador.add_exercito();
 		assertEquals(jogador.get_exercito(),4);
 	}
-
+	
+	@Test
+	public void teste_posiciona_exercito()
+	{
+		Jogador jogador = new Jogador("Jogador", "Azul");
+		Territorio Mexico = new Territorio("México", "América do Norte", new ArrayList<>(Arrays.asList("Venezuela", "Califórnia", "Texas")));
+		Territorio California = new Territorio("Califórnia", "América do Norte", new ArrayList<>(Arrays.asList("Vancouver", "Texas", "México")));
+		Territorio Texas = new Territorio("Texas", "América do Norte", new ArrayList<>(Arrays.asList("México", "Califórnia", "Vancouver", "Nova York", "Quebec")));
+		Territorio Quebec = new Territorio("Quebec", "América do Norte", new ArrayList<>(Arrays.asList("Nova York", "Texas", "Vancouver", "Groenlândia")));
+		jogador.ganha_territorio(Quebec);
+		jogador.ganha_territorio(Texas);
+		jogador.ganha_territorio(California);
+		jogador.ganha_territorio(Mexico);
+		jogador.add_exercito();
+		assertTrue(jogador.posiciona_exercito(2, Mexico));
+		assertEquals(Mexico.get_exercitos(),2);
+	}
+	
+	@Test
+	public void teste_monopolio()
+	{
+		Jogador jogador = new Jogador("Jogador", "Azul");
+		
+	}
 }

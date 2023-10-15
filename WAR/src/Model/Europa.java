@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 class Europa extends Regiao{
 		public Europa() {
+			super();
 			this.nome = "Europa";
 			this.exercito_extra = 5;
 			paises.add(new Territorio("Reino Unido", "Europa", new ArrayList<>(Arrays.asList("Groenlândia", "França"))));

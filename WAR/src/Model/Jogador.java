@@ -20,7 +20,9 @@ class Jogador {
     	}
     	return false;
     }
-    
+    public int get_exercito() {
+    	return this.qtd_exercitos;
+    }
     public int qtd_territorios() {
     	return domina.size();
     }

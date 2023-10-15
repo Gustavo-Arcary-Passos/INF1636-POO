@@ -115,8 +115,6 @@ class ConjuntoCartaConquista {
 				return true;
 			}
 		}
-		
-		
 		return false;
 	}
 	
@@ -129,7 +127,7 @@ class ConjuntoCartaConquista {
 			qtd += 2;
 		} else if (troca == 6){
 			qtd = 15;
-		} else {
+		} else if (troca > 6){
 			qtd += 5;
 		}
 		return qtd;
@@ -138,7 +136,6 @@ class ConjuntoCartaConquista {
 
 abstract class CartaConquista {
 	protected String tipo;
-	public abstract void set_tipo();
 	
 	public String get_tipo() {
 		return this.tipo;
@@ -146,25 +143,25 @@ abstract class CartaConquista {
 }
 
 class CartaTriangulo extends CartaConquista {
-	public void set_tipo() {
+	public CartaTriangulo() {
 		this.tipo = "Triangulo";
 	}
 }
 
 class CartaQuadrado extends CartaConquista {
-	public void set_tipo() {
+	public CartaQuadrado(){
 		this.tipo = "Quadrado";
 	}
 }
 
 class CartaCirculo extends CartaConquista {
-	public void set_tipo() {
+	public CartaCirculo() {
 		this.tipo = "Circulo";
 	}
 }
 
 class CartaCuringa extends CartaConquista {
-	public void set_tipo() {
+	public CartaCuringa() {
 		this.tipo = "Curinga";
 	}
 }

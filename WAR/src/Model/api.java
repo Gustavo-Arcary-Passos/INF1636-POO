@@ -15,6 +15,7 @@ public class api {
 		DeckObjetivos deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
 		for(Jogador el : jogadores_ativos) {
 			deckobj.sorteia_objetivo(el);
+			
 		}
 		
 		

@@ -15,6 +15,9 @@ public class api {
 		Collections.shuffle(jogadores_ativos);
 		//sorteia os objetivos para cada jogador
 		sorteia_obj_todos_jogadores(jogadores_ativos,deckobj);
+		for(Jogador jogadores : jogadores_ativos) {
+			System.out.printf("O objetivo do jogador %s é %s.\n",jogadores.get_nome(),jogadores.get_objetivo().getClass());
+		}
 		//sorteio de todas os territorios para os jogadores
 		sorteia_todos_territorios(mapa_mundo,jogadores_ativos);
 		for(Jogador jogadores : jogadores_ativos) {

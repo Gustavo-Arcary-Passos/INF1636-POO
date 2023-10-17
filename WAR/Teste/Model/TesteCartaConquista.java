@@ -83,5 +83,6 @@ public class TesteCartaConquista {
 		deck.tira_uma_carta(jogador);
 		assertEquals(jogador.get_carta().size(),deck.get_max_cartas()+1);
 		// Obrigar a forcar a troca de cartas por exercitos
+		
 	}
 }

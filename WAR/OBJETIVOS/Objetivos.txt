@@ -1,0 +1,29 @@
+this.descricao = "Conquistar 24 territorios a sua escolha";
+
+this.descricao = "Conquistar na totalidade a Asia e a Africa";
+
+this.descricao = "Conquistar na totalidade Asia e America do Sul";
+
+this.descricao = "Conquistar na totalidade a America do Norte e a Africa";
+
+this.descricao = "Conquistar na totalidade a America do Norte e a Oceania";
+
+this.descricao = "Conquistar na totalidade a Europa, a Oceania e mais um continente a sua escolha";
+
+this.descricao = "Conquistar na totalidade a Europa, a America do Sul e mais um continente a sua escolha";
+
+this.descricao = "Conquistar 18 territorios com pelo menos 2 exercitos em cada";
+
+this.descricao = "Destruir todos os exércitos <X>"  // um objetivo para cada cor <X>
+
+– AZUIS
+- AMARELOS
+- VERMELHOS
+- PRETOS
+- BRANCO
+- VERDES
+
+// se voce e quem possui os exércitos <X> ou se esses exercitos já foram destruidos por outro jogador,
+// o seu objetivo passa a ser conquistar 24 territorios a sua escolha
+
+.

@@ -5,5 +5,5 @@ import java.awt.*;
 
 public class Tela extends JFrame {
 	
-	}
+	
 }

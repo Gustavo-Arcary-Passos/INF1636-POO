@@ -12,8 +12,7 @@ public class ImagemInfo {
 	protected int y;
 	protected BufferedImage imagem;
 	
-	public ImagemInfo (String path,int x,int y,int largura,int altura){
-		this.imagem = new BufferedImage(largura, altura, BufferedImage.TYPE_INT_RGB);
+	public ImagemInfo (String path,int x,int y){
 		this.caminho = path;
 		this.x = x;
 		this.y = y;
@@ -44,11 +43,11 @@ public class ImagemInfo {
 		this.y = y;
 	}
 	
-	public void load_image() {
-		try {
-            this.imagem = ImageIO.read(new File("WAR-Imagens/images/"+this.caminho));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
+	 public void load_image() {
+	        try {
+	        	this.imagem = ImageIO.read(new File("WAR-Imagens/images/" + this.caminho));
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	 }
 }

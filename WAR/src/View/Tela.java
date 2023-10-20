@@ -20,8 +20,8 @@ public class Tela extends JFrame {
 		//setBackground(Color.BLUE);
 		
 		images = new ImagemInfo[100];
-		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
-		count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
+		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0));
+		count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0));
 	}
 	
 	@Override

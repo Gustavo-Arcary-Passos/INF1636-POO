@@ -2,13 +2,13 @@ package Model;
 
 import java.util.*;
 
-public class api {
+public class Api_model {
 
 	public static void main(String[] args) {
 		//cria mapa
-		List<Regiao> mapa_mundo = api.inicializa_mundo();
+		List<Regiao> mapa_mundo = Api_model.inicializa_mundo();
 		//cria jogadores
-		List<Jogador> jogadores_ativos = api.inicializa_jogadores();
+		List<Jogador> jogadores_ativos = Api_model.inicializa_jogadores();
 		
 		DeckObjetivos deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
 		//embaralha a ordem dos jogadores, que vai ser também a ordem de jogada

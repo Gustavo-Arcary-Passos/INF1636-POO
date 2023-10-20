@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class ImagemInfo {
+class ImagemInfo {
 	protected String caminho;
 	protected int x;
 	protected int y;

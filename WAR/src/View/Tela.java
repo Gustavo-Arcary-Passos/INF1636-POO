@@ -9,9 +9,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import java.awt.Color;
 
-public class Tela extends JFrame {
-	public final int LARG_DEFAULT=1200;
-	public final int ALT_DEFAULT=800;
+class Tela extends JFrame {
+	protected final int LARG_DEFAULT=1200;
+	protected final int ALT_DEFAULT=800;
 	private ImagemInfo[] images;
 	private int count;
 	public Tela() {

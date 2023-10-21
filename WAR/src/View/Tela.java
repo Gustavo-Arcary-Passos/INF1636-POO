@@ -26,7 +26,28 @@ class Tela extends JFrame {
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
 		
 		terras = new DesenhaTerritorioPoligono[51];
+		// America do Sul
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{274,332,326,343,336,315,306,291,285,254,234},new int[]{500,500,487,457,441,441,421,418,402,394,430}, Color.RED, "Brasil"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{275,235,278,294,281,311,303,334},new int[]{500,569,645,645,619,567,554,500}, Color.BLUE, "Argentina"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{197,202,218,232,227,240,274,234},new int[]{494,503,503,532,540,558,499,431}, Color.YELLOW, "Peru"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{253,194,162,176,189,197},new int[]{394,394,450,477,477,490}, Color.WHITE, "Venezuela"));
+		// America do Norte
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{90,83,104,110,102,105,135,146,161,171,180,189,183,178,171,174,166,171,164,162,152,126},new int[]{305,318,353,341,326,318,371,372,401,403,415,402,394,392,385,378,365,356,344,349,350,305}, Color.GREEN, "México"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{107,84,90,78,90,124,176},new int[]{215,255,263,284,305,306,216}, Color.BLUE, "Califórnia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{178,126,145,201,230,244},new int[]{215,305,337,243,242,216}, Color.YELLOW, "Texas"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{125,111,119,103,108,213,230,222,146},new int[]{134,161,177,206,214,214,186,172,171}, Color.WHITE, "Vancouver"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{202,165,181,202,210,200,206,213,230,237,244,259,278,290,295,246,230,202},new int[]{242,303,304,342,332,313,301,301,273,273,258,258,226,225,216,216,241,243}, Color.BLUE, "Nova York"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{232,215,294,302,316,314,323,328,322,331,337,344,340,321,318,289,283,273,262},new int[]{185,214,214,202,202,208,208,198,186,173,178,165,158,159,155,156,166,166,185}, Color.GREEN, "Quebec"));
+//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, Color.YELLOW, "Alasca"));
+//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, Color.WHITE, "Calgary"));
+//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, Color.WHITE, "Groenlândia"));
+		// Africa
+		
+		// Europa
+		
+		// Asia
+		
+		// Oceania
 		
 	}
 	

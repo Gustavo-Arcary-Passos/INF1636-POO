@@ -12,9 +12,9 @@ public class Main {
         f.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int x = e.getX();
+            	int x = e.getX();
                 int y = e.getY();
-                System.out.printf(x + ",");
+                System.out.printf(x + "-" + y);
             }
         });
     }

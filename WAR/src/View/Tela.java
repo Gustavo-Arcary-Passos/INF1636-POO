@@ -26,7 +26,7 @@ class Tela extends JFrame {
 		//count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
 		
-		terras = new DesenhaTerritorioPoligono[51];
+		terras = new DesenhaTerritorioPoligono[52];
 		// America do Sul
 		Color padrao = new Color(65,65,65);
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{274,332,326,343,336,315,306,291,285,254,234},new int[]{500,500,487,457,441,441,421,418,402,394,430}, padrao, "Brasil"));
@@ -44,7 +44,7 @@ class Tela extends JFrame {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{133,125,146,222,231,245,258,282,271,243,231,213,208,153,149},new int[]{118,134,172,172,158,158,134,134,112,112,134,134,127,127,118}, padrao, "Calgary"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{286,272,282,330,334,350,365,372,380,370},new int[]{90,111,134,134,144,144,116,116,102,90}, padrao, "Groenlândia"));
 		// Africa
-		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{529,557,596,606,614,626,617},new int[]{542,594,594,579,579,555,542}, padrao, "África do Sul"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{529,557,596,606,614,626,617},new int[]{542,595,595,579,579,555,542}, padrao, "África do Sul"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{520,514,535,530,574,598,587},new int[]{478,488,523,540,540,498,478}, padrao, "Angola"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{426,447,503,520,586,547},new int[]{405,447,447,477,477,406}, padrao, "Nigéria"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{437,410,426,514,538,498,493,481,474},new int[]{333,378,405,405,360,360,346,346,333}, padrao, "Argélia"));
@@ -53,15 +53,18 @@ class Tela extends JFrame {
 		// Europa
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{441,438,428,423,440,448,450,452,447},new int[]{172,178,178,192,192,185,185,180,172}, padrao, "Reino Unido"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{460,450,459,453,463,459,450,445,483,490,483,470,482,474,482},new int[]{141,158,158,170,182,190,190,205,205,192,192,170,150,150,141}, padrao, "Reino Unido"));
-//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, padrao, "França"));
-//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, padrao, "Espanha"));
-//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, padrao, "Itália"));
-//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, padrao, "Suécia"));
-//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, padrao, "Polônia"));
-//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, padrao, "Romênia"));
-//		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{},new int[]{}, padrao, "Ucrânia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{446,451,460,466,460,477,483,494,501,507,539,526,518,522,515,498,489},new int[]{230,240,240,249,259,286,274,274,258,258,204,182,194,203,214,214,230}, padrao, "França"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{442,416,439,443,456,452,471,479,475,477,461},new int[]{261,304,304,299,299,307,307,292,291,285,261}, padrao, "Espanha"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{539,508,518,526,534,542,537,549,554,558,563,552,546,538,543,552,556,567,552},new int[]{206,258,258,276,276,292,304,304,291,294,294,273,273,257,248,249,254,232,206}, padrao, "Itália"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{508,492,501,514,522,530,535,547,555,551,558,551,564,578,570,578,572,601,610,582,550,544,537,523},new int[]{135,161,178,178,166,166,179,179,166,162,150,140,123,123,140,140,152,152,139,92,92,106,106,135}, padrao, "Suécia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{563,552,567,582,601,582,576,571},new int[]{183,204,232,232,200,171,171,183}, padrao, "Polônia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{567,556,555,566,579,575,582,594,602,594,598,608,582},new int[]{232,252,259,259,282,292,303,303,292,285,278,278,232}, padrao, "Romênia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{601,582,608,619,611,620},new int[]{201,231,277,259,249,234}, padrao, "Ucrânia"));
 		// Oceania
-		
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{875,818,823,838,845,877,892,902,917,911,920,885},new int[]{535,637,652,652,668,668,644,644,618,607,592,535}, padrao, "Austrália"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{840,835,848,886,890,904,907,920,927,954,944,935,925,908,902,887,881,860,850},new int[]{476,485,512,512,524,524,517,517,532,532,514,514,494,494,482,482,495,495,476}, padrao, "Indonésia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{929,935,929,933,923,917,901,918,926,931,951,943,939,942,936},new int[]{600,608,617,626,643,643,677,677,660,660,626,616,614,612,600}, padrao, "Nova Zelândia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{781,774,783,770,762,757,766,779,787,815,862,854,862,857,838,822,799,790},new int[]{580,593,606,625,625,634,652,652,638,638,558,546,537,532,532,561,561,580}, padrao, "Perth"));
 		// Asia
 		
 	}

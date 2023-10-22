@@ -46,6 +46,12 @@ class ImagemInfo {
 	public int get_h() {
 		return this.h;
 	}
+	public int get_center_x() {
+		return x+(w/2);
+	}
+	public int get_center_y() {
+		return y+(h/2);
+	}
 	
 	public void set_x(int x) {
 		this.x = x;

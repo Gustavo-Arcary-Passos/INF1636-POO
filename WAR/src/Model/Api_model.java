@@ -108,7 +108,6 @@ public class Api_model {
 			Random rand = new Random();
 			valores.add(rand.nextInt(6)+1);
 		}
-		
 		return valores;
 	}
 	

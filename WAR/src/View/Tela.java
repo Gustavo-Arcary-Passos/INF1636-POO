@@ -29,7 +29,7 @@ class Tela extends JFrame {
 		
 		terras = new DesenhaTerritorioPoligono[52];
 		// America do Sul
-		Color padrao = new Color(65,65,65);
+		Color padrao = new Color(75,75,75);
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{274,332,326,343,336,315,306,291,285,254,232},new int[]{500,500,487,457,441,441,421,418,402,394,431}, padrao, "Brasil"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{274,234,278,294,281,311,303,334},new int[]{500,569,645,645,619,567,554,500}, padrao, "Argentina"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{195,201,218,232,227,240,274,232},new int[]{494,503,503,532,540,558,499,431}, padrao, "Peru"));
@@ -76,7 +76,7 @@ class Tela extends JFrame {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{654,628,646,640,648,698,726,718,679}, new int[]{339,383,416,430,443,443,398,382,382}, padrao, "Arábia Saudita"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{847,828,841,848,860,854,870,878,872,878,859,883}, new int[]{345,376,402,402,427,434,463,452,439,427,391,345}, padrao, "Bangladesh"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{781,753,786,811,838,888,874,822,805}, new int[]{241,290,344,344,296,296,274,274,241}, padrao, "China"));
-		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{838,825,914,907,893,886}, new int[]{296,320,320,310,310,297}, padrao, "Coreia do Norte"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{838,825,914,907,893,886}, new int[]{296,320,320,310,310,296}, padrao, "Coreia do Norte"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{824,811,915,922,914}, new int[]{321,344,344,333,321}, padrao, "Coreia do Sul"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{786,763,798,812,807,847}, new int[]{344,380,442,422,414,344}, padrao, "Índia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{701,690,715,734,740,751,719}, new int[]{306,324,370,370,381,364,306}, padrao, "Irã"));
@@ -106,6 +106,15 @@ class Tela extends JFrame {
 		    	g2d.draw(terras[i].get_polygon());
 		    }
 	    }
+	}
+	
+	public String terra_clicada(int x, int y) {
+		for(int i = 0; i < this.count_terras; i++) {
+			if (terras[i].clicou(x,y)) {
+		    	return terras[i].get_nome();
+		    }
+		}
+		return "Oceano";
 	}
 	
 	public void count_images_loaded(ImagemInfo imagem) {

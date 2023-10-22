@@ -14,7 +14,7 @@ public class Main {
             public void mouseClicked(MouseEvent e) {
             	int x = e.getX();
                 int y = e.getY();
-                System.out.printf(x + "-" + y);
+                System.out.println(f.terra_clicada(x,y));
             }
         });
     }

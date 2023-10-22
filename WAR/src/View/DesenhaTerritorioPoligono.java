@@ -40,10 +40,8 @@ public class DesenhaTerritorioPoligono {
 	
 	public boolean clicou(int x, int y) {
 		if(this.terra.contains(x, y) == true) {
-			System.out.println("O ponto está dentro do polígono.");
 			return true;
 		}
-		System.out.println("O ponto está fora do polígono.");
 		return false;
 	}
 }

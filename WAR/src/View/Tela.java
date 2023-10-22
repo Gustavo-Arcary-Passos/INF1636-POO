@@ -33,7 +33,10 @@ class Tela extends JFrame {
 	            System.out.println(x+", "+y);
 	            //cenario++;
 	            DesenhaTerritorioPoligono clicado = cenarios[cenario].formas_geometricas_clicada(x,y);
-	            clicado.set_color(Color.RED);
+	            if(clicado!=null) {
+	            	System.out.println(clicado.get_nome());
+	            }
+	            //clicado.set_color(Color.RED);
 	            //repaint();
 	        }
 	    });

@@ -3,9 +3,8 @@ package View;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.ImageObserver;
 
-class LoadScene {
+abstract class LoadScene {
 	protected ImagemInfo[] images;
 	protected DesenhaTerritorioPoligono[] formas_geometricas;
 	protected int count_images,count_formas_geometricas;

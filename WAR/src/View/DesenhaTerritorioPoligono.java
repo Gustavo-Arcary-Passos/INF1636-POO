@@ -3,9 +3,10 @@ package View;
 import java.awt.Color;
 import java.awt.geom.Path2D;
 
-public class DesenhaTerritorioPoligono {
+class DesenhaTerritorioPoligono {
 	protected String nome;
 	protected Color cor;
+	protected boolean redesenha;
 	protected Path2D terra;
 	
 	public DesenhaTerritorioPoligono (int[] xs, int[] ys,Color color,String name) {

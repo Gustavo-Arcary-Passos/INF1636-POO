@@ -2,6 +2,8 @@ package View;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,6 +27,8 @@ class Tela extends JFrame {
 		images = new ImagemInfo[100];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));
+		count_images_loaded(new ImagemInfo ("war_tabela_bonus_continente.png",10,400,130,120));
+		count_images_loaded(new ImagemInfo ("war_tabela_troca.png",10,540,114,131));
 		//count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
 		
 		terras = new DesenhaTerritorioPoligono[52];
@@ -69,7 +73,7 @@ class Tela extends JFrame {
 		// Asia
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{610,591,582,612,724,741,723,626}, new int[]{140,170,170,218,218,195,168,168}, padrao, "Letônia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{583,626,705,732,660,650,630,614,628,631,642,633,608,605}, new int[]{93,168,168,119,119,139,138,112,112,118,118,98,98,93}, padrao, "Estônia"));
-		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{611,620,639,646,652,666,669,679,692,684,763,783,773}, new int[]{219,234,235,243,234,234,242,243,263,272,274,240,219}, padrao, "Turquia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{612,620,639,646,652,666,669,679,692,684,763,783,773}, new int[]{219,234,235,243,234,234,242,243,263,272,274,240,219}, padrao, "Turquia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{873,825,886,876,886,906,916,929,938,949,956,941,946,941,951,937}, new int[]{112,196,196,182,171,171,154,178,178,196,185,157,148,139,139,112}, padrao, "Sibéria"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{744,744,749,745,726,706,725,740,824,868}, new int[]{120,125,125,131,131,167,170,196,196,120}, padrao, "Rússia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{739,726,773,782,906,920,908}, new int[]{197,218,218,241,241,217,197}, padrao, "Cazaquistão"));
@@ -87,6 +91,20 @@ class Tela extends JFrame {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{884,859,886,895,901,897,901,885,891,896,906,910,918,926,914}, new int[]{345,391,439,439,426,426,414,393,383,390,390,381,381,364,345}, padrao, "Tailândia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{718,709,751,741,763,785,754,762}, new int[]{274,290,365,380,380,344,293,274}, padrao, "Paquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{628,620,629,637,638,716,709,717,666,660,647,646}, new int[]{271,287,300,300,305,305,291,273,273,269,269,271}, padrao, "Síria"));
+		
+		addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	        	int x = e.getX();
+	            int y = e.getY();
+	            DesenhaTerritorioPoligono terra_selec = terra_clicada(x,y);
+	            System.out.println(x+", "+y);
+	            if(terra_selec != null)
+	            	System.out.println(terra_selec.get_nome());
+	            //terra_selec.set_color(Color.RED);
+	            //repaint();
+	        }
+	    });
 	}
 	
 	@Override
@@ -108,13 +126,13 @@ class Tela extends JFrame {
 	    }
 	}
 	
-	public String terra_clicada(int x, int y) {
+	public DesenhaTerritorioPoligono terra_clicada(int x, int y) {
 		for(int i = 0; i < this.count_terras; i++) {
 			if (terras[i].clicou(x,y)) {
-		    	return terras[i].get_nome();
+		    	return terras[i];
 		    }
 		}
-		return "Oceano";
+		return null;
 	}
 	
 	public void count_images_loaded(ImagemInfo imagem) {

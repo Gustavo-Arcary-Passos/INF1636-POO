@@ -102,6 +102,16 @@ public class Api_model {
         return jogadores;
 	}
 	
+	protected static List lanca_dado(int qtd_dados){
+		List<Integer> valores = new ArrayList<Integer>();
+		for(int i = 0; i<qtd_dados;i++) {
+			Random rand = new Random();
+			valores.add(rand.nextInt(6)+1);
+		}
+		
+		return valores;
+	}
+	
 }
 
 

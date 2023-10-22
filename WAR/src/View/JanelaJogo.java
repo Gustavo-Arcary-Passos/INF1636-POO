@@ -9,7 +9,7 @@ import java.util.List;
 
 class JanelaJogo extends LoadScene {
 	public JanelaJogo() {
-        Dado.interpreta_lancamento(new ArrayList<Integer>(Arrays.asList(1, 2, 3)), new ArrayList<Integer>(Arrays.asList(4, 5, 6)));
+        Dado.interpreta_lancamento(new ArrayList<Integer>(Arrays.asList(1, 2, 3)), new ArrayList<Integer>(Arrays.asList(4, 5, 6)),"vermelho");
 		this.images = new ImagemInfo[100];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));

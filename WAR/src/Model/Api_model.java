@@ -23,7 +23,7 @@ public class Api_model {
 		for(Jogador jogadores : jogadores_ativos) {
 			System.out.println(jogadores.domina.size());
 		}
-		Api_model.confere_vencedor(new ArrayList<Integer>(Arrays.asList(2,2,3)), new ArrayList<>(Arrays.asList(1,2,3)));
+		Api_model.confere_vencedor(new ArrayList<Integer>(Arrays.asList(2,2,3)), new ArrayList<>(Arrays.asList(2,3)));
 	}
 	
 	protected static void sorteia_todos_territorios(List<Regiao> mapa_mundo, List<Jogador> jogadores_ativos) {
@@ -112,9 +112,9 @@ public class Api_model {
 		return valores;
 	}
 	protected static boolean[] confere_vencedor(List<Integer> ataque, List<Integer> defesa) {
-		boolean[] batalhas = new boolean [3];
+		boolean[] batalhas = new boolean [(defesa.size() > ataque.size()) ? ataque.size() : defesa.size()];
 		int batalha=0;
-		while(defesa.size()!=0 || ataque.size()!=0) {
+		while(defesa.size()!=0 && ataque.size()!=0) {
 			int maioratk=0;
 			int maiordef=0;
 			for(int i=0;i<ataque.size(); i++) {

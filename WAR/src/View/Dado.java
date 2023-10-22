@@ -6,6 +6,7 @@ class Dado {
 	private static List<ImagemInfo> dados_ataque;
 	private static List<ImagemInfo> dados_defesa;
 	protected static ImagemInfo[] dados;
+	protected static String cor;
 	private static boolean exibe;
 	static {
 		dados_ataque=new ArrayList<ImagemInfo>();
@@ -23,7 +24,7 @@ class Dado {
 		dados_defesa.add(new ImagemInfo("dado_defesa_5.png",0,0,32,32));
 		dados_defesa.add(new ImagemInfo("dado_defesa_6.png",0,0,32,32));
 	}
-	public static void interpreta_lancamento(List<Integer> lancamento_defesa, List<Integer> lancamento_ataque) {
+	public static void interpreta_lancamento(List<Integer> lancamento_defesa, List<Integer> lancamento_ataque, String cor_atual) {
 		dados = new ImagemInfo[lancamento_defesa.size()+lancamento_ataque.size()];
 		int i;
 		for(i = 0; i < lancamento_defesa.size(); i++) {
@@ -33,6 +34,7 @@ class Dado {
 			dados[i] = dados_ataque.get(lancamento_ataque.get(j)-1);
 			i++;
 		}
+		cor = cor_atual;
 	}
 	public static void set_exibe(boolean status) {
 		exibe = status;

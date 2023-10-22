@@ -20,15 +20,13 @@ abstract class LoadScene {
 		this.formas_geometricas[count_formas_geometricas-1] = formas_geometricas;
 	}
 	
-	public void desenha_images(Graphics g) {
+	public void desenha(Graphics g) {
 		for(int i = 0; i <= this.count_images; i++) {
 		    if (images[i] != null) {
 		    	g.drawImage(images[i].get_image(), images[i].get_x(), images[i].get_y(), images[i].get_w(), images[i].get_h(), null);
 		    }
 	    }
-	}
-	
-	public void desenha_formas_geometricas(Graphics2D g2d) {
+		Graphics2D g2d = (Graphics2D) g;
 		for(int i = 0; i < this.count_formas_geometricas; i++) {
 		    if (formas_geometricas[i] != null) {
 		    	g2d.setColor(formas_geometricas[i].get_cor());

@@ -2,9 +2,14 @@ package View;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 class JanelaJogo extends LoadScene {
 	public JanelaJogo() {
+        Dado.interpreta_lancamento(new ArrayList<Integer>(Arrays.asList(1, 2, 3)), new ArrayList<Integer>(Arrays.asList(4, 5, 6)));
 		this.images = new ImagemInfo[100];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));
@@ -73,12 +78,31 @@ class JanelaJogo extends LoadScene {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{718,709,751,741,763,785,754,762}, new int[]{274,290,365,380,380,344,293,274}, padrao, "Paquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{628,620,629,637,638,716,709,717,666,660,647,646}, new int[]{271,287,300,300,305,305,291,273,273,269,269,271}, padrao, "Síria"));
 	}
-	public void desenha_images(Graphics g) {
+	public void desenha(Graphics g) {
 		for(int i = 0; i <= this.count_images; i++) {
 		    if (images[i] != null) {
 		    	g.drawImage(images[i].get_image(), images[i].get_x(), images[i].get_y(), images[i].get_w(), images[i].get_h(), null);
 		    }
 	    }
+		Graphics2D g2d = (Graphics2D) g;
+		for(int i = 0; i < this.count_formas_geometricas; i++) {
+		    if (formas_geometricas[i] != null) {
+		    	g2d.setColor(formas_geometricas[i].get_cor());
+		    	g2d.fill(formas_geometricas[i].get_polygon());
+		    	g2d.setColor(Color.BLACK);
+		    	g2d.draw(formas_geometricas[i].get_polygon());
+		    }
+	    }
 		//Condicional de plot de dados
+		if(Dado.get_flag()) {
+			//Dado.set_exibe(false);
+			ImagemInfo[] images = Dado.get_dados();
+			int x = 100;
+			int y = 100;
+			for(ImagemInfo image : images) {
+				g.drawImage(image.get_image(), x , y, 2*image.get_w()/3, 2*image.get_h()/3, null);
+				y+= 20;
+			}
+		}
 	}
 }

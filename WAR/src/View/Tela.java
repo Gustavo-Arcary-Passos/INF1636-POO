@@ -8,6 +8,9 @@ import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -32,12 +35,12 @@ class Tela extends JFrame {
 	            int y = e.getY();
 	            System.out.println(x+", "+y);
 	            //cenario++;
-	            DesenhaTerritorioPoligono clicado = cenarios[cenario].formas_geometricas_clicada(x,y);
-	            if(clicado!=null) {
-	            	System.out.println(clicado.get_nome());
-	            }
-	            //clicado.set_color(Color.RED);
-	            //repaint();
+//	            DesenhaTerritorioPoligono clicado = cenarios[cenario].formas_geometricas_clicada(x,y);
+//	            if(clicado!=null) {
+//	            	System.out.println(clicado.get_nome());
+//	            }
+	            Dado.set_exibe(!Dado.get_flag());
+	            repaint();
 	        }
 	    });
 	}
@@ -45,9 +48,7 @@ class Tela extends JFrame {
 	@Override
 	public void paint(Graphics g) {
 	    super.paint(g);
-	    cenarios[cenario].desenha_images(g);
-	    Graphics2D g2d = (Graphics2D) g;
-	    cenarios[cenario].desenha_formas_geometricas(g2d);
+	    cenarios[cenario].desenha(g);
 	}
 }
 

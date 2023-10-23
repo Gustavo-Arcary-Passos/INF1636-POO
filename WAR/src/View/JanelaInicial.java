@@ -1,16 +1,20 @@
 package View;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import java.util.*;
+import java.util.List;
 
 class JanelaInicial extends LoadScene{
 	protected static boolean select_number;
-	protected static String[] cores = {"azul","verde","vermelho","branco","preto","amarelo"};
-	protected static Color[] cores_rep = {Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW};
+	protected static List<String> colorido = new ArrayList<>(Arrays.asList("azul", "verde", "vermelho", "branco", "preto", "amarelo"));
+	
+	//protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW));
 	protected static int num_jogadores;
 	protected static boolean escolhendo_cores;
 	public JanelaInicial(Container c) {
@@ -72,40 +76,55 @@ class JanelaInicial extends LoadScene{
         c.repaint(); 
 	}
 	private static void escolhe_nome_jogadores_cor(Container c) {
-		c.setLayout(null);
-		JLabel ln=new JLabel("Nome");
-		JTextField nm=new JTextField();
-		JButton inc=new JButton("Confirmar");
-		ln.setBounds(40,83,65,25);
-		nm.setBounds(110,80,250,25);
-		inc.setBounds(295,270,65,25);
-		inc.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	removeComponents(c);
-            	if(JanelaInicial.get_num_jogadores() > 1) {
-            		JanelaInicial.set_num_jogadores(JanelaInicial.get_num_jogadores()-1);
-	                escolhe_nome_jogadores_cor(c);
-            	}
-            	 c.repaint();
-                //System.out.println(JanelaInicial.get_num_jogadores());
-            }
-        });
-		JRadioButton[] op_cores= new JRadioButton[cores.length];
-		ButtonGroup bg = new ButtonGroup();
-		for(int i = 0;i<cores.length;i++) {
-			op_cores[i] = new JRadioButton(cores[i]);
-			op_cores[i].setBounds(50,120+30*i,100,30);
-			bg.add(op_cores[i]);
-			c.add(op_cores[i]);
-		}
-		
-		c.add(ln);
-		c.add(nm);
-		c.add(inc);
-        c.repaint(); 
+	    JLabel ln = new JLabel("Nome");
+	    JTextField nm = new JTextField();
+	    JButton inc = new JButton("Confirmar");
+	    ln.setBounds(40, 83, 65, 25);
+	    nm.setBounds(110, 80, 250, 25);
+	    inc.setBounds(295, 270, 65, 25);
+
+	    JRadioButton[] op_cores = new JRadioButton[colorido.size()];
+	    ButtonGroup bg = new ButtonGroup();
+
+	    for (int i = 0; i < colorido.size(); i++) {
+	        op_cores[i] = new JRadioButton(colorido.get(i));
+	        op_cores[i].setBounds(50, 120 + 30 * i, 100, 30);
+	        bg.add(op_cores[i]);
+	        c.add(op_cores[i]);
+	    }
+
+	    inc.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	        	boolean algumSelecionado = false;
+
+	        	for (JRadioButton radioButton : op_cores) {
+	        	    if (radioButton.isSelected()) {
+	        	        algumSelecionado = true;
+	        	        break; // Se um está selecionado, não é necessário continuar verificando
+	        	    }
+	        	}
+	        	if(algumSelecionado && !nm.getText().isEmpty()) {
+		            removeComponents(c);
+		            if (JanelaInicial.get_num_jogadores() > 1) {
+		                for (int i = 0; i < colorido.size(); i++) {
+		                    if (op_cores[i].isSelected()) {
+		                        colorido.remove(colorido.get(i));
+		                    }
+		                }
+		                JanelaInicial.set_num_jogadores(JanelaInicial.get_num_jogadores() - 1);
+		                escolhe_nome_jogadores_cor(c);
+		            }
+		            c.repaint();
+	        	}
+	        }
+	    });
+	    c.add(ln);
+	    c.add(nm);
+	    c.add(inc);
+	    c.repaint();
 	}
-	
+
 	public static int get_num_jogadores() {
 		return num_jogadores;
 	}
@@ -120,15 +139,6 @@ class JanelaInicial extends LoadScene{
 	}
 	
 	public void desenha(Graphics g) {
-		if(JanelaInicial.escolhendo_cores == true) {
-			Graphics2D g2d = (Graphics2D) g;
-			for(int i = 0;i<cores.length;i++) {
-				Rectangle2D rt=new Rectangle2D.Double(150,120+30*i,30,30);
-				g2d.setPaint(cores_rep[i]);
-				g2d.fill(rt);
-				g2d.setPaint(Color.BLACK);
-				g2d.draw(rt);
-			}
-		}
+		
 	}
 }

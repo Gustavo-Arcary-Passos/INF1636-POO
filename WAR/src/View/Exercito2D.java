@@ -11,7 +11,6 @@ import java.awt.geom.Ellipse2D;
  * 
  */
 public class Exercito2D extends Ellipse2D.Double {
-    
     private int num_exercitos;
     Ellipse2D borda;
     
@@ -22,16 +21,15 @@ public class Exercito2D extends Ellipse2D.Double {
 
     }
     
-    public void draw(Graphics2D g2d)
+    public void draw(Graphics2D g2d, Color cor)
     {
         int ax = -4;
         int ay = 5;
-
-        g2d.setColor(Color.WHITE);
+        g2d.setColor((cor != Color.WHITE)  ? Color.WHITE : Color.BLACK);
         g2d.fill(this.borda);
-        g2d.setColor(Color.BLACK);
+        g2d.setColor(cor);
         g2d.fill(this);
-        g2d.setColor(Color.WHITE);
+        g2d.setColor((cor != Color.WHITE)  ? Color.WHITE : Color.BLACK);
         g2d.drawString(Integer.toString(this.num_exercitos), (int)this.getCenterX() + ax, (int)this.getCenterY() + ay);
     }
 }

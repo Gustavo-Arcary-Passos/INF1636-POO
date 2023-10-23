@@ -7,11 +7,13 @@ import java.awt.geom.Path2D;
 class DesenhaTerritorioPoligono {
 	protected String nome;
 	protected Color cor;
+	protected final Color borda;
 	protected boolean redesenha;
 	protected Path2D terra;
 	protected Exercito2D exercito;
 
-	public DesenhaTerritorioPoligono(int[] xs, int[] ys, Color color, String name) {
+	public DesenhaTerritorioPoligono(int[] xs, int[] ys, Color color,Color border, String name) {
+		this.borda = border;
 		this.cor = color;
 		this.nome = name;
 		this.terra = new Path2D.Double();
@@ -27,11 +29,12 @@ class DesenhaTerritorioPoligono {
 		// ********* EXERCITO 2D *******
 		Point coord = this.get_centroDeMassa(this.terra, xs, ys);
 
-		this.exercito = new Exercito2D(coord.x, coord.y, 22, 3); // Tamanho configurável aqui
+		this.exercito = new Exercito2D(coord.x, coord.y, 22, 1); // Tamanho configurável aqui
 	}
 
 	// OVERLOAD, para ajustar a posicao dos exercitos
-	public DesenhaTerritorioPoligono(int[] xs, int[] ys, Color color, String name, int ajx, int ajy) {
+	public DesenhaTerritorioPoligono(int[] xs, int[] ys, Color color,Color border, String name, int ajx, int ajy) {
+		this.borda = border;
 		this.cor = color;
 		this.nome = name;
 		this.terra = new Path2D.Double();
@@ -47,7 +50,7 @@ class DesenhaTerritorioPoligono {
 		// ********* EXERCITO 2D *******
 		Point coord = this.get_centroDeMassa(this.terra, xs, ys);
 
-		this.exercito = new Exercito2D(coord.x + ajx, coord.y + ajy, 22, 3); // Tamanho configurável aqui
+		this.exercito = new Exercito2D(coord.x + ajx, coord.y + ajy, 22, 1); // Tamanho configurável aqui
 	}
 
 	public String get_nome() {
@@ -56,6 +59,10 @@ class DesenhaTerritorioPoligono {
 
 	public Color get_cor() {
 		return this.cor;
+	}
+	
+	public Color get_border() {
+		return this.borda;
 	}
 
 	public Exercito2D get_exercito_2d() {

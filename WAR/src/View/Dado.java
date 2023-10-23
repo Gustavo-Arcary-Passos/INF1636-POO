@@ -5,7 +5,8 @@ import java.util.*;
 class Dado {
 	private static List<ImagemInfo> dados_ataque;
 	private static List<ImagemInfo> dados_defesa;
-	protected static ImagemInfo[] dados;
+	protected static ImagemInfo[] dadosAtk;
+	protected static ImagemInfo[] dadosDef;
 	protected static String cor;
 	private static boolean exibe;
 	static {
@@ -25,14 +26,14 @@ class Dado {
 		dados_defesa.add(new ImagemInfo("dado_defesa_6.png",0,0,32,32));
 	}
 	public static void interpreta_lancamento(List<Integer> lancamento_defesa, List<Integer> lancamento_ataque, String cor_atual) {
-		dados = new ImagemInfo[lancamento_defesa.size()+lancamento_ataque.size()];
+		dadosAtk = new ImagemInfo[lancamento_ataque.size()];
+		dadosDef = new ImagemInfo[lancamento_defesa.size()];
 		int i;
 		for(i = 0; i < lancamento_defesa.size(); i++) {
-			dados[i] = dados_defesa.get(lancamento_defesa.get(i)-1);
+			dadosDef[i] = dados_defesa.get(lancamento_defesa.get(i)-1);
 		}
 		for(int j = 0; j < lancamento_ataque.size(); j++) {
-			dados[i] = dados_ataque.get(lancamento_ataque.get(j)-1);
-			i++;
+			dadosAtk[j] = dados_ataque.get(lancamento_ataque.get(j)-1);
 		}
 		cor = cor_atual;
 	}
@@ -42,8 +43,11 @@ class Dado {
 	public static boolean get_flag() {
 		return exibe;
 	}
-	public static ImagemInfo[] get_dados() {
-		return dados;
+	public static ImagemInfo[] get_dados_atk() {
+		return dadosAtk;
+	}
+	public static ImagemInfo[] get_dados_def() {
+		return dadosDef;
 	}
 //	public ImagemInfo get_image(char tipo,int pos) {
 //		if(tipo == 'a') {

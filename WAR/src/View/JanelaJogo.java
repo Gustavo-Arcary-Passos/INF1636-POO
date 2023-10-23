@@ -3,18 +3,21 @@ package View;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.RoundRectangle2D;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 class JanelaJogo extends LoadScene {
 	public JanelaJogo() {
-        Dado.interpreta_lancamento(new ArrayList<Integer>(Arrays.asList(1, 2, 3)), new ArrayList<Integer>(Arrays.asList(4, 5, 6)),"vermelho");
+        Dado.interpreta_lancamento(new ArrayList<Integer>(Arrays.asList(1)), new ArrayList<Integer>(Arrays.asList(5, 5, 6)),"vermelho");
 		this.images = new ImagemInfo[100];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabela_bonus_continente.png",10,400,130,120));
 		count_images_loaded(new ImagemInfo ("war_tabela_troca.png",10,540,114,131));
+		count_images_loaded(new ImagemInfo ("war_tabuleiro_bottom.png",0,715,1024,85));
 		//count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
 		
 		this.formas_geometricas = new DesenhaTerritorioPoligono[52];
@@ -96,12 +99,30 @@ class JanelaJogo extends LoadScene {
 		//Condicional de plot de dados
 		if(Dado.get_flag()) {
 			//Dado.set_exibe(false);
-			ImagemInfo[] images = Dado.get_dados();
-			int x = 100;
-			int y = 100;
-			for(ImagemInfo image : images) {
-				g.drawImage(image.get_image(), x , y, 2*image.get_w()/3, 2*image.get_h()/3, null);
-				y+= 20;
+			ImagemInfo[] images_atk = Dado.get_dados_atk();
+			ImagemInfo[] images_def = Dado.get_dados_def();
+			int x = 366;
+			int y = 458;
+			int w = 132;
+			int h = 132;
+			RoundRectangle2D rt=new RoundRectangle2D.Double(x,y,w,h,20,20);
+			g2d.setPaint(new Color(99,55,41));
+			g2d.fill(rt);
+			g2d.setPaint(new Color(234,184,135));
+			g2d.setStroke(new BasicStroke(5));
+			g2d.draw(rt);
+			g2d.setStroke(new BasicStroke(1));
+			int y_min = y;
+			int y_max = y+h-2*images_atk[0].get_h()/3;
+			int y_progress = (y_max-y_min)/(images_atk.length+1);
+			for(int i = 0; i < images_atk.length; i++) {	
+				g.drawImage(images_atk[i].get_image(), x+w/4-2*images_atk[i].get_w()/3/2 + images_atk[i].get_w()/3 , y_min+y_progress*(i+1), 2*images_atk[i].get_w()/3, 2*images_atk[i].get_h()/3, null);	
+			}
+			x = 365+w/2;
+			y = 458;
+			y_progress = (y_max-y_min)/(images_def.length+1);
+			for(int i = 0; i < images_def.length; i++) {
+				g.drawImage(images_def[i].get_image(), x+w/4-2*images_def[i].get_w()/3/2 - images_atk[i].get_w()/3 , y_min+y_progress*(i+1), 2*images_def[i].get_w()/3, 2*images_def[i].get_h()/3, null);	
 			}
 		}
 	}

@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 class JanelaJogo extends LoadScene {
-	public JanelaJogo() {
+	public JanelaJogo(Tela frame) {
         Dado.interpreta_lancamento(new ArrayList<Integer>(Arrays.asList(1)), new ArrayList<Integer>(Arrays.asList(5, 5, 6)),"vermelho");
 		this.images = new ImagemInfo[100];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
@@ -80,6 +80,7 @@ class JanelaJogo extends LoadScene {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{884,859,886,895,901,897,901,885,891,896,906,910,918,926,914}, new int[]{345,391,439,439,426,426,414,393,383,390,390,381,381,364,345}, padrao, "Tailândia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{718,709,751,741,763,785,754,762}, new int[]{274,290,365,380,380,344,293,274}, padrao, "Paquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{628,620,629,637,638,716,709,717,666,660,647,646}, new int[]{271,287,300,300,305,305,291,273,273,269,269,271}, padrao, "Síria"));
+		frame.repaint();
 	}
 	public void desenha(Graphics g) {
 		for(int i = 0; i <= this.count_images; i++) {

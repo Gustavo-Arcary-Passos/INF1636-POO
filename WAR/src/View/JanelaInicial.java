@@ -17,7 +17,8 @@ class JanelaInicial extends LoadScene{
 	//protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW));
 	protected static int num_jogadores;
 	protected static boolean escolhendo_cores;
-	public JanelaInicial(Container c) {
+	public JanelaInicial(Tela tela) {
+		Container c = tela.getContentPane();
 		c.setLayout(null);
         JButton b1 = new JButton("Novo Jogo");
 
@@ -26,23 +27,17 @@ class JanelaInicial extends LoadScene{
         b1.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                removeComponents(c);
-                escolhe_qtd_jogadores(c);
+                removeComponents(tela);
+                escolhe_qtd_jogadores(tela);
             }
         });
         c.add(b1); 
 	}
-	private static void removeComponents(Container c) {
-        Component[] components = c.getComponents();
-        for (Component component : components) {
-            if (component instanceof Container) {
-                removeComponents((Container) component); 
-            }
-            c.remove(component);
-        }
-        c.revalidate(); 
+	private static void removeComponents(Tela tela) {
+		tela.getContentPane().removeAll(); 
     }
-	private static void escolhe_qtd_jogadores(Container c) {
+	private static void escolhe_qtd_jogadores(Tela tela) {
+		Container c = tela.getContentPane();
 		JButton b1 = new JButton("3"); 
 		b1.setBounds(50, 50, 100, 30);
 
@@ -64,10 +59,10 @@ class JanelaInicial extends LoadScene{
             @Override
             public void actionPerformed(ActionEvent e) {
             	JanelaInicial.set_num_jogadores(b1.getText());
-                removeComponents(c);
+                removeComponents(tela);
                 JanelaInicial.set_escolhendo_cores(true);
-                escolhe_nome_jogadores_cor(c);
-                c.repaint();
+                escolhe_nome_jogadores_cor(tela);
+                tela.repaint();
                 //System.out.println(JanelaInicial.get_num_jogadores());
             }
         });
@@ -75,7 +70,8 @@ class JanelaInicial extends LoadScene{
         c.add(b2);
         c.repaint(); 
 	}
-	private static void escolhe_nome_jogadores_cor(Container c) {
+	private static void escolhe_nome_jogadores_cor(Tela tela) {
+		Container c = tela.getContentPane();
 	    JLabel ln = new JLabel("Nome");
 	    JTextField nm = new JTextField();
 	    JButton inc = new JButton("Confirmar");
@@ -105,7 +101,7 @@ class JanelaInicial extends LoadScene{
 	        	    }
 	        	}
 	        	if(algumSelecionado && !nm.getText().isEmpty()) {
-		            removeComponents(c);
+		            removeComponents(tela);
 		            if (JanelaInicial.get_num_jogadores() > 1) {
 		                for (int i = 0; i < colorido.size(); i++) {
 		                    if (op_cores[i].isSelected()) {
@@ -113,7 +109,9 @@ class JanelaInicial extends LoadScene{
 		                    }
 		                }
 		                JanelaInicial.set_num_jogadores(JanelaInicial.get_num_jogadores() - 1);
-		                escolhe_nome_jogadores_cor(c);
+		                escolhe_nome_jogadores_cor(tela);
+		            } else {
+		            	tela.trocarParaJanelaJogo();
 		            }
 		            c.repaint();
 	        	}

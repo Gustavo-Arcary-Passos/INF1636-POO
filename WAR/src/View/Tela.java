@@ -15,6 +15,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.Container;
 
 class Tela extends JFrame {
 	int value;
@@ -27,7 +28,8 @@ class Tela extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		cenarios = new LoadScene[1];
-		cenarios[cenario] = new JanelaJogo();
+		cenarios[cenario] = new JanelaInicial(getContentPane());
+		//cenarios[cenario] = new JanelaJogo();
 		addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {

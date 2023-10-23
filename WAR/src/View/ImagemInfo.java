@@ -13,8 +13,8 @@ class ImagemInfo {
 	protected int w;
 	protected int h;
 	protected BufferedImage imagem;
-	
-	public ImagemInfo (String path,int x,int y,int w,int h){
+
+	public ImagemInfo(String path, int x, int y, int w, int h) {
 		this.caminho = path;
 		this.x = x;
 		this.y = y;
@@ -22,50 +22,59 @@ class ImagemInfo {
 		this.h = h;
 		this.load_image();
 	}
-	
+
 	public BufferedImage get_image() {
 		return this.imagem;
 	}
-	
+
 	public String get_path() {
 		return this.caminho;
 	}
-	
+
 	public int get_x() {
 		return this.x;
 	}
-	
+
 	public int get_y() {
 		return this.y;
 	}
-	
+
 	public int get_w() {
 		return this.w;
 	}
-	
+
 	public int get_h() {
 		return this.h;
 	}
+
 	public int get_center_x() {
-		return x+(w/2);
+		return x + (w / 2);
 	}
+
 	public int get_center_y() {
-		return y+(h/2);
+		return y + (h / 2);
 	}
-	
+
 	public void set_x(int x) {
 		this.x = x;
 	}
-	
+
 	public void set_y(int y) {
 		this.y = y;
 	}
-	
+
 	public void load_image() {
 		try {
-			this.imagem = ImageIO.read(new File("WAR-Imagens/images/" + this.caminho));
+
+			if (System.getProperty("os.name").startsWith("Mac")) {
+				this.imagem = ImageIO.read(new File("WAR/WAR-Imagens/images/" + this.caminho));
+			}
+			else
+			{
+				this.imagem = ImageIO.read(new File("WAR-Imagens/images/" + this.caminho));
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	 }
+	}
 }

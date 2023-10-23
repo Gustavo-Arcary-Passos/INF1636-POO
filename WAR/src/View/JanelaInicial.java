@@ -5,8 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
 import java.util.*;
 import java.util.List;
 
@@ -32,6 +30,21 @@ class JanelaInicial extends LoadScene{
             }
         });
         c.add(b1); 
+		
+		// ***** DEBUG *****
+		JButton bskip = new JButton("pular para DEBUG");
+		bskip.setBounds(50, 100, 100, 30);
+		bskip.setToolTipText("pular para DEBUG");
+		bskip.addActionListener( new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				removeComponents(tela);
+				tela.trocarParaJanelaJogo();
+			}
+		});
+
+		c.add(bskip);
+		// ***** DEBUG *****
 	}
 	private static void removeComponents(Tela tela) {
 		tela.getContentPane().removeAll(); 

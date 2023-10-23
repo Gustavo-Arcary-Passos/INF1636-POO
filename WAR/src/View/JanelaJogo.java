@@ -7,7 +7,6 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 class JanelaJogo extends LoadScene {
 	public JanelaJogo(Tela frame) {
@@ -30,9 +29,9 @@ class JanelaJogo extends LoadScene {
 		// America do Norte
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{90,83,104,110,102,105,135,146,162,171,180,189,183,178,171,174,166,171,164,162,152,126},new int[]{305,318,353,341,326,318,371,372,404,404,415,402,394,392,385,378,365,356,344,349,350,305}, padrao, "México"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{107,84,90,78,90,124,176},new int[]{215,255,263,284,305,306,216}, padrao, "Califórnia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{202,165,181,203,211,200,207,215,232,237,244,261,280,292,297,244,230,202},new int[]{242,304,304,344,334,313,301,301,274,274,260,260,227,227,217,217,242,242}, padrao, "Nova York"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{178,126,146,201,230,244},new int[]{215,305,338,243,242,216}, padrao, "Texas"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{125,111,119,103,108,213,230,222,146},new int[]{134,161,177,206,216,216,186,172,172}, padrao, "Vancouver"));
-		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{202,165,181,203,211,200,207,215,232,237,244,261,280,292,297,244,230,202},new int[]{242,304,304,344,334,313,301,301,274,274,260,260,227,227,217,217,242,242}, padrao, "Nova York"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{230,213,295,303,316,314,325,329,322,331,337,344,340,321,318,289,283,273,262},new int[]{185,216,216,202,202,210,210,198,186,173,178,165,158,159,155,156,166,166,185}, padrao, "Quebec"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{87,78,70,59,111,133},new int[]{119,137,138,163,163,119}, padrao, "Alasca"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{133,125,146,222,231,245,258,282,271,243,231,213,208,153,149},new int[]{118,134,172,172,158,158,134,134,112,112,134,134,127,127,118}, padrao, "Calgary"));
@@ -67,17 +66,17 @@ class JanelaJogo extends LoadScene {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{744,744,749,745,726,706,725,740,824,868}, new int[]{120,125,125,131,131,167,170,196,196,120}, padrao, "Rússia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{739,726,773,782,906,920,908}, new int[]{197,218,218,241,241,217,197}, padrao, "Cazaquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{654,628,646,640,648,698,726,718,679}, new int[]{339,383,416,430,443,443,398,382,382}, padrao, "Arábia Saudita"));
-		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{847,828,841,848,860,854,870,878,872,878,859,883}, new int[]{345,376,402,402,427,434,463,452,439,427,391,345}, padrao, "Bangladesh"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{781,753,786,811,838,888,874,822,805}, new int[]{241,290,344,344,296,296,274,274,241}, padrao, "China"));
-		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{838,825,914,907,893,886}, new int[]{296,320,320,310,310,296}, padrao, "Coreia do Norte"));
-		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{824,811,915,922,914}, new int[]{321,344,344,333,321}, padrao, "Coreia do Sul"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{884,859,886,895,901,897,901,885,891,896,906,910,918,926,914}, new int[]{345,391,439,439,426,426,414,393,383,390,390,381,381,364,345}, padrao, "Tailândia"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{847,828,841,848,860,854,870,878,872,878,859,883}, new int[]{345,376,402,402,427,434,463,452,439,427,391,345}, padrao, "Bangladesh"));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{824,811,915,922,914}, new int[]{321,344,344,333,321}, padrao, "Coreia do Sul", 8, -3));
+		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{838,825,914,907,893,886}, new int[]{296,320,320,310,310,296}, padrao, "Coreia do Norte", -8, -4));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{786,763,798,812,807,847}, new int[]{344,380,442,422,414,344}, padrao, "Índia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{701,690,715,734,740,751,719}, new int[]{306,324,370,370,381,364,306}, padrao, "Irã"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{671,653,679,706,694,702,691,700}, new int[]{306,338,381,381,359,347,322,306}, padrao, "Iraque"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{937,928,944,941,936,929,931,922,940,946,954,964,953,955}, new int[]{219,234,264,272,272,283,288,301,304,288,288,272,253,249}, padrao, "Japão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{617,602,614,622,628,672,649,633}, new int[]{334,351,372,372,382,306,306,334}, padrao, "Jordânia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{806,820,895,907,915,902,909,905}, new int[]{242,273,273,295,282,258,258,242}, padrao, "Mongólia"));
-		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{884,859,886,895,901,897,901,885,891,896,906,910,918,926,914}, new int[]{345,391,439,439,426,426,414,393,383,390,390,381,381,364,345}, padrao, "Tailândia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{718,709,751,741,763,785,754,762}, new int[]{274,290,365,380,380,344,293,274}, padrao, "Paquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{628,620,629,637,638,716,709,717,666,660,647,646}, new int[]{271,287,300,300,305,305,291,273,273,269,269,271}, padrao, "Síria"));
 		frame.repaint();
@@ -95,6 +94,9 @@ class JanelaJogo extends LoadScene {
 		    	g2d.fill(formas_geometricas[i].get_polygon());
 		    	g2d.setColor(Color.BLACK);
 		    	g2d.draw(formas_geometricas[i].get_polygon());
+
+				// desenha o exercito 2d
+				formas_geometricas[i].get_exercito_2d().draw(g2d);
 		    }
 	    }
 		//Condicional de plot de dados

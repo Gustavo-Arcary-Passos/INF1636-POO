@@ -13,59 +13,59 @@ class ConjuntoCartaConquista {
 	public ConjuntoCartaConquista() {
 		qtd = 4;
 		max_cartas = 5;
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
-		cartas.add(new CartaTriangulo());
+		cartas.add(new CartaTriangulo("África do Sul"));
+		cartas.add(new CartaTriangulo("Egito"));
+		cartas.add(new CartaTriangulo("Alasca"));
+		cartas.add(new CartaTriangulo("Texas"));
+		cartas.add(new CartaTriangulo("Vancouver"));
+		cartas.add(new CartaTriangulo("Coreia do Sul"));
+		cartas.add(new CartaTriangulo("Índia"));
+		cartas.add(new CartaTriangulo("Iraque"));
+		cartas.add(new CartaTriangulo("Mongólia"));
+		cartas.add(new CartaTriangulo("Rússia"));
+		cartas.add(new CartaTriangulo("Tailândia"));
+		cartas.add(new CartaTriangulo("Turquia"));
+		cartas.add(new CartaTriangulo("Peru"));
+		cartas.add(new CartaTriangulo("Venezuela"));
+		cartas.add(new CartaTriangulo("França"));
+		cartas.add(new CartaTriangulo("Polônia"));
+		cartas.add(new CartaTriangulo("Romênia"));
 		
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
-		cartas.add(new CartaQuadrado());
+		cartas.add(new CartaQuadrado("Angola"));
+		cartas.add(new CartaQuadrado("Somália"));
+		cartas.add(new CartaQuadrado("California"));
+		cartas.add(new CartaQuadrado("México"));
+		cartas.add(new CartaQuadrado("Nova York"));
+		cartas.add(new CartaQuadrado("China"));
+		cartas.add(new CartaQuadrado("Coreia do Norte"));
+		cartas.add(new CartaQuadrado("Irã"));
+		cartas.add(new CartaQuadrado("Jordânia"));
+		cartas.add(new CartaQuadrado("Letônia"));
+		cartas.add(new CartaQuadrado("Sibéria"));
+		cartas.add(new CartaQuadrado("Síria"));
+		cartas.add(new CartaQuadrado("Argentina"));
+		cartas.add(new CartaQuadrado("Itália"));
+		cartas.add(new CartaQuadrado("Suécia"));
+		cartas.add(new CartaQuadrado("Nova Zelândia"));
+		//cartas.add(new CartaQuadrado());
 		
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
-		cartas.add(new CartaCirculo());
+		cartas.add(new CartaCirculo("Argélia"));
+		cartas.add(new CartaCirculo("Nigéria"));
+		cartas.add(new CartaCirculo("Calgary"));
+		cartas.add(new CartaCirculo("Groenlândia"));
+		cartas.add(new CartaCirculo("Quebec"));
+		cartas.add(new CartaCirculo("Arábia Saudita"));
+		cartas.add(new CartaCirculo("Bangladesh"));
+		cartas.add(new CartaCirculo("Cazaquistão"));
+		cartas.add(new CartaCirculo("Estônia"));
+		cartas.add(new CartaCirculo("Japão"));
+		cartas.add(new CartaCirculo("Paquistão"));
+		cartas.add(new CartaCirculo("Brasil"));
+		cartas.add(new CartaCirculo("Espanha"));
+		cartas.add(new CartaCirculo("Reino Unido"));
+		cartas.add(new CartaCirculo("Ucrânia"));
+		cartas.add(new CartaCirculo("Perth"));
+		//cartas.add(new CartaCirculo());
 		
 		cartas.add(new CartaCuringa());
 		cartas.add(new CartaCuringa());
@@ -145,6 +145,11 @@ class ConjuntoCartaConquista {
 
 abstract class CartaConquista {
 	protected String tipo;
+	protected String pais;
+	
+	public String get_pais() {
+		return this.pais;
+	}
 	
 	public String get_tipo() {
 		return this.tipo;
@@ -152,20 +157,23 @@ abstract class CartaConquista {
 }
 
 class CartaTriangulo extends CartaConquista {
-	public CartaTriangulo() {
+	public CartaTriangulo(String pais) {
 		this.tipo = "Triangulo";
+		this.pais=pais;
 	}
 }
 
 class CartaQuadrado extends CartaConquista {
-	public CartaQuadrado(){
+	public CartaQuadrado(String pais){
 		this.tipo = "Quadrado";
+		this.pais=pais;
 	}
 }
 
 class CartaCirculo extends CartaConquista {
-	public CartaCirculo() {
+	public CartaCirculo(String pais) {
 		this.tipo = "Circulo";
+		this.pais=pais;
 	}
 }
 

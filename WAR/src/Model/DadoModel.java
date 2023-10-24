@@ -41,15 +41,9 @@ class DadoModel implements Observado {
 		for(int i = 0; i<qtd_dados;i++) {
 			valores.add(rand.nextInt(6)+1);
 		}
-		for(int i = 0; i<valores.size();i++) {
-			System.out.println(valores.get(i));
-		}
 		valoresatk=valores;
 		for(int i = 0; i<qtd_dados;i++) {
 			valores2.add(rand.nextInt(6)+1);
-		}
-		for(int i = 0; i<valores.size();i++) {
-			System.out.println(valores2.get(i));
 		}
 		valoresdef=valores2;
 		for(Observador el : lst ) {

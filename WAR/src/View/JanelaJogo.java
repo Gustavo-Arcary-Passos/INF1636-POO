@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class JanelaJogo extends LoadScene {
-	public JanelaJogo(Tela frame) {
-        //DadoView.interpreta_lancamento(new ArrayList<Integer>(Arrays.asList(1)), new ArrayList<Integer>(Arrays.asList(5, 5, 6)),"vermelho");
+	public JanelaJogo(Tela frame) {        
 		this.images = new ImagemInfo[100];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));

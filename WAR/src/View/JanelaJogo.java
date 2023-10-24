@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 class JanelaJogo extends LoadScene {
 	public JanelaJogo(Tela frame) {
-        Dado.interpreta_lancamento(new ArrayList<Integer>(Arrays.asList(1)), new ArrayList<Integer>(Arrays.asList(5, 5, 6)),"vermelho");
+        //DadoView.interpreta_lancamento(new ArrayList<Integer>(Arrays.asList(1)), new ArrayList<Integer>(Arrays.asList(5, 5, 6)),"vermelho");
 		this.images = new ImagemInfo[100];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));
@@ -115,10 +115,10 @@ class JanelaJogo extends LoadScene {
 		    }
 	    }
 		//Condicional de plot de dados
-		if(Dado.get_flag()) {
+		if(DadoView.get_flag()) {
 			//Dado.set_exibe(false);
-			ImagemInfo[] images_atk = Dado.get_dados_atk();
-			ImagemInfo[] images_def = Dado.get_dados_def();
+			ImagemInfo[] images_atk = DadoView.get_dados_atk();
+			ImagemInfo[] images_def = DadoView.get_dados_def();
 			int x = 366;
 			int y = 458;
 			int w = 132;

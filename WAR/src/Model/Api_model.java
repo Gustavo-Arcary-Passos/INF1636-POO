@@ -103,14 +103,7 @@ public class Api_model {
         return jogadores;
 	}
 	
-	protected static List<Integer> lanca_dado(int qtd_dados){
-		List<Integer> valores = new ArrayList<Integer>();
-		for(int i = 0; i<qtd_dados;i++) {
-			Random rand = new Random();
-			valores.add(rand.nextInt(6)+1);
-		}
-		return valores;
-	}
+	
 	protected static boolean[] confere_vencedor(List<Integer> ataque, List<Integer> defesa) {
 		boolean[] batalhas = new boolean [(defesa.size() > ataque.size()) ? ataque.size() : defesa.size()];
 		int batalha=0;
@@ -140,7 +133,10 @@ public class Api_model {
 		}
 		return batalhas;
 	}
-	
+	public static void ataque() {
+		DadoModel dado= new DadoModel();
+		dado.lanca_dado(3);
+	}
 }
 
 

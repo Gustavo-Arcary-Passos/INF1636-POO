@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
-
+import Model.Api_model;
 class Tela extends JFrame {
 	int value;
 	protected final int LARG_DEFAULT=1200;
@@ -51,7 +51,8 @@ class Tela extends JFrame {
 	            	System.out.println(clicado.get_nome());
 	            	//clicado.set_color(Color.WHITE);
 	            }
-	            Dado.set_exibe(!Dado.get_flag());
+	            Api_model.ataque();
+	            DadoView.set_exibe(!DadoView.get_flag());
 	            repaint();
             }
         });

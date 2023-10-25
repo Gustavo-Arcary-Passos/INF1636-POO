@@ -135,7 +135,7 @@ public class Api_model {
 	}
 	public static void ataque() {
 		DadoModel dado= new DadoModel();
-		dado.lanca_dado(3);
+		dado.lanca_dado(2);
 	}
 }
 

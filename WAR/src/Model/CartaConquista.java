@@ -30,6 +30,8 @@ class ConjuntoCartaConquista {
 		cartas.add(new CartaTriangulo("França"));
 		cartas.add(new CartaTriangulo("Polônia"));
 		cartas.add(new CartaTriangulo("Romênia"));
+		cartas.add(new CartaTriangulo("Austrália"));
+		cartas.add(new CartaTriangulo("Perth"));
 		
 		cartas.add(new CartaQuadrado("Angola"));
 		cartas.add(new CartaQuadrado("Somália"));

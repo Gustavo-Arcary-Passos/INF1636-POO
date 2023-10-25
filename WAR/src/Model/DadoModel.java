@@ -18,6 +18,8 @@ class DadoModel implements Observado {
 	public String get_cor_jogador() {
 		return jgd_atual.get_cor();
 	}
+	/** se o parametro = d retorna valores de defesa, qualquer outra coisa retorna os valores de ataque
+	 **/
 	public List<Integer> get(char c) {
 		if(c == 'd') {
 			return valoresdef;
@@ -34,15 +36,15 @@ class DadoModel implements Observado {
 		lst.remove(o);
 	}
 	
-	protected void lanca_dado(int qtd_dados){
+	protected void lanca_dado(int qtd_dados_defesa, int qtd_dados_ataque){
 		List<Integer> valores = new ArrayList<Integer>();
 		List<Integer> valores2 = new ArrayList<Integer>();
 		Random rand = new Random();
-		for(int i = 0; i<qtd_dados;i++) {
+		for(int i = 0; i<qtd_dados_ataque;i++) {
 			valores.add(rand.nextInt(6)+1);
 		}
 		valoresatk=valores;
-		for(int i = 0; i<qtd_dados;i++) {
+		for(int i = 0; i<qtd_dados_defesa;i++) {
 			valores2.add(rand.nextInt(6)+1);
 		}
 		valoresdef=valores2;

@@ -1,5 +1,7 @@
 package View;
 
+import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -53,6 +55,10 @@ class ImagemInfo {
 
 	public int get_center_y() {
 		return y + (h / 2);
+	}
+
+	public Point get_center() {
+		return new Point(get_center_x(), get_center_y());
 	}
 
 	public void set_x(int x) {

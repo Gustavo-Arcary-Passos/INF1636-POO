@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
-class JanelaInicial extends LoadScene{
+class JanelaInicial extends LoadScene {
 	protected static boolean select_number;
 	protected static List<String> colorido = new ArrayList<>(Arrays.asList("azul", "verde", "vermelho", "branco", "preto", "amarelo"));
 	

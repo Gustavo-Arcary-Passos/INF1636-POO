@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 class JanelaJogo extends LoadScene {
 	public JanelaJogo(Tela frame) {        
@@ -84,6 +82,8 @@ class JanelaJogo extends LoadScene {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{806,820,895,907,915,902,909,905}, new int[]{242,273,273,295,282,258,258,242}, padrao, asia, "Mongólia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{718,709,751,741,763,785,754,762}, new int[]{274,290,365,380,380,344,293,274}, padrao, asia, "Paquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{628,620,629,637,638,717,709,717,666,660,647,646}, new int[]{271,287,300,300,305,305,291,273,273,269,269,271}, padrao, asia, "Síria"));
+
+		
 		frame.repaint();
 	}
 	public void desenha(Graphics g) {
@@ -104,8 +104,8 @@ class JanelaJogo extends LoadScene {
 		    	g2d.setStroke(new BasicStroke(1));
 				// desenha o exercito 2d
 		    	if(formas_geometricas[i].get_nome() ==  "Reino Unido") {
-		    		if(RU) {
-		    			formas_geometricas[i].get_exercito_2d().draw(g2d,formas_geometricas[i].get_cor());
+					if(RU) {
+						formas_geometricas[i].get_exercito_2d().draw(g2d,formas_geometricas[i].get_cor());
 		    		}
 		    		RU = true;
 		    	} else {
@@ -113,6 +113,14 @@ class JanelaJogo extends LoadScene {
 		    	}
 		    }
 	    }
+
+		// teste
+		Objetivo obj = Objetivo.DESTRUIR_VERMELHOS;
+		CartasView viewc = new CartasView();
+		viewc.desenha_objetivo(g, obj);
+
+
+
 		//Condicional de plot de dados
 		if(DadoView.get_flag()) {
 			//Dado.set_exibe(false);

@@ -3,7 +3,7 @@ package View;
 class Main {
     public static void main(String[] args) {
     	Tela f = new Tela();
-        f.setTitle("Minha Primeira GUI");
+        f.setTitle("War");
         f.setVisible(true);
     }
 }

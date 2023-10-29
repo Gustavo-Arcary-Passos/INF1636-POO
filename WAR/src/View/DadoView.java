@@ -5,7 +5,7 @@ import Model.Observado;
 import Model.Observador;
 
 
-public class DadoView implements Observador{
+class DadoView implements Observador{
 	private static List<ImagemInfo> dados_ataque;
 	private static List<ImagemInfo> dados_defesa;
 	protected static ImagemInfo[] dadosAtk;
@@ -29,7 +29,7 @@ public class DadoView implements Observador{
 		dados_defesa.add(new ImagemInfo("dado_defesa_6.png",0,0,32,32));
 	}
 	public void notify(Observado o) {
-		interpreta_lancamento(o.get('d'),o.get('a'),"vermelho");
+		interpreta_lancamento((List<Integer>)o.get('d'),(List<Integer>)o.get('a'),(String)o.get('c'));
 	}
 	
 	public static void interpreta_lancamento(List<Integer> lancamento_defesa, List<Integer> lancamento_ataque, String cor_atual) {

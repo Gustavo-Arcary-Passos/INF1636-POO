@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.*;
-import View.DadoView;
 
 class DadoModel implements Observado {
 	List<Observador> lst;
@@ -10,23 +9,22 @@ class DadoModel implements Observado {
 	Jogador jgd_atual;
 	public DadoModel() {
 		lst= new ArrayList<Observador>();
-		add(new DadoView());
 	}
 	public void set_jogador(Jogador jgd_atual) {
 		this.jgd_atual=jgd_atual;
 	}
-	public String get_cor_jogador() {
-		return jgd_atual.get_cor();
-	}
-	/** se o parametro = d retorna valores de defesa, qualquer outra coisa retorna os valores de ataque
+	/** se o parametro = d retorna valores de defesa, se parametro = a retorna valores de ataque e se parametro = c retorna cor do jogador
 	 **/
-	public List<Integer> get(char c) {
+	public Object get(char c) {
 		if(c == 'd') {
 			return valoresdef;
 		}
-		else {
+		else if (c == 'a'){
 			return valoresatk;
 		}
+		else {
+			return jgd_atual.get_cor()
+;		}
 		
 	}
 	public void add(Observador o) {

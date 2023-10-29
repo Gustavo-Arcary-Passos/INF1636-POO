@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.*;
+import View.Api_view;
 
 public class Api_model {
 
@@ -134,7 +135,12 @@ public class Api_model {
 		return batalhas;
 	}
 	public static void ataque() {
+		//mock
+		Jogador jgd_atual = new Jogador("roberto","vermelho");
+		Observador view_do_dado = Api_view.Instancia_Observador("DadoView");
 		DadoModel dado= new DadoModel();
+		dado.add(view_do_dado);
+		dado.set_jogador(jgd_atual);
 		dado.lanca_dado(2,3);
 	}
 }

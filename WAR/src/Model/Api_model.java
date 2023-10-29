@@ -4,7 +4,16 @@ import java.util.*;
 import View.Api_view;
 
 public class Api_model {
-
+	
+	private static Api_model instance = null;
+	
+	public static Api_model getInstance() {
+        if (instance == null) {
+            instance = new Api_model();
+        }
+        return instance;
+    }
+	
 	public static void main(String[] args) {
 		//cria mapa
 		List<Regiao> mapa_mundo = Api_model.inicializa_mundo();

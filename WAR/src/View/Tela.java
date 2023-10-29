@@ -40,29 +40,6 @@ class Tela extends JFrame {
         //cenarios[1] = new JanelaJogo(this);
 
         // Adicione um novo MouseListener, se necessário
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            	int x = e.getX();
-	            int y = e.getY();
-	            System.out.println(x+", "+y);
-	            //cenario++;
-	            if (e.getButton() == MouseEvent.BUTTON1) {
-		            DesenhaTerritorioPoligono clicado = cenarios[cenario].formas_geometricas_clicada(x,y);
-		            if(clicado!=null) {
-		            	System.out.println(clicado.get_nome());
-		            	//clicado.set_color(Color.WHITE);
-		            }
-		            Api_model.ataque();
-		            DadoView.set_exibe(!DadoView.get_flag());
-		            repaint();
-	            } else if (e.getButton() == MouseEvent.BUTTON3) {
-	            	ReiniciarJogo ganhador = new ReiniciarJogo("Jorge");
-	            	
-	            }
-            }
-        });
-
         // Redesenha a tela
         repaint();
     }

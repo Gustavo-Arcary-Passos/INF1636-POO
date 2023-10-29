@@ -16,33 +16,36 @@ class JanelaInicial extends LoadScene {
 	protected static int num_jogadores;
 	protected static boolean escolhendo_cores;
 	public JanelaInicial(Tela tela) {
+		this.images = new ImagemInfo[1];
+		count_images_loaded(new ImagemInfo ("Tela_inicio.png",0,-200,1200,1000));
 		Container c = tela.getContentPane();
 		c.setLayout(null);
         JButton b1 = new JButton("Novo Jogo");
-
-        b1.setBounds(50, 50, 100, 30);
-        b1.setToolTipText("Novo Jogo");
+        b1.setBounds(550, 500, 100, 30);
+        //b1.setToolTipText("Novo Jogo");
         b1.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	set_count_images(0);
                 removeComponents(tela);
                 escolhe_qtd_jogadores(tela);
             }
         });
-        c.add(b1); 
+        
 		
 		// ***** DEBUG *****
 		JButton bskip = new JButton("pular para DEBUG");
-		bskip.setBounds(50, 100, 100, 30);
-		bskip.setToolTipText("pular para DEBUG");
+		bskip.setBounds(550, 550, 100, 30);
+		//bskip.setToolTipText("pular para DEBUG");
 		bskip.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				set_count_images(0);
 				removeComponents(tela);
 				tela.trocarParaJanelaJogo();
 			}
 		});
-
+		c.add(b1); 
 		c.add(bskip);
 		c.repaint();
 	}
@@ -52,7 +55,7 @@ class JanelaInicial extends LoadScene {
 	private static void escolhe_qtd_jogadores(Tela tela) {
 		Container c = tela.getContentPane();
 		JButton b1 = new JButton("3"); 
-		b1.setBounds(50, 50, 100, 30);
+		b1.setBounds(530, 250, 100, 30);
 
         b1.addActionListener(new ActionListener() {
             int valor = 3; 
@@ -67,7 +70,7 @@ class JanelaInicial extends LoadScene {
             }
         });
         JButton b2 = new JButton("Confirmar");
-        b2.setBounds(50, 100, 100, 30);
+        b2.setBounds(530, 300, 100, 30);
         b2.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,67 +87,19 @@ class JanelaInicial extends LoadScene {
         c.repaint(); 
 	}
 	private static void escolhe_nome_jogadores_cor(Tela tela) {
-//		Container c = tela.getContentPane();
-//	    JLabel ln = new JLabel("Nome");
-//	    JTextField nm = new JTextField();
-//	    JButton inc = new JButton("Confirmar");
-//	    ln.setBounds(40, 83, 65, 25);
-//	    nm.setBounds(110, 80, 250, 25);
-//	    inc.setBounds(295, 270, 65, 25);
-//
-//	    JRadioButton[] op_cores = new JRadioButton[colorido.size()];
-//	    ButtonGroup bg = new ButtonGroup();
-//
-//	    for (int i = 0; i < colorido.size(); i++) {
-//	        op_cores[i] = new JRadioButton(colorido.get(i));
-//	        op_cores[i].setBounds(50, 120 + 30 * i, 100, 30);
-//	        bg.add(op_cores[i]);
-//	        c.add(op_cores[i]);
-//	    }
-//
-//	    inc.addActionListener(new ActionListener() {
-//	        @Override
-//	        public void actionPerformed(ActionEvent e) {
-//	        	boolean algumSelecionado = false;
-//
-//	        	for (JRadioButton radioButton : op_cores) {
-//	        	    if (radioButton.isSelected()) {
-//	        	        algumSelecionado = true;
-//	        	        break; // Se um está selecionado, não é necessário continuar verificando
-//	        	    }
-//	        	}
-//	        	if(algumSelecionado && !nm.getText().isEmpty()) {
-//		            removeComponents(tela);
-//		            if (JanelaInicial.get_num_jogadores() > 1) {
-//		                for (int i = 0; i < colorido.size(); i++) {
-//		                    if (op_cores[i].isSelected()) {
-//		                        colorido.remove(colorido.get(i));
-//		                    }
-//		                }
-//		                JanelaInicial.set_num_jogadores(JanelaInicial.get_num_jogadores() - 1);
-//		                escolhe_nome_jogadores_cor(tela);
-//		            } else {
-//		            	tela.trocarParaJanelaJogo();
-//		            }
-//		            c.repaint();
-//	        	}
-//	        }
-//	    });
-//	    c.add(ln);
-//	    c.add(nm);
-//	    c.add(inc);
-//	    c.repaint();
+		int dx = 350;
+		int dy = 100;
 		Container c = tela.getContentPane();
 		JLabel ln = new JLabel("Nome");
 		JTextField nm = new JTextField();
 		JButton inc = new JButton("Confirmar");
-		ln.setBounds(40, 83, 65, 25);
-		nm.setBounds(110, 80, 250, 25);
-		inc.setBounds(195, 270, 165, 25);
+		ln.setBounds(40+dx, 83+dy, 65, 25);
+		nm.setBounds(110+dx, 80+dy, 250, 25);
+		inc.setBounds(195+dx, 270+dy, 165, 25);
 
 		// Substituir JRadioButton e ButtonGroup por JComboBox
 		JComboBox<String> opCoresComboBox = new JComboBox<>();
-		opCoresComboBox.setBounds(50, 120, 100, 30);
+		opCoresComboBox.setBounds(50+dx, 120+dy, 100, 30);
 
 		for (String cor : colorido) {
 		    opCoresComboBox.addItem(cor);
@@ -193,6 +148,10 @@ class JanelaInicial extends LoadScene {
 		escolhendo_cores = status;
 	}
 	public void desenha(Graphics g) {
-		
+		for(int i = 0; i < this.count_images; i++) {
+		    if (images[i] != null) {
+		    	g.drawImage(images[i].get_image(), images[i].get_x(), images[i].get_y(), images[i].get_w(), images[i].get_h(), null);
+		    }
+	    }
 	}
 }

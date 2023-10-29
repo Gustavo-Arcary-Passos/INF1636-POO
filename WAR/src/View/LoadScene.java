@@ -10,6 +10,10 @@ abstract class LoadScene {
 	protected int count_images,count_formas_geometricas;
 	//abstract public void cenario();
 	
+	public void set_count_images(int number) {
+		this.count_images = number;
+	}
+	
 	public void count_images_loaded(ImagemInfo imagem) {
 		count_images++;
 		this.images[count_images-1] = imagem;
@@ -21,7 +25,7 @@ abstract class LoadScene {
 	}
 	
 	public void desenha(Graphics g) {
-		for(int i = 0; i <= this.count_images; i++) {
+		for(int i = 0; i < this.count_images; i++) {
 		    if (images[i] != null) {
 		    	g.drawImage(images[i].get_image(), images[i].get_x(), images[i].get_y(), images[i].get_w(), images[i].get_h(), null);
 		    }

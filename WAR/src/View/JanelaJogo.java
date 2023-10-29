@@ -3,17 +3,30 @@ package View;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
+
+import Model.Api_model;
+
+import java.awt.geom.Rectangle2D;
 import java.awt.*;
 
 class JanelaJogo extends LoadScene {
-	public JanelaJogo(Tela frame) {        
+	protected Color jogador_color = Color.WHITE;
+	
+	public void set_jogador_color (Color cor) {
+		this.jogador_color = cor;
+	}
+	
+	public JanelaJogo(Tela tela) {        
 		this.images = new ImagemInfo[100];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabela_bonus_continente.png",10,400,130,120));
 		count_images_loaded(new ImagemInfo ("war_tabela_troca.png",10,540,114,131));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_bottom.png",0,715,1024,85));
+		count_images_loaded(new ImagemInfo ("war_btnJogarDados.png",925,715,57,37));
 		//count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
 		
 		this.formas_geometricas = new DesenhaTerritorioPoligono[52];
@@ -83,11 +96,38 @@ class JanelaJogo extends LoadScene {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{718,709,751,741,763,785,754,762}, new int[]{274,290,365,380,380,344,293,274}, padrao, asia, "Paquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{628,620,629,637,638,717,709,717,666,660,647,646}, new int[]{271,287,300,300,305,305,291,273,273,269,269,271}, padrao, asia, "Síria"));
 
-		
-		frame.repaint();
+		tela.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	int x = e.getX();
+	            int y = e.getY();
+	            System.out.println(x+", "+y);
+	            //cenario++;
+	            if (DadoView.get_flag() == true) {
+	            	DadoView.set_exibe(!DadoView.get_flag());
+	            }
+	            if (e.getButton() == MouseEvent.BUTTON1) {
+		            DesenhaTerritorioPoligono clicado = formas_geometricas_clicada(x,y);
+		            if(clicado!=null) {
+		            	System.out.println(clicado.get_nome());
+		            	//clicado.set_color(Color.WHITE);
+		            } else {
+		            	if(x > 925 && x < 982 && y > 715 && y < 752) {
+		            		System.out.println("Aqui!");
+		            		Api_model.ataque();
+				            DadoView.set_exibe(!DadoView.get_flag());
+		            	}
+		            }
+		            tela.repaint();
+	            } else if (e.getButton() == MouseEvent.BUTTON3) {
+	            	ReiniciarJogo ganhador = new ReiniciarJogo("Jorge");
+	            }
+            }
+        });
+		tela.repaint();
 	}
 	public void desenha(Graphics g) {
-		for(int i = 0; i <= this.count_images; i++) {
+		for(int i = 0; i < this.count_images; i++) {
 		    if (images[i] != null) {
 		    	g.drawImage(images[i].get_image(), images[i].get_x(), images[i].get_y(), images[i].get_w(), images[i].get_h(), null);
 		    }
@@ -115,11 +155,15 @@ class JanelaJogo extends LoadScene {
 	    }
 
 		// teste
-		Objetivo obj = Objetivo.DESTRUIR_VERMELHOS;
-		CartasView viewc = new CartasView();
-		viewc.desenha_objetivo(g, obj);
-
-
+//		Objetivo obj = Objetivo.DESTRUIR_VERMELHOS;
+//		CartasView viewc = new CartasView();
+//		viewc.desenha_objetivo(g, obj);
+		g2d.setStroke(new BasicStroke(5));
+		g2d.setPaint(jogador_color);
+		Rectangle2D jogador_vez = new Rectangle2D.Double(920,710,65,50);
+		g2d.draw(jogador_vez);
+		g2d.setStroke(new BasicStroke(1));
+		
 
 		//Condicional de plot de dados
 		if(DadoView.get_flag()) {

@@ -5,6 +5,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import Model.Api_model;
 class Tela extends JFrame {
 	int value;
@@ -45,14 +47,19 @@ class Tela extends JFrame {
 	            int y = e.getY();
 	            System.out.println(x+", "+y);
 	            //cenario++;
-	            DesenhaTerritorioPoligono clicado = cenarios[cenario].formas_geometricas_clicada(x,y);
-	            if(clicado!=null) {
-	            	System.out.println(clicado.get_nome());
-	            	//clicado.set_color(Color.WHITE);
+	            if (e.getButton() == MouseEvent.BUTTON1) {
+		            DesenhaTerritorioPoligono clicado = cenarios[cenario].formas_geometricas_clicada(x,y);
+		            if(clicado!=null) {
+		            	System.out.println(clicado.get_nome());
+		            	//clicado.set_color(Color.WHITE);
+		            }
+		            Api_model.ataque();
+		            DadoView.set_exibe(!DadoView.get_flag());
+		            repaint();
+	            } else if (e.getButton() == MouseEvent.BUTTON3) {
+	            	ReiniciarJogo ganhador = new ReiniciarJogo("Jorge");
+	            	
 	            }
-	            Api_model.ataque();
-	            DadoView.set_exibe(!DadoView.get_flag());
-	            repaint();
             }
         });
 

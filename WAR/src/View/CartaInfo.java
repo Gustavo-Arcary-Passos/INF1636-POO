@@ -2,7 +2,7 @@ package View;
 
 import java.awt.Graphics;
 
-public class CartaInfo extends ImagemInfo {
+class CartaInfo extends ImagemInfo {
 
     public CartaInfo(String caminho, int w, int h)
     {

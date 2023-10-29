@@ -10,7 +10,7 @@ import java.awt.geom.Ellipse2D;
  * 
  * 
  */
-public class Exercito2D extends Ellipse2D.Double {
+class Exercito2D extends Ellipse2D.Double {
     private int num_exercitos;
     Ellipse2D borda;
     

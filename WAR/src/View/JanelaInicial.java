@@ -11,7 +11,8 @@ import java.util.List;
 class JanelaInicial extends LoadScene {
 	protected static boolean select_number;
 	protected static List<String> colorido = new ArrayList<>(Arrays.asList("azul", "verde", "vermelho", "branco", "preto", "amarelo"));
-	
+	protected static List<String> jogadores_name = new ArrayList<>();
+	protected static List<String> jogadores_color = new ArrayList<>();
 	//protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW));
 	protected static int num_jogadores;
 	protected static boolean escolhendo_cores;
@@ -111,10 +112,12 @@ class JanelaInicial extends LoadScene {
 		        boolean algumSelecionado = opCoresComboBox.getSelectedIndex() != -1;
 
 		        if (algumSelecionado && !nm.getText().isEmpty()) {
+		        	int selectedColorIndex = opCoresComboBox.getSelectedIndex();
+	            	jogadores_name.add(nm.getText());
+	            	jogadores_color.add(colorido.get(selectedColorIndex));
 		            removeComponents(tela);
 		            if (JanelaInicial.get_num_jogadores() > 1) {
 		                // Verifique qual opção foi selecionada no JComboBox
-		                int selectedColorIndex = opCoresComboBox.getSelectedIndex();
 		                if (selectedColorIndex != -1) {
 		                    colorido.remove(selectedColorIndex);
 		                }
@@ -133,6 +136,13 @@ class JanelaInicial extends LoadScene {
 		c.add(inc);
 		c.add(opCoresComboBox);
 		c.repaint();
+	}
+	public List<String> get_jogares_name(){
+		return jogadores_name;
+	}
+	
+	public List<String> get_jogares_color(){
+		return jogadores_color;
 	}
 
 	public static int get_num_jogadores() {

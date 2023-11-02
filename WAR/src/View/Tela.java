@@ -3,6 +3,7 @@ package View;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -33,6 +34,15 @@ class Tela extends JFrame {
 //	}
 	protected void trocarParaJanelaJogo() {
         // Remova todos os componentes da tela atual, se necessário
+		List<String> jogadores_nomes = cenarios[cenario].get_jogares_name();
+		List<String> jogadores_cores = cenarios[cenario].get_jogares_color();
+		
+//		for(int i = 0; i < jogadores_nomes.size(); i++) {
+//			String nome = jogadores_nomes.get(i);
+//	        String cor = jogadores_cores.get(i);
+//			System.out.println("Jogador " + (i + 1) + ": Nome = " + nome + ", Cor = " + cor);
+//		}
+		
         getContentPane().removeAll();
 
         // Crie uma instância da JanelaJogo

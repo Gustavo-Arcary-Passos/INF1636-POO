@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.util.List;
 
 import Model.Api_model;
 
@@ -27,6 +28,7 @@ class JanelaJogo extends LoadScene {
 		count_images_loaded(new ImagemInfo ("war_tabela_troca.png",10,540,114,131));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_bottom.png",0,715,1024,85));
 		count_images_loaded(new ImagemInfo ("war_btnJogarDados.png",925,715,57,37));
+		//count_images_loaded(new ImagemInfo ("jogador_recruta.png",200,645,614,150));
 		//count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
 		
 		this.formas_geometricas = new DesenhaTerritorioPoligono[52];
@@ -194,5 +196,13 @@ class JanelaJogo extends LoadScene {
 				g.drawImage(images_def[i].get_image(), x+w/4-2*images_def[i].get_w()/3/2 - images_atk[i].get_w()/3 , y_min+y_progress*(i+1), 2*images_def[i].get_w()/3, 2*images_def[i].get_h()/3, null);	
 			}
 		}
+	}
+	
+	public List<String> get_jogares_name(){
+		return null;
+	}
+	
+	public List<String> get_jogares_color(){
+		return null;
 	}
 }

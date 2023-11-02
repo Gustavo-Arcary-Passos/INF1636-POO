@@ -3,6 +3,7 @@ package View;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.List;
 
 abstract class LoadScene {
 	protected ImagemInfo[] images;
@@ -49,4 +50,8 @@ abstract class LoadScene {
 		}
 		return null;
 	}
+	
+	abstract List<String> get_jogares_name();
+	
+	abstract List<String> get_jogares_color();
 }

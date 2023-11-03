@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.List;
 
+import javax.swing.JButton;
+
 abstract class LoadScene {
 	protected ImagemInfo[] images;
 	protected DesenhaTerritorioPoligono[] formas_geometricas;
@@ -54,4 +56,8 @@ abstract class LoadScene {
 	abstract List<String> get_jogares_name();
 	
 	abstract List<String> get_jogares_color();
+	
+	abstract JButton get_button(int pos);
+
+//	abstract static int get_num_jogadores();
 }

@@ -6,7 +6,10 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JButton;
 
 import Model.Api_model;
 
@@ -15,12 +18,14 @@ import java.awt.*;
 
 class JanelaJogo extends LoadScene {
 	protected Color jogador_color = Color.WHITE;
-	
+	protected static List<String> jogadores_name;
+	protected static List<String> jogadores_color;
+	protected static List<JButton> button = new ArrayList<>();
 	public void set_jogador_color (Color cor) {
 		this.jogador_color = cor;
 	}
 	
-	public JanelaJogo(Tela tela) {        
+	public JanelaJogo(Tela tela) { 
 		this.images = new ImagemInfo[100];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));
@@ -199,10 +204,17 @@ class JanelaJogo extends LoadScene {
 	}
 	
 	public List<String> get_jogares_name(){
-		return null;
+		return jogadores_name;
 	}
 	
 	public List<String> get_jogares_color(){
-		return null;
+		return jogadores_color;
+	}
+	
+	public JButton get_button(int pos) {
+		return button.get(pos);
+	}
+	public int get_num_jogadores() {
+		return 0;
 	}
 }

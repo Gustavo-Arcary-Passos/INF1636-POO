@@ -5,16 +5,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import Model.Api_model;
+//import Model.Api_model;
 class Tela extends JFrame {
 	int value;
 	protected final int LARG_DEFAULT=1200;
 	protected final int ALT_DEFAULT=800;
 	private LoadScene[] cenarios;
 	private static int cenario;
+//	protected List<String> jogadores_nomes;
+//	protected List<String> jogadores_cores;
 	public Tela() {
 		setSize(LARG_DEFAULT,ALT_DEFAULT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -29,14 +32,24 @@ class Tela extends JFrame {
 	        }
 	    });
 	}
+	public JButton get_button(int cenario,int pos) {
+		return cenarios[cenario].get_button(pos);
+	}
+	public List<String> get_jogadores(int cenario) {
+		return cenarios[cenario].get_jogares_name();
+	}
+	public List<String> get_cores(int cenario) {
+		return cenarios[cenario].get_jogares_color();
+	}
+	public int get_num_jogador() {
+		return JanelaInicial.get_num_jogadores();
+	}
+	
 //	public static void next_cenario() {
 //		cenario++;
 //	}
 	protected void trocarParaJanelaJogo() {
         // Remova todos os componentes da tela atual, se necessário
-		List<String> jogadores_nomes = cenarios[cenario].get_jogares_name();
-		List<String> jogadores_cores = cenarios[cenario].get_jogares_color();
-		
 //		for(int i = 0; i < jogadores_nomes.size(); i++) {
 //			String nome = jogadores_nomes.get(i);
 //	        String cor = jogadores_cores.get(i);
@@ -44,7 +57,7 @@ class Tela extends JFrame {
 //		}
 		
         getContentPane().removeAll();
-
+        
         // Crie uma instância da JanelaJogo
         cenario = 1;
         //cenarios[1] = new JanelaJogo(this);

@@ -13,6 +13,9 @@ class JanelaInicial extends LoadScene {
 	protected static List<String> colorido = new ArrayList<>(Arrays.asList("azul", "verde", "vermelho", "branco", "preto", "amarelo"));
 	protected static List<String> jogadores_name = new ArrayList<>();
 	protected static List<String> jogadores_color = new ArrayList<>();
+	protected static List<JButton> button = new ArrayList<>();
+	protected static JComboBox<String> opCoresComboBox;
+	protected static JTextField nm;
 	//protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW));
 	protected static int num_jogadores;
 	protected static boolean escolhendo_cores;
@@ -46,19 +49,10 @@ class JanelaInicial extends LoadScene {
 				tela.trocarParaJanelaJogo();
 			}
 		});
-		c.add(b1); 
-		c.add(bskip);
-		c.repaint();
-	}
-	private static void removeComponents(Tela tela) {
-		tela.getContentPane().removeAll(); 
-    }
-	private static void escolhe_qtd_jogadores(Tela tela) {
-		Container c = tela.getContentPane();
-		JButton b1 = new JButton("3"); 
-		b1.setBounds(530, 250, 100, 30);
+		JButton b3 = new JButton("3"); 
+		b3.setBounds(530, 250, 100, 30);
 
-        b1.addActionListener(new ActionListener() {
+        b3.addActionListener(new ActionListener() {
             int valor = 3; 
 
             @Override
@@ -67,15 +61,16 @@ class JanelaInicial extends LoadScene {
                 if (valor > 6) {
                     valor = 3; 
                 }
-                b1.setText(Integer.toString(valor)); 
+                b3.setText(Integer.toString(valor)); 
             }
         });
+        
         JButton b2 = new JButton("Confirmar");
         b2.setBounds(530, 300, 100, 30);
         b2.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	JanelaInicial.set_num_jogadores(b1.getText());
+            	JanelaInicial.set_num_jogadores(b3.getText());
                 removeComponents(tela);
                 JanelaInicial.set_escolhendo_cores(true);
                 escolhe_nome_jogadores_cor(tela);
@@ -83,30 +78,61 @@ class JanelaInicial extends LoadScene {
                 //System.out.println(JanelaInicial.get_num_jogadores());
             }
         });
-        c.add(b1);
-        c.add(b2);
+        
+        JButton inc = new JButton("Confirmar");
+        inc.setBounds(195+350, 270+100, 165, 25);
+//        inc.addActionListener(new ActionListener() {
+//		    @Override
+//		    public void actionPerformed(ActionEvent e) {
+//		        boolean algumSelecionado = opCoresComboBox.getSelectedIndex() != -1;
+//
+//		        if (algumSelecionado && !nm.getText().isEmpty()) {
+//		        	int selectedColorIndex = opCoresComboBox.getSelectedIndex();
+//	            	jogadores_name.add(nm.getText());
+//	            	jogadores_color.add(colorido.get(selectedColorIndex));
+//		            removeComponents(tela);
+//		            if (JanelaInicial.get_num_jogadores() > 1) {
+//		                // Verifique qual opção foi selecionada no JComboBox
+//		                if (selectedColorIndex != -1) {
+//		                    colorido.remove(selectedColorIndex);
+//		                }
+//		                JanelaInicial.set_num_jogadores(JanelaInicial.get_num_jogadores() - 1);
+//		                escolhe_nome_jogadores_cor(tela);
+//		            } else {
+//		                tela.trocarParaJanelaJogo();
+//		            }
+//		            c.repaint();
+//		        }
+//		    }
+//		});
+        
+//        JButton save_players = new JButton();
+//        save_players.setBounds(195+350, 270+100, 165, 25);
+        
+        
+		button.add(bskip);
+		button.add(b1);
+		button.add(b2);
+		button.add(b3);
+		button.add(inc);
+		//button.add(save_players);
+		
+		c.add(b1); 
+		c.add(bskip);
+		c.repaint();
+	}
+	
+	private static void removeComponents(Tela tela) {
+		tela.getContentPane().removeAll(); 
+    }
+	private static void escolhe_qtd_jogadores(Tela tela) {
+		Container c = tela.getContentPane();
+        c.add(button.get(2));
+        c.add(button.get(3));
         c.repaint(); 
 	}
-	private static void escolhe_nome_jogadores_cor(Tela tela) {
-		int dx = 350;
-		int dy = 100;
-		Container c = tela.getContentPane();
-		JLabel ln = new JLabel("Nome");
-		JTextField nm = new JTextField();
-		JButton inc = new JButton("Confirmar");
-		ln.setBounds(40+dx, 83+dy, 65, 25);
-		nm.setBounds(110+dx, 80+dy, 250, 25);
-		inc.setBounds(195+dx, 270+dy, 165, 25);
-
-		// Substituir JRadioButton e ButtonGroup por JComboBox
-		JComboBox<String> opCoresComboBox = new JComboBox<>();
-		opCoresComboBox.setBounds(50+dx, 120+dy, 100, 30);
-
-		for (String cor : colorido) {
-		    opCoresComboBox.addItem(cor);
-		}
-
-		inc.addActionListener(new ActionListener() {
+	public static ActionListener salva_jogadores(Tela tela) {
+		return new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        boolean algumSelecionado = opCoresComboBox.getSelectedIndex() != -1;
@@ -124,16 +150,42 @@ class JanelaInicial extends LoadScene {
 		                JanelaInicial.set_num_jogadores(JanelaInicial.get_num_jogadores() - 1);
 		                escolhe_nome_jogadores_cor(tela);
 		            } else {
+		            	JanelaInicial.set_num_jogadores(JanelaInicial.get_num_jogadores() - 1);
 		                tela.trocarParaJanelaJogo();
 		            }
+		            Container c = tela.getContentPane();
 		            c.repaint();
 		        }
 		    }
-		});
+		};
+	}
+	
+	private static void escolhe_nome_jogadores_cor(Tela tela) {
+		int dx = 350;
+		int dy = 100;
+		Container c = tela.getContentPane();
+		JLabel ln = new JLabel("Nome");
+		nm = new JTextField();
+		
+		ln.setBounds(40+dx, 83+dy, 65, 25);
+		nm.setBounds(110+dx, 80+dy, 250, 25);
+		
+
+		// Substituir JRadioButton e ButtonGroup por JComboBox
+		opCoresComboBox = new JComboBox<>();
+		opCoresComboBox.setBounds(50+dx, 120+dy, 100, 30);
+
+		for (String cor : colorido) {
+		    opCoresComboBox.addItem(cor);
+		}
+
+		
 
 		c.add(ln);
 		c.add(nm);
-		c.add(inc);
+		
+		c.add(button.get(4));
+		
 		c.add(opCoresComboBox);
 		c.repaint();
 	}
@@ -143,6 +195,10 @@ class JanelaInicial extends LoadScene {
 	
 	public List<String> get_jogares_color(){
 		return jogadores_color;
+	}
+	
+	public JButton get_button(int pos) {
+		return button.get(pos);
 	}
 
 	public static int get_num_jogadores() {

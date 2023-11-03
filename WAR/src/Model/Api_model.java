@@ -5,8 +5,9 @@ import View.Api_view;
 
 public class Api_model {
 	private static Api_model instance = null;
-	List<Regiao> mapa_mundo;
-	List<Jogador> jogadores_ativos;
+	public List<Regiao> mapa_mundo;
+	public List<Jogador> jogadores_ativos;
+	public DeckObjetivos deckobj;
 	public static Api_model getInstance() {
         if (instance == null) {
             instance = new Api_model();
@@ -14,13 +15,17 @@ public class Api_model {
         return instance;
     }
 	
+	public void add_jogador(String nome,String cor) {
+		jogadores_ativos.add(new Jogador(nome, cor));
+	}
+	
 	public Api_model() {
 		//cria mapa
 		mapa_mundo = this.inicializa_mundo();
 		//cria jogadores
-		//jogadores_ativos = Api_model.inicializa_jogadores();
+		jogadores_ativos = new ArrayList<>();
 		
-		//DeckObjetivos deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
+		deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
 		//embaralha a ordem dos jogadores, que vai ser também a ordem de jogada
 		//Collections.shuffle(jogadores_ativos);
 		//sorteia os objetivos para cada jogador
@@ -36,7 +41,7 @@ public class Api_model {
 //		Api_model.confere_vencedor(new ArrayList<Integer>(Arrays.asList(2,2,3)), new ArrayList<>(Arrays.asList(2,3)));
 	}
 	
-	protected void sorteia_todos_territorios(List<Regiao> mapa_mundo, List<Jogador> jogadores_ativos) {
+	public void sorteia_todos_territorios(List<Regiao> mapa_mundo, List<Jogador> jogadores_ativos) {
 		List<String> territorios = new ArrayList<String>(Arrays.asList("Argélia","Nigéria","Angola","Egito","Somália","África do Sul","Letônia","Estônia","Turquia","Sibéria","Rússia","Cazaquistão","Arábia Saudita","Bangladesh","China","Coreia do Norte","Coreia do Sul","Índia","Irã","Iraque","Japão","Jordânia","Mongólia","Tailândia","México","Califórnia","Texas","Vancouver","Nova York","Quebec","Alasca","Calgary","Groenlândia","Brasil","Argentina","Peru","Venezuela","Reino Unido","França","Espanha","Itália","Suécia","Polônia","Romênia","Ucrânia","Austrália","Indonésia","Nova Zelândia","Perth","Paquistão","Síria"));
 		Territorio escolhido;
 		String terr;
@@ -60,11 +65,15 @@ public class Api_model {
 				}
 			}
 		}
+		for(Jogador jogadores : jogadores_ativos) {
+			System.out.println(jogadores.domina.size());
+		}
 	}
 	
-	protected void sorteia_obj_todos_jogadores(List<Jogador> jogadores_ativos,DeckObjetivos deckobj) {
+	public void sorteia_obj_todos_jogadores(List<Jogador> jogadores_ativos,DeckObjetivos deckobj) {
 		for(Jogador el : jogadores_ativos) {
 			deckobj.sorteia_objetivo(el);
+			System.out.printf("O objetivo do jogador %s é %s.\n",el.get_nome(),el.get_objetivo().getClass());
 		}
 	}
 	
@@ -114,7 +123,7 @@ public class Api_model {
 //	}
 //	
 	
-	protected static boolean[] confere_vencedor(List<Integer> ataque, List<Integer> defesa) {
+	public static boolean[] confere_vencedor(List<Integer> ataque, List<Integer> defesa) {
 		boolean[] batalhas = new boolean [(defesa.size() > ataque.size()) ? ataque.size() : defesa.size()];
 		int batalha=0;
 		while(defesa.size()!=0 && ataque.size()!=0) {

@@ -169,6 +169,8 @@ class JanelaInicial extends LoadScene {
 		ln.setBounds(40+dx, 83+dy, 65, 25);
 		nm.setBounds(110+dx, 80+dy, 250, 25);
 		
+		//nm.addActionListener(salva_jogadores(tela));
+		
 
 		// Substituir JRadioButton e ButtonGroup por JComboBox
 		opCoresComboBox = new JComboBox<>();

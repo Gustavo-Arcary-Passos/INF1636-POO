@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -18,6 +20,8 @@ class Tela extends JFrame {
 	private LoadScene[] cenarios;
 	private static int cenario;
 	protected int rodada;
+	protected List<String> rotina = new ArrayList<>(Arrays.asList("PER", "PE", "ATQ", "REP", "PASS"));
+	protected int rotina_ind;
 //	protected List<String> jogadores_nomes;
 //	protected List<String> jogadores_cores;
 	public Tela() {
@@ -32,6 +36,16 @@ class Tela extends JFrame {
 	        	
 	        }
 	    });
+	}
+	public String get_rotina() {
+		return rotina.get(rotina_ind);
+	}
+	public void next_rotina() {
+		rotina_ind++;
+		if(rotina_ind > 4) {
+			rotina_ind = 0;
+		}
+		this.repaint();
 	}
 	public JButton get_button(int cenario,int pos) {
 		return cenarios[cenario].get_button(pos);

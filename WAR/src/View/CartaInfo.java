@@ -3,8 +3,14 @@ package View;
 import java.awt.Graphics;
 
 class CartaInfo extends ImagemInfo {
+	protected String name;
 
     public CartaInfo(String caminho, int w, int h)
+    {
+        super(caminho, 512, 384, w, h);
+    }
+    
+    public CartaInfo(String caminho, int w, int h, String nome)
     {
         super(caminho, 512, 384, w, h);
     }

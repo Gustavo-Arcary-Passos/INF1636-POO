@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 class ImagemInfo {
+	protected String name;
 	protected String caminho;
 	protected int x;
 	protected int y;
@@ -22,6 +23,16 @@ class ImagemInfo {
 		this.y = y;
 		this.w = w;
 		this.h = h;
+		this.load_image();
+	}
+	
+	public ImagemInfo(String path, int x, int y, int w, int h,String nome) {
+		this.caminho = path;
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		this.name = nome;
 		this.load_image();
 	}
 
@@ -48,6 +59,10 @@ class ImagemInfo {
 	public int get_h() {
 		return this.h;
 	}
+	
+	public String get_name() {
+    	return this.name;
+    }
 
 	public int get_center_x() {
 		return x + (w / 2);

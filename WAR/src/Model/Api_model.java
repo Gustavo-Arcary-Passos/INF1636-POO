@@ -65,6 +65,7 @@ public class Api_model {
 					break;
 				}
 			}
+			this.next_jogador();
 		}
 		for(Jogador jogadores : jogadores_ativos) {
 			System.out.println(jogadores.domina.size());
@@ -94,9 +95,43 @@ public class Api_model {
 		return jogadores_ativos.get(this.vez).get_cor();
 	}
 	
+	public List<String> get_vez_jogador_cartas() {
+		List<CartaConquista> cartas =  jogadores_ativos.get(this.vez).get_carta();
+		List<String> cartas_jogador = new ArrayList<>();
+		for(CartaConquista el : cartas) {
+			cartas_jogador.add(el.get_pais());
+		}
+		return cartas_jogador;
+	}
+	
+	public void get_vez_jogador_add_exercito() {
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		jogador_da_vez.add_exercito();
+		for(Regiao regiao : mapa_mundo) {
+			if(regiao.verifica_monopolio(jogador_da_vez)) {
+				jogador_da_vez.add_exercito_regiao(regiao.get_nome(),regiao.get_exercito_extra());
+			}
+		}
+	}
+	
+	public boolean verifica_exercito_regiao_distribuir() {
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		for(Regiao regiao : mapa_mundo) {
+			if(jogador_da_vez.get__exercito_regiao(regiao.get_nome())> 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void next_jogador() {
 		this.vez++;
 		if(this.vez >= this.jogadores_ativos.size())this.vez = 0;
+	}
+	
+	public boolean verifica_territorio_jogador(String pais) {
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		return jogador_da_vez.verifica_territorio(pais);
 	}
 //	protected static List<Jogador> inicializa_jogadores(){
 //		List<Jogador> jogadores = new ArrayList<Jogador>();

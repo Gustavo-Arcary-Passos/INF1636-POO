@@ -19,25 +19,31 @@ import java.awt.*;
 
 class JanelaJogo extends LoadScene {
 	protected static Color jogador_color = Color.WHITE;
+	protected static List<String> jogadores_cartas = new ArrayList<>();
 	protected static List<String> jogadores_name;
 	protected static List<String> jogadores_color;
 	protected static List<JButton> button = new ArrayList<>();
 	protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW));
 	protected static List<String> colorido = new ArrayList<>(Arrays.asList("azul", "verde", "vermelho", "branco", "preto", "amarelo"));
-
+	protected RotinaJogadores rotina = RotinaJogadores.getInstance();
+	
+	public static void set_jogadores_cartas(List<String> cartas) {
+		jogadores_cartas = cartas;
+	}
+	
 	public static void set_jogador_color(String cor) {
 		jogador_color = colorido_resp.get(colorido.indexOf(cor));
 	}
 	
 	public JanelaJogo(Tela tela) { 
-		this.images = new ImagemInfo[100];
+		this.images = new ImagemInfo[10];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_linhas.png",0,0,1024,768));
 		count_images_loaded(new ImagemInfo ("war_tabela_bonus_continente.png",10,400,130,120));
 		count_images_loaded(new ImagemInfo ("war_tabela_troca.png",10,540,114,131));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_bottom.png",0,715,1024,85));
 		count_images_loaded(new ImagemInfo ("war_btnJogarDados.png",925,715,57,37));
-		//count_images_loaded(new ImagemInfo ("jogador_recruta.png",200,645,614,150));
+		//count_images_loaded(new ImagemInfo ("layout_distribui_exercitos_jogador.png",322,620,364,200));
 		//count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
 		
 		this.formas_geometricas = new DesenhaTerritorioPoligono[52];
@@ -116,6 +122,7 @@ class JanelaJogo extends LoadScene {
 	            //cenario++;
 	            if (DadoView.get_flag() == true) {
 	            	DadoView.set_exibe(!DadoView.get_flag());
+	            	tela.repaint();
 	            }
 	            if (e.getButton() == MouseEvent.BUTTON1) {
 		            DesenhaTerritorioPoligono clicado = formas_geometricas_clicada(x,y);
@@ -127,9 +134,10 @@ class JanelaJogo extends LoadScene {
 		            		System.out.println("Aqui!");
 		            		Api_model.ataque();
 				            DadoView.set_exibe(!DadoView.get_flag());
+				            tela.repaint();
 		            	}
 		            }
-		            tela.repaint();
+		            //tela.repaint();
 	            } else if (e.getButton() == MouseEvent.BUTTON3) {
 	            	ReiniciarJogo ganhador = new ReiniciarJogo("Jorge");
 	            }
@@ -138,12 +146,14 @@ class JanelaJogo extends LoadScene {
 		tela.repaint();
 	}
 	public void desenha(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		
 		for(int i = 0; i < this.count_images; i++) {
 		    if (images[i] != null) {
 		    	g.drawImage(images[i].get_image(), images[i].get_x(), images[i].get_y(), images[i].get_w(), images[i].get_h(), null);
 		    }
 	    }
-		Graphics2D g2d = (Graphics2D) g;
+		
 		boolean RU = false;
 		for(int i = 0; i < this.count_formas_geometricas; i++) {
 		    if (formas_geometricas[i] != null) {
@@ -169,13 +179,26 @@ class JanelaJogo extends LoadScene {
 //		Objetivo obj = Objetivo.DESTRUIR_VERMELHOS;
 //		CartasView viewc = new CartasView();
 //		viewc.desenha_objetivo(g, obj);
+		
+		g2d.setPaint(jogador_color);
+		Rectangle2D jogador_layout = new Rectangle2D.Double(338,635,75,50);
+		g2d.fill(jogador_layout);
+		// rotina.set_layout("Layout Default");
+		rotina.show_layout(g);
+		
+		
 		g2d.setStroke(new BasicStroke(5));
 		g2d.setPaint(jogador_color);
 		Rectangle2D jogador_vez = new Rectangle2D.Double(920,710,65,50);
 		g2d.draw(jogador_vez);
 		g2d.setStroke(new BasicStroke(1));
-		Rectangle2D jogador_layout = new Rectangle2D.Double(920,710,65,50);
-		
+		ImagemInfo carta;
+		int conta = 0;
+		for(String nome : jogadores_cartas) {
+			carta = CartasView.get_carta(nome);
+	    	g.drawImage(carta.get_image(), 333+(conta*70), 680, carta.get_w()/2, carta.get_h()/2, null);
+	    	conta++;
+		}
 
 		//Condicional de plot de dados
 		if(DadoView.get_flag()) {

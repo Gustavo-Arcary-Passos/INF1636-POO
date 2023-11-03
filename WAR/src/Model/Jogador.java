@@ -21,6 +21,15 @@ class Jogador {
     	}
     	return false;
     }
+    public boolean verifica_territorio(String pais) {
+    	for (Territorio terr : this.domina) {
+    		if(terr.get_nome() == pais) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
     public int get_exercito() {
     	return this.qtd_exercitos;
     }

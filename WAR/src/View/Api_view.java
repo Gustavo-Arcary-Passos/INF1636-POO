@@ -1,4 +1,5 @@
 package View;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.List;
 
@@ -20,6 +21,10 @@ public class Api_view {
 	
 	public ActionListener salva_jogador () {
 		return JanelaInicial.salva_jogadores(jogo);
+	}
+	
+	public void set_jogador_vez(String cor) {
+		JanelaJogo.set_jogador_color(cor); 
 	}
 	
 	public int get_num_jogador() {

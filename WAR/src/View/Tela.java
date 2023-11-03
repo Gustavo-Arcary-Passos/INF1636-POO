@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,6 +17,7 @@ class Tela extends JFrame {
 	protected final int ALT_DEFAULT=800;
 	private LoadScene[] cenarios;
 	private static int cenario;
+	protected int rodada;
 //	protected List<String> jogadores_nomes;
 //	protected List<String> jogadores_cores;
 	public Tela() {
@@ -24,7 +26,6 @@ class Tela extends JFrame {
 		setResizable(false);
 		cenarios = new LoadScene[2];
 		cenarios[0] = new JanelaInicial(this);
-		cenarios[1] = new JanelaJogo(this);
 		addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
@@ -41,6 +42,7 @@ class Tela extends JFrame {
 	public List<String> get_cores(int cenario) {
 		return cenarios[cenario].get_jogares_color();
 	}
+
 	public int get_num_jogador() {
 		return JanelaInicial.get_num_jogadores();
 	}
@@ -57,15 +59,23 @@ class Tela extends JFrame {
 //		}
 		
         getContentPane().removeAll();
-        
+        cenarios[1] = new JanelaJogo(this);
         // Crie uma instância da JanelaJogo
         cenario = 1;
+        this.rodada = 0;
         //cenarios[1] = new JanelaJogo(this);
 
         // Adicione um novo MouseListener, se necessário
         // Redesenha a tela
         repaint();
     }
+	public void rodada_increment() {
+		this.rodada++;
+	}
+	public int get_rodada() {
+		return this.rodada;
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 	    super.paint(g);

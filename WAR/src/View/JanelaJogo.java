@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -17,12 +18,15 @@ import java.awt.geom.Rectangle2D;
 import java.awt.*;
 
 class JanelaJogo extends LoadScene {
-	protected Color jogador_color = Color.WHITE;
+	protected static Color jogador_color = Color.WHITE;
 	protected static List<String> jogadores_name;
 	protected static List<String> jogadores_color;
 	protected static List<JButton> button = new ArrayList<>();
-	public void set_jogador_color (Color cor) {
-		this.jogador_color = cor;
+	protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW));
+	protected static List<String> colorido = new ArrayList<>(Arrays.asList("azul", "verde", "vermelho", "branco", "preto", "amarelo"));
+
+	public static void set_jogador_color(String cor) {
+		jogador_color = colorido_resp.get(colorido.indexOf(cor));
 	}
 	
 	public JanelaJogo(Tela tela) { 
@@ -170,6 +174,7 @@ class JanelaJogo extends LoadScene {
 		Rectangle2D jogador_vez = new Rectangle2D.Double(920,710,65,50);
 		g2d.draw(jogador_vez);
 		g2d.setStroke(new BasicStroke(1));
+		Rectangle2D jogador_layout = new Rectangle2D.Double(920,710,65,50);
 		
 
 		//Condicional de plot de dados

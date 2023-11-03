@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -33,6 +34,7 @@ public class Controlador {
 					}
 			    	
 			    	jogo.sorteia_obj_todos_jogadores(jogo.jogadores_ativos,jogo.deckobj);
+			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	jogo.sorteia_todos_territorios(jogo.mapa_mundo, jogo.jogadores_ativos);
 			    }
 		    }

@@ -16,7 +16,6 @@ class JanelaInicial extends LoadScene {
 	protected static List<JButton> button = new ArrayList<>();
 	protected static JComboBox<String> opCoresComboBox;
 	protected static JTextField nm;
-	//protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW));
 	protected static int num_jogadores;
 	protected static boolean escolhendo_cores;
 	public JanelaInicial(Tela tela) {

@@ -8,6 +8,7 @@ public class Api_model {
 	public List<Regiao> mapa_mundo;
 	public List<Jogador> jogadores_ativos;
 	public DeckObjetivos deckobj;
+	public int vez;
 	public static Api_model getInstance() {
         if (instance == null) {
             instance = new Api_model();
@@ -27,7 +28,7 @@ public class Api_model {
 		
 		deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
 		//embaralha a ordem dos jogadores, que vai ser também a ordem de jogada
-		//Collections.shuffle(jogadores_ativos);
+		//
 		//sorteia os objetivos para cada jogador
 //		sorteia_obj_todos_jogadores(jogadores_ativos,deckobj);
 //		for(Jogador jogadores : jogadores_ativos) {
@@ -71,6 +72,7 @@ public class Api_model {
 	}
 	
 	public void sorteia_obj_todos_jogadores(List<Jogador> jogadores_ativos,DeckObjetivos deckobj) {
+		Collections.shuffle(jogadores_ativos);
 		for(Jogador el : jogadores_ativos) {
 			deckobj.sorteia_objetivo(el);
 			System.out.printf("O objetivo do jogador %s é %s.\n",el.get_nome(),el.get_objetivo().getClass());
@@ -86,6 +88,15 @@ public class Api_model {
 		mundo.add(new AmericadoNorte());
 		mundo.add(new Africa());
 		return mundo;
+	}
+	
+	public String get_vez_jogador_color() {
+		return jogadores_ativos.get(this.vez).get_cor();
+	}
+	
+	public void next_jogador() {
+		this.vez++;
+		if(this.vez >= this.jogadores_ativos.size())this.vez = 0;
 	}
 //	protected static List<Jogador> inicializa_jogadores(){
 //		List<Jogador> jogadores = new ArrayList<Jogador>();

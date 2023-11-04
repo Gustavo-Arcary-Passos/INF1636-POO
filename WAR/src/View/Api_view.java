@@ -26,6 +26,10 @@ public class Api_view {
 		jogo.setVisible(true);
 	}
 	
+	public void next_rodada() {
+		jogo.rodada_increment();
+	}
+	
 	public void create_numero_exercitos_text(String name) {
 		qtd_exercito = jogo.create_text_field_qtd_exerc("0");
 		name_terr = jogo.create_text_field_name_terr(name);
@@ -35,15 +39,31 @@ public class Api_view {
 		jogo.delete_text_field();
 	}
 	
+	public String get_terr_sel() {
+		return name_terr.getText();
+	}
+	
+	public void set_rotina_layout_default() {
+		this.delete_numero_exercitos_text();
+		this.set_rotina_atual("Layout Default");
+		this.repinta_tela();
+	}
+	
+	public int get_qtd_exerc_sel() {
+		return Integer.parseInt(qtd_exercito.getText());
+	}
+	
 	public void change_name_terr_text(String name) {
-		if(name_terr.getText() != name)
+		if(name_terr.getText() != name) {
 			name_terr.setText(name);
+			qtd_exercito.setText(Integer.toString(0));
+		}
 	}
 	
 	public void change_numero_exercitos_text(int qtd,int limit) {
 		int value = Integer.parseInt(qtd_exercito.getText());
 		value += qtd;
-		System.out.println(value);
+		//System.out.println(value);
 		if(value >= 0 && value <= limit)
 		qtd_exercito.setText(Integer.toString(value));
 	}
@@ -54,6 +74,13 @@ public class Api_view {
 	
 	public String get_fase_atual() {
 		return jogo.get_rotina();
+	}
+	
+	public void set_next_rotina() {
+		jogo.next_rotina();
+		if(get_fase_atual() != "PASS") {
+			this.repinta_tela();
+		}
 	}
 	
 	public void set_rotina_atual(String nome) {
@@ -71,10 +98,24 @@ public class Api_view {
         }
 	}
 	
+	public void encerrar_partida() {
+		
+	}
+	
+	public boolean verifica_ok_clicado(int x,int y) {
+		int x1 = 630;
+		int y1 = 657;
+		double r = 30;
+		if((double)Math.sqrt(Math.pow((double)x - (double)x1, 2) + Math.pow((double)y - (double)y1, 2)) < r) {
+			return true;
+		}
+		return false;
+	}
+	
 	public String verifica_territorio_clicado(int x,int y) {
 		DesenhaTerritorioPoligono clicado = jogo.formas_geometricas_clicada(x,y);
         if(clicado!=null) {
-        	System.out.println(clicado.get_nome());
+        	//System.out.println(clicado.get_nome());
         	return clicado.get_nome();
         	//clicado.set_color(Color.WHITE);
         } else {

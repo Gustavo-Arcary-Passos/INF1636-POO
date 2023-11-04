@@ -39,10 +39,11 @@ public class Controlador {
 			    	
 			    	jogo.sorteia_obj_todos_jogadores(jogo.jogadores_ativos,jogo.deckobj);
 			    	jogo.sorteia_todos_territorios(jogo.mapa_mundo, jogo.jogadores_ativos);
+			    	// Rotina de inicio da vez do jogador
 			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 			    	jogo.get_vez_jogador_add_exercito();
-			    	// jogo.get_vez_jogador_territorios();
+			    	jogo.get_vez_jogador_territorios();
 			    	listener_JanelaJogo();
 			    }
 		    }
@@ -63,7 +64,7 @@ public class Controlador {
             public void mouseClicked(MouseEvent e) {
             	int x = e.getX();
 	            int y = e.getY();
-	            System.out.println(x+", "+y);
+	            //System.out.println(x+", "+y);
 	            //cenario++;
 	            tela.Dado_verifica_ligado();
 	            if (e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual() == "PER") {
@@ -77,19 +78,48 @@ public class Controlador {
 	            		} else if(x > 380 && y > 718 && x < 424 && y < 741) {
 	            			tela.change_numero_exercitos_text(-1,jogo.get_vez_jogador_exercitos_distri());
 	            		}
+	            		if(tela.verifica_ok_clicado(x,y)) {
+	            			// pega territorio selecionado 
+	            			int qtd = tela.get_qtd_exerc_sel();
+	            			System.out.println("OK");
+	            			if(qtd > 0) {
+		            			jogo.posiciona_exercitos_jogador_vez(qtd,tela.get_terr_sel());
+		            			tela.set_rotina_layout_default();
+		            			if(jogo.get_vez_jogador_exercitos_distri() == 0) {
+		            				tela.set_next_rotina();
+		            			}
+	            			}
+	            			// posiciona exercitos
+	            			// verifica se avanca pra proxima fase
+	            		}
 	            	} else if (tela.get_rotina_atual() != "Layout Default" && !jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
-	            		tela.delete_numero_exercitos_text();
-	            		tela.set_rotina_atual("Layout Default");
-	            		tela.repinta_tela();
+	            		tela.set_rotina_layout_default();
 	            	} else if (jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
 	            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
 	            	}
+	            	if (tela.get_fase_atual() == "PASS") {
+	            		System.out.println("Proximo jogador");
+        				System.out.println(tela.get_fase_atual());
+    	            	if(jogo.verifica_vez_jogador_objetivo()) {
+    	            		tela.encerrar_partida(); // Nao criado
+    	            	} else { // trocar para proximo jogador
+    	            		if(jogo.verifica_next_rodada()) {
+    	            			// proxima rodada
+    	            			System.out.println("Proxima rodada");
+    	            			tela.next_rodada();
+    	            		}
+    	            		jogo.next_jogador();
+    	            		tela.set_jogador_vez(jogo.get_vez_jogador_color());
+    				    	tela.set_cartas(jogo.get_vez_jogador_cartas());
+    				    	jogo.get_vez_jogador_add_exercito();
+    				    	jogo.get_vez_jogador_territorios();
+    				    	tela.set_next_rotina();
+    	            	}
+    	            }
 	            	//	            	
 //            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
 		            //tela.repaint();
-	            } else if (e.getButton() == MouseEvent.BUTTON3) {
-	            	// ReiniciarJogo ganhador = new ReiniciarJogo("Jorge");
-	            }
+	            } 
             }
         });
 		// Fornecer exercitos para o jogador da vez

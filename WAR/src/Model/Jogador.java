@@ -167,6 +167,22 @@ class Jogador {
     	}
     	return false;
     }
+    public boolean posiciona_exercito(int qtd, String destino) {
+    	//tem que conferir se qtd é < qtd_exercito
+    	if(qtd>this.qtd_exercitos) {
+    		return false;
+    	}
+    	for(Territorio terr : this.domina) {
+    		if(terr.get_nome() == destino) {
+    			 terr.add_exercito(qtd);
+    			 this.qtd_exercitos -=qtd;
+    			 System.out.println(terr.get_exercitos());
+    			 return true;
+    		}
+    	}
+    	
+    	return false;
+    }
     
     public void show_all_terr() {
     	for(Territorio terr : this.domina) {

@@ -46,11 +46,17 @@ class Tela extends JFrame {
 		return rotina.get(rotina_ind);
 	}
 	public void next_rotina() {
-		rotina_ind++;
-		if(rotina_ind > 4) {
-			rotina_ind = 0;
+		
+		if(rodada == 0 && rotina_ind == 0) {
+			//System.out.println("Caiu aqui");
+			rotina_ind = 4;
+		}else {
+			rotina_ind++;
+			if(rotina_ind > 4) {
+				rotina_ind = 0;
+			}
+			this.repaint();
 		}
-		this.repaint();
 	}
 	public JButton get_button(int cenario,int pos) {
 		return cenarios[cenario].get_button(pos);

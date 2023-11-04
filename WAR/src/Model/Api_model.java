@@ -76,6 +76,10 @@ public class Api_model {
 		jogadores_ativos.get(this.vez).show_all_terr();
 	}
 	
+	public boolean verifica_vez_jogador_objetivo() {
+		return jogadores_ativos.get(this.vez).get_objetivo().verifica_status();
+	}
+	
 	public void sorteia_obj_todos_jogadores(List<Jogador> jogadores_ativos,DeckObjetivos deckobj) {
 		Collections.shuffle(jogadores_ativos);
 		for(Jogador el : jogadores_ativos) {
@@ -102,12 +106,16 @@ public class Api_model {
 	public int get_vez_jogador_exercitos_distri() {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
 		int qtd_total = jogador_da_vez.get_exercito();
-		System.out.println("Qtd antes" + qtd_total);
+		//System.out.println("Qtd antes" + qtd_total);
 		for(Regiao regiao : mapa_mundo) {
 			qtd_total += jogador_da_vez.get__exercito_regiao(regiao.get_nome());
 		}
-		System.out.println("Qtd depois" + qtd_total);
+		//System.out.println("Qtd depois" + qtd_total);
 		return qtd_total;
+	}
+	
+	public boolean posiciona_exercitos_jogador_vez(int qtd,String terr) {
+		return jogadores_ativos.get(this.vez).posiciona_exercito(qtd, terr);
 	}
 	
 	public List<String> get_vez_jogador_cartas() {
@@ -142,6 +150,18 @@ public class Api_model {
 	public void next_jogador() {
 		this.vez++;
 		if(this.vez >= this.jogadores_ativos.size())this.vez = 0;
+	}
+	
+	public boolean verifica_next_rodada() {
+		int value = this.jogadores_ativos.size() - 51%this.jogadores_ativos.size() + 1;
+		if(value == this.jogadores_ativos.size()) {
+			value = 0;
+		}
+		if(this.vez == value) {
+			//System.out.println(this.jogadores_ativos.size()  + "-" + 51%this.jogadores_ativos.size());
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean verifica_territorio_jogador(String pais) {

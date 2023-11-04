@@ -30,8 +30,8 @@ public class Api_view {
 		jogo.rodada_increment();
 	}
 	
-	public void create_numero_exercitos_text(String name) {
-		qtd_exercito = jogo.create_text_field_qtd_exerc("0");
+	public void create_numero_exercitos_text(String name,String min) {
+		qtd_exercito = jogo.create_text_field_qtd_exerc(min);
 		name_terr = jogo.create_text_field_name_terr(name);
 	}
 	
@@ -43,9 +43,9 @@ public class Api_view {
 		return name_terr.getText();
 	}
 	
-	public void set_rotina_layout_default() {
+	public void set_rotina_layout(String layout) {
 		this.delete_numero_exercitos_text();
-		this.set_rotina_atual("Layout Default");
+		this.set_rotina_atual(layout);
 		this.repinta_tela();
 	}
 	
@@ -60,11 +60,11 @@ public class Api_view {
 		}
 	}
 	
-	public void change_numero_exercitos_text(int qtd,int limit) {
+	public void change_numero_exercitos_text(int qtd,int limit, int min) {
 		int value = Integer.parseInt(qtd_exercito.getText());
 		value += qtd;
 		//System.out.println(value);
-		if(value >= 0 && value <= limit)
+		if(value >= min && value <= limit)
 		qtd_exercito.setText(Integer.toString(value));
 	}
 	

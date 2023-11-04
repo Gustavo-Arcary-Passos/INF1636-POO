@@ -64,62 +64,114 @@ public class Controlador {
             public void mouseClicked(MouseEvent e) {
             	int x = e.getX();
 	            int y = e.getY();
-	            //System.out.println(x+", "+y);
+	            System.out.println(x+", "+y);
 	            //cenario++;
 	            tela.Dado_verifica_ligado();
-	            if (e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual() == "PER") {
-	            	if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos"){
-	            		tela.set_rotina_atual("Distribui Exercitos");
-	            		tela.repinta_tela();
-	            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y));
-	            	} else if (x > 322 && y > 620 && x < 686 && y < 800) {
-	            		if(x > 575 && y > 709 && x < 619 && y < 750) {
-	            			tela.change_numero_exercitos_text(1,jogo.get_vez_jogador_exercitos_distri());
-	            		} else if(x > 380 && y > 718 && x < 424 && y < 741) {
-	            			tela.change_numero_exercitos_text(-1,jogo.get_vez_jogador_exercitos_distri());
-	            		}
-	            		if(tela.verifica_ok_clicado(x,y)) {
-	            			// pega territorio selecionado 
-	            			int qtd = tela.get_qtd_exerc_sel();
-	            			System.out.println("OK");
-	            			if(qtd > 0) {
-		            			jogo.posiciona_exercitos_jogador_vez(qtd,tela.get_terr_sel());
-		            			tela.set_rotina_layout_default();
-		            			if(jogo.get_vez_jogador_exercitos_distri() == 0) {
-		            				tela.set_next_rotina();
-		            			}
-	            			}
-	            			// posiciona exercitos
-	            			// verifica se avanca pra proxima fase
-	            		}
-	            	} else if (tela.get_rotina_atual() != "Layout Default" && !jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
-	            		tela.set_rotina_layout_default();
-	            	} else if (jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
-	            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
+	            if (e.getButton() == MouseEvent.BUTTON1 && (tela.get_fase_atual() == "PER" || tela.get_fase_atual() == "PE")) {
+	            	if(tela.get_fase_atual() == "PER") {
+	            		if(jogo.get_vez_jogador_exercitos_reg() == 0) {
+            				tela.set_next_rotina();
+            				System.out.println("PER -> PE");
+            			} else {
+            				if(jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos") {
+            					tela.set_rotina_atual("Distribui Exercitos");
+    		            		tela.repinta_tela();
+    		            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),"0");
+            				} else if (x > 322 && y > 620 && x < 686 && y < 800) {
+            					// verificar daqui pra baixo
+    		            		if(tela.get_rotina_atual() == "Distribui Exercitos") {
+    		            			if(x > 575 && y > 709 && x < 619 && y < 750) {
+    			            			tela.change_numero_exercitos_text(1,jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel()),0);
+    			            		} else if(x > 380 && y > 718 && x < 424 && y < 741) {
+    			            			tela.change_numero_exercitos_text(-1,jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel()),0);
+    			            		}
+    			            		if(tela.verifica_ok_clicado(x,y)) {
+    			            			int qtd = tela.get_qtd_exerc_sel();
+    			            			System.out.println("OK");
+    			            			if(qtd > 0) {
+    				            			jogo.posiciona_exercitos_reg_jogador_vez(qtd,tela.get_terr_sel());
+    				            			tela.set_rotina_layout("Layout nao ver cartas");
+    				            			if(jogo.get_vez_jogador_exercitos_reg() == 0) {
+    				            				tela.set_next_rotina();
+    				            			}
+    			            			}
+    			            		}
+    		            		} else if (tela.get_rotina_atual() == "Layout nao ver cartas") {
+    		            			if(x > 412 && y > 637 && x < 458 && y < 666)
+    		            				tela.set_rotina_layout("Layout ver cartas");
+    		            		} else if (tela.get_rotina_atual() == "Layout ver cartas") {
+    		            			if(x > 412 && y > 637 && x < 458 && y < 666)
+    		            				tela.set_rotina_layout("Layout nao ver cartas");
+    		            		}
+    		            		
+    		            	} else if (tela.get_rotina_atual() == "Distribui Exercitos" && !jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y))) {
+    		            		tela.set_rotina_layout("Layout nao ver cartas");
+    		            	} else if (jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y))) {
+    		            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
+    		            	}
+            			}
 	            	}
-	            	if (tela.get_fase_atual() == "PASS") {
-	            		System.out.println("Proximo jogador");
-        				System.out.println(tela.get_fase_atual());
-    	            	if(jogo.verifica_vez_jogador_objetivo()) {
-    	            		tela.encerrar_partida(); // Nao criado
-    	            	} else { // trocar para proximo jogador
-    	            		if(jogo.verifica_next_rodada()) {
-    	            			// proxima rodada
-    	            			System.out.println("Proxima rodada");
-    	            			tela.next_rodada();
-    	            		}
-    	            		jogo.next_jogador();
-    	            		tela.set_jogador_vez(jogo.get_vez_jogador_color());
-    				    	tela.set_cartas(jogo.get_vez_jogador_cartas());
-    				    	jogo.get_vez_jogador_add_exercito();
-    				    	jogo.get_vez_jogador_territorios();
-    				    	tela.set_next_rotina();
-    	            	}
-    	            }
+	            	if(tela.get_fase_atual() == "PE") {
+	            		if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos"){
+		            		tela.set_rotina_atual("Distribui Exercitos");
+		            		tela.repinta_tela();
+		            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),"0");
+		            	} else if (x > 322 && y > 620 && x < 686 && y < 800) {
+		            		if(tela.get_rotina_atual() == "Distribui Exercitos") {
+		            			if(x > 575 && y > 709 && x < 619 && y < 750) {
+			            			tela.change_numero_exercitos_text(1,jogo.get_vez_jogador_exercitos_distri(),0);
+			            		} else if(x > 380 && y > 718 && x < 424 && y < 741) {
+			            			tela.change_numero_exercitos_text(-1,jogo.get_vez_jogador_exercitos_distri(),0);
+			            		}
+			            		if(tela.verifica_ok_clicado(x,y)) {
+			            			// pega territorio selecionado 
+			            			int qtd = tela.get_qtd_exerc_sel();
+			            			System.out.println("OK");
+			            			if(qtd > 0) {
+				            			jogo.posiciona_exercitos_jogador_vez(qtd,tela.get_terr_sel());
+				            			tela.set_rotina_layout("Layout nao ver cartas");
+				            			if(jogo.get_vez_jogador_exercitos_distri() == 0) {
+				            				tela.set_next_rotina();
+				            			}
+			            			}
+			            		}
+		            		} else if (tela.get_rotina_atual() == "Layout nao ver cartas") {
+		            			if(x > 412 && y > 637 && x < 458 && y < 666)
+		            				tela.set_rotina_layout("Layout ver cartas");
+		            		} else if (tela.get_rotina_atual() == "Layout ver cartas") {
+		            			if(x > 412 && y > 637 && x < 458 && y < 666)
+		            				tela.set_rotina_layout("Layout nao ver cartas");
+		            		}
+		            		
+		            	} else if (tela.get_rotina_atual() == "Distribui Exercitos" && !jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
+		            		tela.set_rotina_layout("Layout nao ver cartas");
+		            	} else if (jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
+		            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
+		            	}
+	            	}
+	            }
+            	if (tela.get_fase_atual() == "PASS") {
+            		System.out.println("Proximo jogador");
+    				System.out.println(tela.get_fase_atual());
+	            	if(jogo.verifica_vez_jogador_objetivo()) {
+	            		tela.encerrar_partida(); // Nao criado
+	            	} else { // trocar para proximo jogador
+	            		if(jogo.verifica_next_rodada()) {
+	            			// proxima rodada
+	            			System.out.println("Proxima rodada");
+	            			tela.next_rodada();
+	            		}
+	            		jogo.next_jogador();
+	            		tela.set_jogador_vez(jogo.get_vez_jogador_color());
+				    	tela.set_cartas(jogo.get_vez_jogador_cartas());
+				    	jogo.get_vez_jogador_add_exercito();
+				    	jogo.get_vez_jogador_territorios();
+				    	tela.set_next_rotina();
+	            	}
+	            }
 	            	//	            	
 //            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
-		            //tela.repaint();
-	            } 
+		            //tela.repaint(); 
             }
         });
 		// Fornecer exercitos para o jogador da vez

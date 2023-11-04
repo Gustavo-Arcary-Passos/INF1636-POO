@@ -103,19 +103,36 @@ public class Api_model {
 		return jogadores_ativos.get(this.vez).get_cor();
 	}
 	
-	public int get_vez_jogador_exercitos_distri() {
+	public int get_vez_jogador_exercitos_reg() {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
-		int qtd_total = jogador_da_vez.get_exercito();
+		int qtd_total = 0;
 		//System.out.println("Qtd antes" + qtd_total);
 		for(Regiao regiao : mapa_mundo) {
 			qtd_total += jogador_da_vez.get__exercito_regiao(regiao.get_nome());
 		}
-		//System.out.println("Qtd depois" + qtd_total);
+		
 		return qtd_total;
+	}
+	
+	public int get_vez_jogador_exercitos_distri() {
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		//System.out.println("Qtd depois" + qtd_total);
+		return jogador_da_vez.get_exercito();
+	}
+	
+	public int get_vez_jogador_exerc_reg(String pais) {
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		String regiao = jogador_da_vez.get_terr_reg(pais);
+		return jogador_da_vez.get__exercito_regiao(regiao);
 	}
 	
 	public boolean posiciona_exercitos_jogador_vez(int qtd,String terr) {
 		return jogadores_ativos.get(this.vez).posiciona_exercito(qtd, terr);
+	}
+	
+	public boolean posiciona_exercitos_reg_jogador_vez(int qtd,String terr) {
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		return jogador_da_vez.posiciona_exercito_regiao(jogador_da_vez.get_terr_reg(terr),terr,qtd);
 	}
 	
 	public List<String> get_vez_jogador_cartas() {
@@ -167,6 +184,9 @@ public class Api_model {
 	public boolean verifica_territorio_jogador(String pais) {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
 		return jogador_da_vez.verifica_territorio(pais);
+	}
+	public boolean verifica_territorio_jogador_reg(String pais) {
+		return jogadores_ativos.get(this.vez).verifica_territorio_reg(pais);
 	}
 //	protected static List<Jogador> inicializa_jogadores(){
 //		List<Jogador> jogadores = new ArrayList<Jogador>();

@@ -13,6 +13,15 @@ class Jogador {
     private Objetivo objetivo;
     protected int qtd_exercitos;
     
+    public String get_terr_reg(String pais) {
+    	for (Territorio terr : this.domina) {
+    		if(terr.get_nome() == pais) {
+    			return terr.get_Regiao();
+    		}
+    	}
+    	return null;
+    }
+    
     public boolean verifica_territorio(Territorio pais) {
     	for (Territorio terr : this.domina) {
     		if(terr.equals(pais)) {
@@ -25,6 +34,20 @@ class Jogador {
     	for (Territorio terr : this.domina) {
     		if(terr.get_nome() == pais) {
     			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    public boolean verifica_territorio_reg(String pais) {
+    	for (Territorio terr : this.domina) {
+    		if(terr.get_nome() == pais) {
+    			for(ExercitoRegiao exer_reg : this.exercitos_regiao) {
+    				if((terr.get_Regiao() == exer_reg.get_regiao() && exer_reg.get_exercito() > 0)) {
+        				return true;
+        			}
+    			}
+    			return false;
     		}
     	}
     	return false;
@@ -124,7 +147,6 @@ class Jogador {
     	int exercitos_regiao = 0;
     	for(ExercitoRegiao exercito : this.exercitos_regiao) {
     		if(exercito.get_regiao() == regiao) {
-    			
     			exercitos_regiao = exercito.get_exercito();
     		}
     	}

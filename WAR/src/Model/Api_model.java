@@ -72,6 +72,10 @@ public class Api_model {
 		}
 	}
 	
+	public void get_vez_jogador_territorios() {
+		jogadores_ativos.get(this.vez).show_all_terr();
+	}
+	
 	public void sorteia_obj_todos_jogadores(List<Jogador> jogadores_ativos,DeckObjetivos deckobj) {
 		Collections.shuffle(jogadores_ativos);
 		for(Jogador el : jogadores_ativos) {

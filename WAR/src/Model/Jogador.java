@@ -168,4 +168,10 @@ class Jogador {
     	return false;
     }
     
+    public void show_all_terr() {
+    	for(Territorio terr : this.domina) {
+    		System.out.println(terr.get_nome());
+    	}
+    }
+    
 }

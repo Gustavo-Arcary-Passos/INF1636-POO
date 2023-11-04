@@ -42,6 +42,7 @@ public class Controlador {
 			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 			    	jogo.get_vez_jogador_add_exercito();
+			    	// jogo.get_vez_jogador_territorios();
 			    	listener_JanelaJogo();
 			    }
 		    }

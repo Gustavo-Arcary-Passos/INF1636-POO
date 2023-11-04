@@ -26,6 +26,7 @@ class Tela extends JFrame {
 	protected int rodada;
 	protected List<String> rotina = new ArrayList<>(Arrays.asList("PER", "PE", "ATQ", "REP", "PASS"));
 	protected int rotina_ind;
+	protected RotinaJogadores rotina_atual = RotinaJogadores.getInstance();
 //	protected List<String> jogadores_nomes;
 //	protected List<String> jogadores_cores;
 	public Tela() {
@@ -71,7 +72,7 @@ class Tela extends JFrame {
 	
 	public JLabel create_text_field_qtd_exerc(String value) {
 		JLabel ln = new JLabel(value);
-		ln.setBounds(452, 660, 87, 85);
+		ln.setBounds(458, 665, 70, 69);
 		ln.setHorizontalAlignment(SwingConstants.CENTER);
 		Font font = ln.getFont();
 		ln.setFont(new Font(font.getFontName(), Font.PLAIN, 24));
@@ -81,10 +82,10 @@ class Tela extends JFrame {
 	
 	public JLabel create_text_field_name_terr(String name) {
 		JLabel territorio = new JLabel(name);
-		territorio.setBounds(412, 620, 167, 30);
+		territorio.setBounds(430, 625, 126, 16);
 		territorio.setHorizontalAlignment(SwingConstants.CENTER);
 		Font font = territorio.getFont();
-		territorio.setFont(new Font(font.getFontName(), Font.PLAIN, 18));
+		territorio.setFont(new Font(font.getFontName(), Font.PLAIN, 13));
 		this.getContentPane().add(territorio);
 		return territorio;
 	}
@@ -133,6 +134,9 @@ class Tela extends JFrame {
 	    super.paint(g);
 	    cenarios[cenario].desenha(g);
 	    repinta_todos_componentes();
+	    if(cenario == 1) {
+	    	rotina_atual.show_layout(g);
+	    }
 	}
 }
 

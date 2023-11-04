@@ -25,7 +25,6 @@ class JanelaJogo extends LoadScene {
 	protected static List<JButton> button = new ArrayList<>();
 	protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW));
 	protected static List<String> colorido = new ArrayList<>(Arrays.asList("azul", "verde", "vermelho", "branco", "preto", "amarelo"));
-	protected RotinaJogadores rotina = RotinaJogadores.getInstance();
 	
 	public static void set_jogadores_cartas(List<String> cartas) {
 		jogadores_cartas = cartas;
@@ -188,7 +187,7 @@ class JanelaJogo extends LoadScene {
 		Rectangle2D jogador_layout = new Rectangle2D.Double(338,635,75,50);
 		g2d.fill(jogador_layout);
 		// rotina.set_layout("Layout Default");
-		rotina.show_layout(g);
+		
 		
 		
 		g2d.setStroke(new BasicStroke(5));

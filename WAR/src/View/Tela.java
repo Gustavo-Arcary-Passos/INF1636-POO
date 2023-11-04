@@ -1,6 +1,8 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -10,7 +12,9 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 //import Model.Api_model;
 class Tela extends JFrame {
@@ -61,6 +65,34 @@ class Tela extends JFrame {
 		return JanelaInicial.get_num_jogadores();
 	}
 	
+	public DesenhaTerritorioPoligono formas_geometricas_clicada(int x, int y) {
+		return cenarios[cenario].formas_geometricas_clicada(x,y);
+	}
+	
+	public JLabel create_text_field_qtd_exerc(String value) {
+		JLabel ln = new JLabel(value);
+		ln.setBounds(452, 660, 87, 85);
+		ln.setHorizontalAlignment(SwingConstants.CENTER);
+		Font font = ln.getFont();
+		ln.setFont(new Font(font.getFontName(), Font.PLAIN, 24));
+		this.getContentPane().add(ln);
+		return ln;
+	}
+	
+	public JLabel create_text_field_name_terr(String name) {
+		JLabel territorio = new JLabel(name);
+		territorio.setBounds(412, 620, 167, 30);
+		territorio.setHorizontalAlignment(SwingConstants.CENTER);
+		Font font = territorio.getFont();
+		territorio.setFont(new Font(font.getFontName(), Font.PLAIN, 18));
+		this.getContentPane().add(territorio);
+		return territorio;
+	}
+	
+	public void delete_text_field() {
+		getContentPane().removeAll();
+	}
+	
 //	public static void next_cenario() {
 //		cenario++;
 //	}
@@ -89,11 +121,18 @@ class Tela extends JFrame {
 	public int get_rodada() {
 		return this.rodada;
 	}
+	public void repinta_todos_componentes() {
+		Component[] components = this.getContentPane().getComponents();
+        for (Component component : components) {
+            component.repaint();
+        }
+	}
 	
 	@Override
 	public void paint(Graphics g) {
 	    super.paint(g);
 	    cenarios[cenario].desenha(g);
+	    repinta_todos_componentes();
 	}
 }
 

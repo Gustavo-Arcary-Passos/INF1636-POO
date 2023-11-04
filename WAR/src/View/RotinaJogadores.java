@@ -26,10 +26,15 @@ class RotinaJogadores {
 		layout_jogador.add(new ImagemInfo ("layout_distribui_exercitos_jogador.png",322,620,364,200,"Distribui Exercitos"));
 		layout_jogador.add(new ImagemInfo ("layout_nver_cartas_jogador.png",322,620,364,200,"Layout nao ver cartas"));
 		layout_jogador.add(new ImagemInfo ("layout_ver_cartas_jogador.png",322,620,364,200,"Layout ver cartas"));
+		this.set_layout("Layout Default");
 	}
 	
 	public void set_layout(String tipo) {
 		layout_selected = tipo;
+	}
+	
+	public String get_layout() {
+		return layout_selected;
 	}
 	
 	public void show_layout(Graphics g) {

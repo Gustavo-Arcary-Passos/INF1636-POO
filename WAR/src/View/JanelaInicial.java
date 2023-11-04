@@ -180,8 +180,6 @@ class JanelaInicial extends LoadScene {
 		    opCoresComboBox.addItem(cor);
 		}
 
-		
-
 		c.add(ln);
 		c.add(nm);
 		

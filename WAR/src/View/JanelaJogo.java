@@ -35,6 +35,10 @@ class JanelaJogo extends LoadScene {
 		jogador_color = colorido_resp.get(colorido.indexOf(cor));
 	}
 	
+	public static void removeComponents(Tela tela) {
+		tela.getContentPane().removeAll(); 
+    }
+	
 	public JanelaJogo(Tela tela) { 
 		this.images = new ImagemInfo[10];
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_fundo.png",0,0,1024,768));
@@ -113,36 +117,36 @@ class JanelaJogo extends LoadScene {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{718,709,751,741,763,785,754,762}, new int[]{274,290,365,380,380,344,293,274}, padrao, asia, "Paquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{628,620,629,637,638,717,709,717,666,660,647,646}, new int[]{271,287,300,300,305,305,291,273,273,269,269,271}, padrao, asia, "Síria"));
 
-		tela.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            	int x = e.getX();
-	            int y = e.getY();
-	            System.out.println(x+", "+y);
-	            //cenario++;
-	            if (DadoView.get_flag() == true) {
-	            	DadoView.set_exibe(!DadoView.get_flag());
-	            	tela.repaint();
-	            }
-	            if (e.getButton() == MouseEvent.BUTTON1) {
-		            DesenhaTerritorioPoligono clicado = formas_geometricas_clicada(x,y);
-		            if(clicado!=null) {
-		            	System.out.println(clicado.get_nome());
-		            	//clicado.set_color(Color.WHITE);
-		            } else {
-		            	if(x > 925 && x < 982 && y > 715 && y < 752) {
-		            		System.out.println("Aqui!");
-		            		Api_model.ataque();
-				            DadoView.set_exibe(!DadoView.get_flag());
-				            tela.repaint();
-		            	}
-		            }
-		            //tela.repaint();
-	            } else if (e.getButton() == MouseEvent.BUTTON3) {
-	            	ReiniciarJogo ganhador = new ReiniciarJogo("Jorge");
-	            }
-            }
-        });
+//		tela.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//            	int x = e.getX();
+//	            int y = e.getY();
+//	            System.out.println(x+", "+y);
+//	            //cenario++;
+//	            if (DadoView.get_flag() == true) {
+//	            	DadoView.set_exibe(!DadoView.get_flag());
+//	            	tela.repaint();
+//	            }
+//	            if (e.getButton() == MouseEvent.BUTTON1) {
+//		            DesenhaTerritorioPoligono clicado = formas_geometricas_clicada(x,y);
+//		            if(clicado!=null) {
+//		            	System.out.println(clicado.get_nome());
+//		            	//clicado.set_color(Color.WHITE);
+//		            } else {
+//		            	if(x > 925 && x < 982 && y > 715 && y < 752) {
+//		            		System.out.println("Aqui!");
+//		            		Api_model.ataque();
+//				            DadoView.set_exibe(!DadoView.get_flag());
+//				            tela.repaint();
+//		            	}
+//		            }
+//		            //tela.repaint();
+//	            } else if (e.getButton() == MouseEvent.BUTTON3) {
+//	            	ReiniciarJogo ganhador = new ReiniciarJogo("Jorge");
+//	            }
+//            }
+//        });
 		tela.repaint();
 	}
 	public void desenha(Graphics g) {

@@ -3,7 +3,11 @@ package Controller;
 //import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Model.Api_model;
 import View.Api_view;
@@ -38,6 +42,7 @@ public class Controlador {
 			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 			    	jogo.get_vez_jogador_add_exercito();
+			    	listener_JanelaJogo();
 			    }
 		    }
 		};
@@ -52,7 +57,40 @@ public class Controlador {
 	}
 	
 	public void listener_JanelaJogo() {
-		
+		tela.set_tela_mouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	int x = e.getX();
+	            int y = e.getY();
+	            System.out.println(x+", "+y);
+	            //cenario++;
+	            tela.Dado_verifica_ligado();
+	            if (e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual() == "PER") {
+	            	if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos"){
+	            		tela.set_rotina_atual("Distribui Exercitos");
+	            		tela.repinta_tela();
+	            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y));
+	            	} else if (x > 322 && y > 620 && x < 686 && y < 800) {
+	            		if(x > 575 && y > 709 && x < 619 && y < 750) {
+	            			tela.change_numero_exercitos_text(1,jogo.get_vez_jogador_exercitos_distri());
+	            		} else if(x > 380 && y > 718 && x < 424 && y < 741) {
+	            			tela.change_numero_exercitos_text(-1,jogo.get_vez_jogador_exercitos_distri());
+	            		}
+	            	} else if (tela.get_rotina_atual() != "Layout Default" && !jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
+	            		tela.delete_numero_exercitos_text();
+	            		tela.set_rotina_atual("Layout Default");
+	            		tela.repinta_tela();
+	            	} else if (jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
+	            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
+	            	}
+	            	//	            	
+//            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
+		            //tela.repaint();
+	            } else if (e.getButton() == MouseEvent.BUTTON3) {
+	            	// ReiniciarJogo ganhador = new ReiniciarJogo("Jorge");
+	            }
+            }
+        });
 		// Fornecer exercitos para o jogador da vez
 		// Criar layout de distribuicoes de tropas
 		// Criar layout de exibicao de cartas

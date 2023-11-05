@@ -110,7 +110,23 @@ public class Controlador {
     		            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
     		            	}
             			}
-	            	}
+	            	} else if(e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual() == "ATQ" ) {
+	            		if(tela.get_rotina_atual() == "Layout ataque pass") {
+	            			// passa para proxima rotina se clicar na regiao do circulo
+	            			// troca para "Layout ataque" se clicar em uma regiao que pertence ao jogador
+	            		} else if(tela.get_rotina_atual() == "Layout ataque") {
+	            			// se clicar fora do layout e fora de qualquer territorio troca para "Layout ataque pass"
+	            			// se clicar em um territorio que pertence ao jogador troca regiao que ataca e reseta territorio atacado
+	            			// se clicar em um territorio que nao pertence ao jogador verifica se faz fronteira com o territorio escolhido
+	            			// so permiti realizar ataque se tiver algum territorio selecionado para ser atacado e se territorio atacante possuir mais de 1 exercito
+	            				// se territorio atacado ficar sem exercito abrir "Distribui Exercitos"
+	            			
+	            		} else if(tela.get_rotina_atual() == "Distribui Exercitos") {
+	            			// selecionar quantidade de exercitos que serao realocados
+	            			// nao trocar de tela ate que seja confirmado quantidade realocada
+	            			// depois de colocar exercitos trocar para "Layout ataque pass"
+	            		}
+	            	} 
 	            	if(tela.get_fase_atual() == "PE") {
 	            		if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos"){
 		            		tela.set_rotina_atual("Distribui Exercitos");
@@ -174,7 +190,7 @@ public class Controlador {
 		            //tela.repaint(); 
             }
         });
-		// Fornecer exercitos para o jogador da vez
+		// Fornecer exercitos para o jogador da vez 
 		// Criar layout de distribuicoes de tropas
 		// Criar layout de exibicao de cartas
 		// Criar mecanismo para verificar se o pais clicado pertence ao jogador

@@ -78,7 +78,7 @@ class Tela extends JFrame {
 	
 	public JLabel create_text_field_qtd_exerc(String value) {
 		JLabel ln = new JLabel(value);
-		ln.setBounds(458, 665, 70, 69);
+		ln.setBounds(457, 665, 69, 69);
 		ln.setHorizontalAlignment(SwingConstants.CENTER);
 		Font font = ln.getFont();
 		ln.setFont(new Font(font.getFontName(), Font.PLAIN, 24));

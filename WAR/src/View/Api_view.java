@@ -50,7 +50,7 @@ public class Api_view {
 	
 	public void create_numero_exercitos_text(String name,String min) {
 		qtd_exercito = jogo.create_text_field_qtd_exerc(min);
-		name_terr = jogo.create_text_field_name_terr(name,430,625,126,16);
+		name_terr = jogo.create_text_field_name_terr(name,429,624,126,16);
 	}
 	
 	public void delete_numero_exercitos_text() {

@@ -39,6 +39,10 @@ abstract class Regiao { // também conhecido como continente
 		}
 		return null;
 	}
+	
+	public List<Territorio> get_paises(){
+		return paises;
+	}
 }
 
 /* 

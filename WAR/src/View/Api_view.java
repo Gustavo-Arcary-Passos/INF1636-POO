@@ -28,6 +28,10 @@ public class Api_view {
 		jogo.setVisible(true);
 	}
 	
+	public Observador get_janelajogo() {
+		return jogo.get_janelajogo();
+	}
+	
 	public void next_rodada() {
 		jogo.rodada_increment();
 	}

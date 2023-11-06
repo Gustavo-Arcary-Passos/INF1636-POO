@@ -12,19 +12,29 @@ import java.util.List;
 
 import javax.swing.JButton;
 
-import Model.Api_model;
-
 import java.awt.geom.Rectangle2D;
 import java.awt.*;
+import Model.Observador;
+import Model.Observado;
 
-class JanelaJogo extends LoadScene {
+class JanelaJogo extends LoadScene implements Observador {
 	protected static Color jogador_color = Color.WHITE;
 	protected static List<String> jogadores_cartas = new ArrayList<>();
 	protected static List<String> jogadores_name;
 	protected static List<String> jogadores_color;
 	protected static List<JButton> button = new ArrayList<>();
-	protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(Color.BLUE,Color.GREEN,Color.RED,Color.WHITE,Color.BLACK,Color.YELLOW));
+	protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(new Color(0,0,150),new Color(0,150,0),new Color(150,0,0),new Color(150,150,150),new Color(25,25,25),new Color(150,150,0)));
 	protected static List<String> colorido = new ArrayList<>(Arrays.asList("azul", "verde", "vermelho", "branco", "preto", "amarelo"));
+	
+	public void notify(Observado o) {
+		for(DesenhaTerritorioPoligono el : this.formas_geometricas) {
+			if(el.get_nome()== (String)o.get('n')) {
+				el.get_exercito_2d().muda_exercito((Integer)o.get('e'));
+				//muda a cor
+				el.set_color(colorido_resp.get(colorido.indexOf((String)o.get('c'))));
+			}
+		}
+	}
 	
 	public static void set_jogadores_cartas(List<String> cartas) {
 		jogadores_cartas = cartas;

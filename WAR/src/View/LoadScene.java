@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.List;
+import Model.Observado;
 
 import javax.swing.JButton;
 
@@ -15,6 +16,10 @@ abstract class LoadScene {
 	
 	public void set_count_images(int number) {
 		this.count_images = number;
+	}
+	
+	public void notify(Observado o) {
+		
 	}
 	
 	public void count_images_loaded(ImagemInfo imagem) {

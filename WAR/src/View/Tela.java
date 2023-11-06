@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import Model.Observador;
 
 //import Model.Api_model;
 class Tela extends JFrame {
@@ -35,6 +36,7 @@ class Tela extends JFrame {
 		setResizable(false);
 		cenarios = new LoadScene[2];
 		cenarios[0] = new JanelaInicial(this);
+		cenarios[1] = new JanelaJogo(this);
 		addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
@@ -66,6 +68,10 @@ class Tela extends JFrame {
 	}
 	public List<String> get_cores(int cenario) {
 		return cenarios[cenario].get_jogares_color();
+	}
+	
+	public Observador get_janelajogo() {
+		return (Observador)cenarios[1];
 	}
 
 	public int get_num_jogador() {
@@ -112,7 +118,7 @@ class Tela extends JFrame {
 //		}
 		
         getContentPane().removeAll();
-        cenarios[1] = new JanelaJogo(this);
+        
         // Crie uma instância da JanelaJogo
         cenario = 1;
         this.rodada = 0;

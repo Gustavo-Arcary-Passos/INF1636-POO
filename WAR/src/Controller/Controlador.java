@@ -17,8 +17,9 @@ public class Controlador {
 	Api_view tela;
 	
 	public Controlador() {
-		jogo = Api_model.getInstance();
     	tela = new Api_view();
+    	jogo = Api_model.getInstance();
+    	jogo.add_observadores_exercitos(tela.get_janelajogo());
     	listener_JanelaInicial(); // Inicializa jogadores, sorteia objetivo
 	}
 	

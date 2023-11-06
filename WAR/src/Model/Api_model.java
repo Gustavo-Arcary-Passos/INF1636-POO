@@ -9,6 +9,7 @@ public class Api_model {
 	public List<Jogador> jogadores_ativos;
 	public DeckObjetivos deckobj;
 	public int vez;
+	
 	public static Api_model getInstance() {
         if (instance == null) {
             instance = new Api_model();
@@ -40,6 +41,14 @@ public class Api_model {
 //			System.out.println(jogadores.domina.size());
 //		}
 //		Api_model.confere_vencedor(new ArrayList<Integer>(Arrays.asList(2,2,3)), new ArrayList<>(Arrays.asList(2,3)));
+	}
+	
+	public void add_observadores_exercitos(Observador o) {
+		for(Regiao reg: mapa_mundo) {
+			for(Territorio terr: reg.get_paises()) {
+				terr.add(o);
+			}
+		}
 	}
 	
 	public void sorteia_todos_territorios(List<Regiao> mapa_mundo, List<Jogador> jogadores_ativos) {

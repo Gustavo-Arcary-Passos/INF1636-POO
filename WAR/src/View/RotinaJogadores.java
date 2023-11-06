@@ -28,6 +28,7 @@ class RotinaJogadores {
 		layout_jogador.add(new ImagemInfo ("layout_ver_cartas_jogador.png",322,620,364,200,"Layout ver cartas"));
 		layout_jogador.add(new ImagemInfo ("layout_ataque_pass_jogador.png",322,620,364,200,"Layout ataque pass"));
 		layout_jogador.add(new ImagemInfo ("layout_ataque_jogador.png",322,620,364,200,"Layout ataque"));
+		layout_jogador.add(new ImagemInfo ("layout_reposiciona_pass_jogador.png",322,620,364,200,"Layout reposiciona pass"));
 		this.set_layout("Layout nao ver cartas");
 	}
 	

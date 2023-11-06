@@ -18,7 +18,9 @@ public class Api_view {
 	RotinaJogadores rotina_atual = RotinaJogadores.getInstance();
 	JLabel qtd_exercito;
 	JLabel name_terr;
-	protected Timer timer;
+	JLabel terr_atacante;
+	JLabel terr_atacado;
+	// protected Timer timer;
 	
 	public Api_view() {
 		jogo = new Tela();
@@ -30,17 +32,40 @@ public class Api_view {
 		jogo.rodada_increment();
 	}
 	
+	public void create_ataque_compose_text(String atacante, String atacado) {
+		terr_atacante = jogo.create_text_field_name_terr(atacante,355, 667, 117, 85);
+		terr_atacado = jogo.create_text_field_name_terr(atacado,526, 667, 117, 85);
+	}
+	
+	public void change_name_terr_text(String name, int v) {
+		if(v == 0) {
+			name_terr.setText(name);
+		} else if(v == 1) {
+			terr_atacante.setText(name);
+		} else if(v == 2) {
+			terr_atacado.setText(name);
+		}
+		
+	}
+	
 	public void create_numero_exercitos_text(String name,String min) {
 		qtd_exercito = jogo.create_text_field_qtd_exerc(min);
-		name_terr = jogo.create_text_field_name_terr(name);
+		name_terr = jogo.create_text_field_name_terr(name,430,625,126,16);
 	}
 	
 	public void delete_numero_exercitos_text() {
 		jogo.delete_text_field();
 	}
 	
-	public String get_terr_sel() {
-		return name_terr.getText();
+	public String get_terr_sel(int v) {
+		if(v == 0) {
+			return name_terr.getText();
+		} else if (v == 1) {
+			return terr_atacante.getText();
+		} else if (v == 2) {
+			return terr_atacado.getText();
+		}
+		return null;
 	}
 	
 	public void set_rotina_layout(String layout) {
@@ -106,6 +131,16 @@ public class Api_view {
 		int x1 = 630;
 		int y1 = 657;
 		double r = 30;
+		if((double)Math.sqrt(Math.pow((double)x - (double)x1, 2) + Math.pow((double)y - (double)y1, 2)) < r) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean verifica_passar_ataque_clicado(int x,int y) {
+		int x1 = 514;
+		int y1 = 718;
+		double r = 45;
 		if((double)Math.sqrt(Math.pow((double)x - (double)x1, 2) + Math.pow((double)y - (double)y1, 2)) < r) {
 			return true;
 		}

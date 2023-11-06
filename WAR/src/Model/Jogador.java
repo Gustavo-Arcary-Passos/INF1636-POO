@@ -22,6 +22,15 @@ class Jogador {
     	return null;
     }
     
+    public boolean verifica_territorio_fronteira(String pais, String fronteira) {
+    	for (Territorio terr : this.domina) {
+    		if(terr.get_nome() == pais) {
+    			return terr.faz_fronteira(fronteira);
+    		}
+    	}
+    	return false;
+    }
+    
     public boolean verifica_territorio(Territorio pais) {
     	for (Territorio terr : this.domina) {
     		if(terr.equals(pais)) {

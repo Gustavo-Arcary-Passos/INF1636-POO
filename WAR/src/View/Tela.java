@@ -86,9 +86,9 @@ class Tela extends JFrame {
 		return ln;
 	}
 	
-	public JLabel create_text_field_name_terr(String name) {
+	public JLabel create_text_field_name_terr(String name,int x,int y,int w,int h) {
 		JLabel territorio = new JLabel(name);
-		territorio.setBounds(430, 625, 126, 16);
+		territorio.setBounds(x, y, w, h);
 		territorio.setHorizontalAlignment(SwingConstants.CENTER);
 		Font font = territorio.getFont();
 		territorio.setFont(new Font(font.getFontName(), Font.PLAIN, 13));

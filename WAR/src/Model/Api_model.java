@@ -170,12 +170,11 @@ public class Api_model {
 	}
 	
 	public boolean verifica_next_rodada() {
-		int value = this.jogadores_ativos.size() - 51%this.jogadores_ativos.size() + 1;
-		if(value == this.jogadores_ativos.size()) {
-			value = 0;
+		int value = (51%this.jogadores_ativos.size())-1;
+		if(value < 0) {
+			value = this.jogadores_ativos.size() -1;
 		}
 		if(this.vez == value) {
-			//System.out.println(this.jogadores_ativos.size()  + "-" + 51%this.jogadores_ativos.size());
 			return true;
 		}
 		return false;
@@ -187,6 +186,10 @@ public class Api_model {
 	}
 	public boolean verifica_territorio_jogador_reg(String pais) {
 		return jogadores_ativos.get(this.vez).verifica_territorio_reg(pais);
+	}
+	public boolean verifica_territorio_jogador_fronteira(String terr, String fronteira) {
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		return jogador_da_vez.verifica_territorio_fronteira(terr, fronteira);
 	}
 //	protected static List<Jogador> inicializa_jogadores(){
 //		List<Jogador> jogadores = new ArrayList<Jogador>();

@@ -13,6 +13,10 @@ class RotinaJogadores {
 	protected List<ImagemInfo> layout_jogador = new ArrayList<>();
 	protected List<String> rotina = new ArrayList<>(Arrays.asList("PER", "PE", "ATQ", "REP", "PASS"));
 	protected String layout_selected;
+	protected String atacante;
+	protected String atacado;
+	protected String terr;
+	protected int qtd_exerc;
 	
 	public static RotinaJogadores getInstance() {
         if (instance == null) {
@@ -38,6 +42,27 @@ class RotinaJogadores {
 	
 	public String get_layout() {
 		return layout_selected;
+	}
+	
+	public String get_terr(int pos) {
+		if(pos == 0) {
+			return terr;
+		}else if(pos == 1) {
+			return atacante;
+		}else if(pos == 2) {
+			return atacado;
+		}
+		return null;
+	}
+	
+	public void set_terr(String value,int pos) {
+		if(pos == 0) {
+			terr = value;
+		}else if(pos == 1) {
+			atacante = value;
+		}else if(pos == 2) {
+			atacado = value;
+		}
 	}
 	
 	public void show_layout(Graphics g) {

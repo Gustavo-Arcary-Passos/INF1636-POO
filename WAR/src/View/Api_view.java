@@ -42,13 +42,14 @@ public class Api_view {
 	}
 	
 	public void change_name_terr_text(String name, int v) {
-		if(v == 0) {
-			name_terr.setText(name);
-		} else if(v == 1) {
-			terr_atacante.setText(name);
-		} else if(v == 2) {
-			terr_atacado.setText(name);
-		}
+		rotina_atual.set_terr(name,v);
+//		if(v == 0) {
+//			name_terr.setText(name);
+//		} else if(v == 1) {
+//			terr_atacante.setText(name);
+//		} else if(v == 2) {
+//			terr_atacado.setText(name);
+//		}
 		
 	}
 	
@@ -62,14 +63,15 @@ public class Api_view {
 	}
 	
 	public String get_terr_sel(int v) {
-		if(v == 0) {
-			return name_terr.getText();
-		} else if (v == 1) {
-			return terr_atacante.getText();
-		} else if (v == 2) {
-			return terr_atacado.getText();
-		}
-		return null;
+		return rotina_atual.get_terr(v);
+//		if(v == 0) {
+//			return name_terr.getText();
+//		} else if (v == 1) {
+//			return terr_atacante.getText();
+//		} else if (v == 2) {
+//			return terr_atacado.getText();
+//		}
+//		return null;
 	}
 	
 	public void set_rotina_layout(String layout) {

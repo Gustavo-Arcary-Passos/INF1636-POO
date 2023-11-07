@@ -23,7 +23,7 @@ class JanelaJogo extends LoadScene implements Observador {
 	protected static List<String> jogadores_name;
 	protected static List<String> jogadores_color;
 	protected static List<JButton> button = new ArrayList<>();
-	protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(new Color(0,0,150),new Color(0,150,0),new Color(150,0,0),new Color(150,150,150),new Color(25,25,25),new Color(150,150,0)));
+	protected static List<Color> colorido_resp = new ArrayList<>(Arrays.asList(new Color(0,0,200),new Color(0,200,0),new Color(200,0,0),new Color(200,200,200),new Color(50,50,50),new Color(200,200,0)));
 	protected static List<String> colorido = new ArrayList<>(Arrays.asList("azul", "verde", "vermelho", "branco", "preto", "amarelo"));
 	
 	public void notify(Observado o) {

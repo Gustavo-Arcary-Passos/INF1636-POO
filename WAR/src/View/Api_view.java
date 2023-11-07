@@ -37,12 +37,18 @@ public class Api_view {
 	}
 	
 	public void create_ataque_compose_text(String atacante, String atacado) {
-		terr_atacante = jogo.create_text_field_name_terr(atacante,355, 667, 117, 85);
-		terr_atacado = jogo.create_text_field_name_terr(atacado,526, 667, 117, 85);
+		rotina_atual.set_terr(atacante,1);
+		rotina_atual.set_terr(atacado,2);
+		this.repinta_tela();
+//		terr_atacante = jogo.create_text_field_name_terr(atacante,355, 667, 117, 85);
+//		terr_atacado = jogo.create_text_field_name_terr(atacado,526, 667, 117, 85);
 	}
 	
 	public void change_name_terr_text(String name, int v) {
 		rotina_atual.set_terr(name,v);
+		this.repinta_tela();
+//		JLabel territorio = new JLabel(name);
+//		System.out.println(territorio.getFont());
 //		if(v == 0) {
 //			name_terr.setText(name);
 //		} else if(v == 1) {
@@ -53,14 +59,18 @@ public class Api_view {
 		
 	}
 	
-	public void create_numero_exercitos_text(String name,String min) {
-		qtd_exercito = jogo.create_text_field_qtd_exerc(min);
-		name_terr = jogo.create_text_field_name_terr(name,429,624,126,16);
+	public void create_numero_exercitos_text(String name,int min) { 
+		rotina_atual.set_terr(name,0);
+		rotina_atual.set_qtd_exerc(0,min);
+		rotina_atual.set_qtd_exerc(1,min);
+		//this.repinta_tela();
+//		qtd_exercito = jogo.create_text_field_qtd_exerc(min);
+//		name_terr = jogo.create_text_field_name_terr(name,429,624,126,16);
 	}
 	
-	public void delete_numero_exercitos_text() {
-		jogo.delete_text_field();
-	}
+//	public void delete_numero_exercitos_text() { // AJUSTAR
+//		jogo.delete_text_field();
+//	}
 	
 	public String get_terr_sel(int v) {
 		return rotina_atual.get_terr(v);
@@ -74,32 +84,38 @@ public class Api_view {
 //		return null;
 	}
 	
-	public void set_rotina_layout(String layout) {
-		this.delete_numero_exercitos_text();
+	public void set_rotina_layout(String layout) { 
+		// this.delete_numero_exercitos_text();
 		this.set_rotina_atual(layout);
 		this.repinta_tela();
 	}
 	
 	public int get_qtd_exerc_sel() {
-		return Integer.parseInt(qtd_exercito.getText());
+		return rotina_atual.get_qtd_exerc(0); 
 	}
 	
-	public void change_name_terr_text(String name) {
-		if(name_terr.getText() != name) {
-			name_terr.setText(name);
-			qtd_exercito.setText(Integer.toString(0));
+	public void change_name_terr_text(String name) { 
+		if(this.get_terr_sel(0) != name) {
+			this.change_name_terr_text(name,0);
+			rotina_atual.set_qtd_exerc(0,0);
 		}
+		this.repinta_tela();
 	}
 	
-	public void change_numero_exercitos_text(int qtd,int limit, int min) {
-		int value = Integer.parseInt(qtd_exercito.getText());
+	public void change_numero_exercitos_text(int qtd,int limit, int min) { 
+		int value = rotina_atual.get_qtd_exerc(0);
 		value += qtd;
-		//System.out.println(value);
-		if(value >= min && value <= limit)
-		qtd_exercito.setText(Integer.toString(value));
+		rotina_atual.set_qtd_exerc(2,limit);
+		rotina_atual.set_qtd_exerc(1,min);
+		if(value >= min && value <= limit) {
+			rotina_atual.set_qtd_exerc(0,value);
+			this.repinta_tela();
+		}
+		
 	}
 	
 	public void repinta_tela() {
+		System.out.println("Rodou agr");
 		jogo.repaint();
 	}
 	

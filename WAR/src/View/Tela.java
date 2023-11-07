@@ -89,7 +89,7 @@ class Tela extends JFrame {
 		Font font = ln.getFont();
 		ln.setFont(new Font(font.getFontName(), Font.PLAIN, 24));
 		this.getContentPane().add(ln);
-		return ln;
+		return null;
 	}
 	
 	public JLabel create_text_field_name_terr(String name,int x,int y,int w,int h) {

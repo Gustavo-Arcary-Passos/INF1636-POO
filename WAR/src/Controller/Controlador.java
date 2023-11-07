@@ -77,7 +77,7 @@ public class Controlador {
             				if(jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos") {
             					tela.set_rotina_atual("Distribui Exercitos");
     		            		tela.repinta_tela();
-    		            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),"0");
+    		            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),0);
             				} else if (x > 322 && y > 620 && x < 686 && y < 800) {
             					// verificar daqui pra baixo
     		            		if(tela.get_rotina_atual() == "Distribui Exercitos") {
@@ -116,7 +116,7 @@ public class Controlador {
 	            		if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos"){
 		            		tela.set_rotina_atual("Distribui Exercitos");
 		            		tela.repinta_tela();
-		            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),"0");
+		            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),0);
 		            	} else if (x > 322 && y > 620 && x < 686 && y < 800) {
 		            		if(tela.get_rotina_atual() == "Distribui Exercitos") {
 		            			if(x > 575 && y > 709 && x < 619 && y < 750) {
@@ -130,6 +130,7 @@ public class Controlador {
 			            			System.out.println("OK");
 			            			if(qtd > 0) {
 				            			jogo.posiciona_exercitos_jogador_vez(qtd,tela.get_terr_sel(0));
+				            			System.out.println(tela.get_terr_sel(0));
 				            			tela.set_rotina_layout("Layout nao ver cartas");
 				            			if(jogo.get_vez_jogador_exercitos_distri() == 0) {
 				            				tela.set_next_rotina();

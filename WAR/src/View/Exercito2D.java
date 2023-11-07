@@ -2,6 +2,7 @@ package View;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
@@ -30,12 +31,14 @@ class Exercito2D extends Ellipse2D.Double {
     {
         int ax = -4;
         int ay = 5;
-        g2d.setColor((cor != new Color(25,25,25))  ? Color.BLACK: Color.WHITE);
+        g2d.setColor((cor.equals(new Color(50,50,50)))  ? Color.WHITE: Color.BLACK);
         g2d.setStroke(new BasicStroke(2));
-        g2d.fill(this.borda);
+        g2d.draw(this.borda);
         g2d.setColor(cor);
         g2d.fill(this);
-        g2d.setColor((cor != new Color(25,25,25))  ? Color.BLACK: Color.WHITE);
+        g2d.setColor((cor.equals(new Color(50,50,50)))  ? Color.WHITE: Color.BLACK);
+        Font fonte = new Font("Dialog", Font.BOLD, 12);
+        g2d.setFont(fonte);
         g2d.drawString(Integer.toString(this.num_exercitos), (int)this.getCenterX() + ax, (int)this.getCenterY() + ay);
     }
 }

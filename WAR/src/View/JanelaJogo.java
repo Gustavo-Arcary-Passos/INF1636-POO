@@ -55,9 +55,6 @@ class JanelaJogo extends LoadScene implements Observador {
 		count_images_loaded(new ImagemInfo ("war_tabela_bonus_continente.png",10,400,130,120));
 		count_images_loaded(new ImagemInfo ("war_tabela_troca.png",10,540,114,131));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_bottom.png",0,715,1024,85));
-		//count_images_loaded(new ImagemInfo ("war_btnJogarDados.png",925,715,57,37));
-		//count_images_loaded(new ImagemInfo ("layout_distribui_exercitos_jogador.png",322,620,364,200));
-		//count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
 		
 		this.formas_geometricas = new DesenhaTerritorioPoligono[52];
 		Color padrao = new Color(75,75,75);
@@ -126,36 +123,6 @@ class JanelaJogo extends LoadScene implements Observador {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{718,709,751,741,763,785,754,762}, new int[]{274,290,365,380,380,344,293,274}, padrao, asia, "Paquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{628,620,629,637,638,717,709,717,666,660,647,646}, new int[]{271,287,300,300,305,305,291,273,273,269,269,271}, padrao, asia, "Síria"));
 
-//		tela.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//            	int x = e.getX();
-//	            int y = e.getY();
-//	            System.out.println(x+", "+y);
-//	            //cenario++;
-//	            if (DadoView.get_flag() == true) {
-//	            	DadoView.set_exibe(!DadoView.get_flag());
-//	            	tela.repaint();
-//	            }
-//	            if (e.getButton() == MouseEvent.BUTTON1) {
-//		            DesenhaTerritorioPoligono clicado = formas_geometricas_clicada(x,y);
-//		            if(clicado!=null) {
-//		            	System.out.println(clicado.get_nome());
-//		            	//clicado.set_color(Color.WHITE);
-//		            } else {
-//		            	if(x > 925 && x < 982 && y > 715 && y < 752) {
-//		            		System.out.println("Aqui!");
-//		            		Api_model.ataque();
-//				            DadoView.set_exibe(!DadoView.get_flag());
-//				            tela.repaint();
-//		            	}
-//		            }
-//		            //tela.repaint();
-//	            } else if (e.getButton() == MouseEvent.BUTTON3) {
-//	            	ReiniciarJogo ganhador = new ReiniciarJogo("Jorge");
-//	            }
-//            }
-//        });
 		tela.repaint();
 	}
 	public void desenha(Graphics g) {
@@ -187,24 +154,10 @@ class JanelaJogo extends LoadScene implements Observador {
 		    	}
 		    }
 	    }
-
-		// teste
-//		Objetivo obj = Objetivo.DESTRUIR_VERMELHOS;
-//		CartasView viewc = new CartasView();
-//		viewc.desenha_objetivo(g, obj);
 		
 		g2d.setPaint(jogador_color);
 		Rectangle2D jogador_layout = new Rectangle2D.Double(338,635,75,50);
 		g2d.fill(jogador_layout);
-		// rotina.set_layout("Layout Default");
-		
-		
-		
-//		g2d.setStroke(new BasicStroke(5));
-//		g2d.setPaint(jogador_color);
-//		Rectangle2D jogador_vez = new Rectangle2D.Double(920,710,65,50);
-//		g2d.draw(jogador_vez);
-//		g2d.setStroke(new BasicStroke(1));
 		ImagemInfo carta;
 		int conta = 0;
 		for(String nome : jogadores_cartas) {
@@ -215,7 +168,6 @@ class JanelaJogo extends LoadScene implements Observador {
 
 		//Condicional de plot de dados
 		if(DadoView.get_flag()) {
-			//Dado.set_exibe(false);
 			ImagemInfo[] images_atk = DadoView.get_dados_atk();
 			ImagemInfo[] images_def = DadoView.get_dados_def();
 			// Exibindo o vetor images_def
@@ -239,8 +191,10 @@ class JanelaJogo extends LoadScene implements Observador {
 			x = 365+w/2;
 			y = 458;
 			y_progress = (y_max-y_min)/(images_def.length+1);
-			for(int i = 0; i < images_def.length; i++) {
-				g.drawImage(images_def[i].get_image(), x+w/4-2*images_def[i].get_w()/3/2 - images_atk[i].get_w()/3 , y_min+y_progress*(i+1), 2*images_def[i].get_w()/3, 2*images_def[i].get_h()/3, null);	
+			for(int j = 0; j < images_def.length; j++) {
+				if(images_def[j] != null) {
+					g.drawImage(images_def[j].get_image(), x+w/4-2*images_def[j].get_w()/3/2 - images_def[j].get_w()/3 , y_min+y_progress*(j+1), 2*images_def[j].get_w()/3, 2*images_def[j].get_h()/3, null);	
+				}
 			}
 		}
 	}

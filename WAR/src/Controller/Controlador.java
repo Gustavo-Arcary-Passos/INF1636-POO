@@ -47,7 +47,6 @@ public class Controlador {
 			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 			    	jogo.get_vez_jogador_add_exercito();
-			    	// jogo.get_vez_jogador_territorios();
 			    	listener_JanelaJogo();
 			    }
 		    }
@@ -190,19 +189,11 @@ public class Controlador {
             					// so permiti realizar ataque se tiver algum territorio selecionado para ser atacado e 
             					if(jogo.get_exercito_terr(tela.get_terr_sel(1)) > 1) {
             						// se territorio atacante possuir mais de 1 exercito
-//            						System.out.println("ATACANDO");
-//            						System.out.println("Quantidade de ataque" + jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)));
-//            						System.out.println("Quantidade de defesa" + jogo.get_qtd_exercito_def(tela.get_terr_sel(2)));
-            						System.out.println("AQUI ->");
             						jogo.ataque(jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)),jogo.get_qtd_exercito_def(tela.get_terr_sel(2)));
             						int[] res = jogo.qtd_vence_derrota();
-            						
-//            						System.out.println("Vitorias = "+ res[0]);
-//            						System.out.println("Derrotas = "+ res[1]);
+            						tela.realiza_ataque();
             						jogo.posiciona_exercitos_jogador_vez(-res[1],tela.get_terr_sel(1));
             						jogo.baixas_da_defesa(tela.get_terr_sel(2),-res[0]);
-            						tela.realiza_ataque();
-            						System.out.println("<- AQUI");
             					}
             				}
             				if(jogo.get_exercito_terr(tela.get_terr_sel(2)) == 0) {
@@ -227,13 +218,7 @@ public class Controlador {
 	            			if(qtd > 0) {
 	            				// nao trocar de tela ate que seja confirmado quantidade realocada
 	                			// depois de colocar exercitos trocar para "Layout ataque pass"
-//	            				System.out.println(tela.get_terr_sel(0));
-//	            				System.out.println(tela.get_terr_sel(1));
-//	            				System.out.println(tela.get_terr_sel(2));
 	            				jogo.finaliza_conquista(tela.get_terr_sel(2),tela.get_terr_sel(1),qtd);
-//		            			System.out.println(jogo.posiciona_exercitos_jogador_vez(qtd,tela.get_terr_sel(0)));
-//		            			System.out.println(jogo.posiciona_exercitos_jogador_vez(-qtd,tela.get_terr_sel(1)));
-//		            			// System.out.println(tela.get_terr_sel(0));
 		            			tela.set_rotina_layout("Layout ataque pass");
 	            			}
 	            		}
@@ -245,14 +230,11 @@ public class Controlador {
         			}
             	}
             	if (tela.get_fase_atual() == "PASS") {
-//            		System.out.println("Proximo jogador");
-//    				System.out.println(tela.get_fase_atual());
 	            	if(jogo.verifica_vez_jogador_objetivo()) {
 	            		tela.encerrar_partida(); // Nao criado
 	            	} else { // trocar para proximo jogador
 	            		if(jogo.verifica_next_rodada()) {
 	            			// proxima rodada
-	            			//System.out.println("Proxima rodada");
 	            			tela.next_rodada();
 	            		}
 	            		jogo.next_jogador();
@@ -263,9 +245,6 @@ public class Controlador {
 				    	tela.set_next_rotina();
 	            	}
 	            }
-	            	//	            	
-//            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y));
-		            //tela.repaint(); 
             }
         });
 		// Fornecer exercitos para o jogador da vez 

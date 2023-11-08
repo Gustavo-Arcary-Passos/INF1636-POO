@@ -12,7 +12,6 @@ abstract class LoadScene {
 	protected ImagemInfo[] images;
 	protected DesenhaTerritorioPoligono[] formas_geometricas;
 	protected int count_images,count_formas_geometricas;
-	//abstract public void cenario();
 	
 	public void set_count_images(int number) {
 		this.count_images = number;
@@ -64,5 +63,4 @@ abstract class LoadScene {
 	
 	abstract JButton get_button(int pos);
 
-//	abstract static int get_num_jogadores();
 }

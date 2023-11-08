@@ -4,8 +4,8 @@ import java.util.*;
 
 class DadoModel implements Observado {
 	List<Observador> lst;
-	List<Integer> valoresatk = new ArrayList<Integer>();
-	List<Integer> valoresdef = new ArrayList<Integer>();
+	List<Integer> valoresatk;
+	List<Integer> valoresdef;
 	Jogador jgd_atual;
 	public DadoModel() {
 		lst= new ArrayList<Observador>();
@@ -17,10 +17,10 @@ class DadoModel implements Observado {
 	 **/
 	public Object get(char c) {
 		if(c == 'd') {
-			return valoresdef;
+			return (Object)valoresdef;
 		}
 		else if (c == 'a'){
-			return valoresatk;
+			return (Object)valoresatk;
 		}
 		else {
 			return jgd_atual.get_cor()
@@ -35,22 +35,23 @@ class DadoModel implements Observado {
 	}
 	
 	protected void lanca_dado(int qtd_dados_defesa, int qtd_dados_ataque){
-		System.out.println(qtd_dados_defesa + " | "  + qtd_dados_ataque);
-		valoresatk.clear();
-		valoresdef.clear();
-		Random rand = new Random();
-		for (int i = 0; i < qtd_dados_ataque; i++) {
-	        if (valoresatk.size() < qtd_dados_ataque) { // Verifique o tamanho antes de adicionar
-	            valoresatk.add(rand.nextInt(6) + 1);
-	        }
-	    }
+		Random random = new Random();
+        List<Integer> resultados_defesa = new ArrayList<>();
+        List<Integer> resultados_ataque = new ArrayList<>();
 
-	    for (int i = 0; i < qtd_dados_defesa; i++) {
-	        if (valoresdef.size() < qtd_dados_defesa) { // Verifique o tamanho antes de adicionar
-	            valoresdef.add(rand.nextInt(6) + 1);
-	        }
-	    }
-		//valoresdef=valores2;
+        for (int i = 0; i < qtd_dados_defesa; i++) {
+            int sorteio = random.nextInt(6) + 1; // Gera um número aleatório entre 1 e 6
+            resultados_defesa.add(sorteio);
+        }
+
+        for (int i = 0; i < qtd_dados_ataque; i++) {
+            int sorteio = random.nextInt(6) + 1; // Gera um número aleatório entre 1 e 6
+            resultados_ataque.add(sorteio);
+        }
+        
+        valoresdef = resultados_defesa;
+        valoresatk = resultados_ataque;
+		
 		for(Observador el : lst ) {
 			el.notify(this);
 		}

@@ -25,7 +25,6 @@ class JanelaInicial extends LoadScene {
 		c.setLayout(null);
         JButton b1 = new JButton("Novo Jogo");
         b1.setBounds(550, 500, 100, 30);
-        //b1.setToolTipText("Novo Jogo");
         b1.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -39,7 +38,6 @@ class JanelaInicial extends LoadScene {
 		// ***** DEBUG *****
 		JButton bskip = new JButton("pular para DEBUG");
 		bskip.setBounds(550, 550, 100, 30);
-		//bskip.setToolTipText("pular para DEBUG");
 		bskip.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -74,48 +72,18 @@ class JanelaInicial extends LoadScene {
                 JanelaInicial.set_escolhendo_cores(true);
                 escolhe_nome_jogadores_cor(tela);
                 tela.repaint();
-                //System.out.println(JanelaInicial.get_num_jogadores());
             }
         });
         
         JButton inc = new JButton("Confirmar");
         inc.setBounds(195+350, 270+100, 165, 25);
-//        inc.addActionListener(new ActionListener() {
-//		    @Override
-//		    public void actionPerformed(ActionEvent e) {
-//		        boolean algumSelecionado = opCoresComboBox.getSelectedIndex() != -1;
-//
-//		        if (algumSelecionado && !nm.getText().isEmpty()) {
-//		        	int selectedColorIndex = opCoresComboBox.getSelectedIndex();
-//	            	jogadores_name.add(nm.getText());
-//	            	jogadores_color.add(colorido.get(selectedColorIndex));
-//		            removeComponents(tela);
-//		            if (JanelaInicial.get_num_jogadores() > 1) {
-//		                // Verifique qual opção foi selecionada no JComboBox
-//		                if (selectedColorIndex != -1) {
-//		                    colorido.remove(selectedColorIndex);
-//		                }
-//		                JanelaInicial.set_num_jogadores(JanelaInicial.get_num_jogadores() - 1);
-//		                escolhe_nome_jogadores_cor(tela);
-//		            } else {
-//		                tela.trocarParaJanelaJogo();
-//		            }
-//		            c.repaint();
-//		        }
-//		    }
-//		});
-        
-//        JButton save_players = new JButton();
-//        save_players.setBounds(195+350, 270+100, 165, 25);
         
         
 		button.add(bskip);
 		button.add(b1);
 		button.add(b2);
 		button.add(b3);
-		button.add(inc);
-		//button.add(save_players);
-		
+		button.add(inc);		
 		c.add(b1); 
 		c.add(bskip);
 		c.repaint();
@@ -168,9 +136,7 @@ class JanelaInicial extends LoadScene {
 		
 		ln.setBounds(40+dx, 83+dy, 65, 25);
 		nm.setBounds(110+dx, 80+dy, 250, 25);
-		
-		//nm.addActionListener(salva_jogadores(tela));
-		
+				
 
 		// Substituir JRadioButton e ButtonGroup por JComboBox
 		opCoresComboBox = new JComboBox<>();

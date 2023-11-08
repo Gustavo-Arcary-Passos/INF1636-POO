@@ -29,19 +29,6 @@ public class Api_model {
 		jogadores_ativos = new ArrayList<>();
 		
 		deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
-		//embaralha a ordem dos jogadores, que vai ser também a ordem de jogada
-		//
-		//sorteia os objetivos para cada jogador
-//		sorteia_obj_todos_jogadores(jogadores_ativos,deckobj);
-//		for(Jogador jogadores : jogadores_ativos) {
-//			System.out.printf("O objetivo do jogador %s é %s.\n",jogadores.get_nome(),jogadores.get_objetivo().getClass());
-//		}
-		//sorteio de todas os territorios para os jogadores
-//		sorteia_todos_territorios(mapa_mundo,jogadores_ativos);
-//		for(Jogador jogadores : jogadores_ativos) {
-//			System.out.println(jogadores.domina.size());
-//		}
-//		Api_model.confere_vencedor(new ArrayList<Integer>(Arrays.asList(2,2,3)), new ArrayList<>(Arrays.asList(2,3)));
 	}
 	
 	public void add_observadores_exercitos(Observador o) {
@@ -116,7 +103,6 @@ public class Api_model {
 	public int get_vez_jogador_exercitos_reg() {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
 		int qtd_total = 0;
-		//System.out.println("Qtd antes" + qtd_total);
 		for(Regiao regiao : mapa_mundo) {
 			qtd_total += jogador_da_vez.get__exercito_regiao(regiao.get_nome());
 		}
@@ -220,41 +206,7 @@ public class Api_model {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
 		return jogador_da_vez.verifica_territorio_fronteira(terr, fronteira);
 	}
-//	protected static List<Jogador> inicializa_jogadores(){
-//		List<Jogador> jogadores = new ArrayList<Jogador>();
-//		Scanner scan = new Scanner(System.in);
-//		System.out.println("Bem vindo ao War! Quantos jogadores vão jogar? (entre 3 e 6)");
-//		int num_jogadores = 0;
-//        num_jogadores = scan.nextInt();
-//        scan.nextLine();
-//        while (num_jogadores < 3 || num_jogadores > 6) {
-//        	System.out.println("Número inválido. Digite novamente.");
-//            num_jogadores = scan.nextInt();
-//            scan.nextLine();
-//        }
-//        String nome_jogador;
-//        List<String> cores = new ArrayList<>(Arrays.asList("azul", "vermelho", "verde", "amarelo", "preto", "branco"));
-//        String cor_input=null;
-//        for(int i=0; i<num_jogadores; i++) {
-//        	System.out.printf("Qual o nome do jogador %d?\n",i);
-//        	nome_jogador = scan.nextLine();
-//        	while(!Cor.existe_cor(cor_input,cores)) {
-//        		System.out.println("Qual a cor que você quer jogar?");
-//            	cor_input = scan.nextLine();
-//            	if(Cor.existe_cor(cor_input,cores)) {
-//            		jogadores.add(new Jogador(nome_jogador, cor_input));
-//            		break;
-//            	}
-//            	else {
-//            		System.out.println("Essa cor não pode ser usada, tente novamente");
-//            	}
-//        	}
-//        	
-//        }
-//        scan.close();
-//        return jogadores;
-//	}
-//	
+
 	public int[] qtd_vence_derrota() {
 		boolean[] arrayBoolean = this.confere_vencedor();
 		int vet[] = new int[2];
@@ -304,12 +256,11 @@ public class Api_model {
 			perdeu_terra.jogador_destruido(jogador_da_vez);
 		}
 		jogador_da_vez.ganha_territorio(conquistado);
-		// conquistado.set_Jogador(jogador_da_vez);
 	}
 	
 	public boolean[] confere_vencedor() {
-		List<Integer> ataque = (List<Integer>)dado.get('a');
-		List<Integer> defesa = (List<Integer>)dado.get('d');
+		List<Integer> ataque = new ArrayList<>((List<Integer>)dado.get('a'));
+		List<Integer> defesa = new ArrayList<>((List<Integer>)dado.get('d'));
 		boolean[] batalhas = new boolean [(defesa.size() > ataque.size()) ? ataque.size() : defesa.size()];
 		int batalha=0;
 		while(defesa.size()!=0 && ataque.size()!=0) {
@@ -331,7 +282,6 @@ public class Api_model {
 			else{
 				batalhas[batalha]=false;
 			}
-			//System.out.println(batalhas[batalha]);
 			batalha++;
 			ataque.remove(maioratk);
 			defesa.remove(maiordef);

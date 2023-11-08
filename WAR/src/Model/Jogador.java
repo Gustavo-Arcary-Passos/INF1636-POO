@@ -135,7 +135,6 @@ class Jogador {
     	this.conquistou_territorio_rodada = true;
     }
     public void add_exercito(int qtd) {
-//    	System.out.println("CHAMOU AUMENTA EXERCITO");
     	this.qtd_exercitos += qtd;
     }
     public void add_exercito() { //add exercito de acordo com metade dos territórios
@@ -190,7 +189,6 @@ class Jogador {
     	}
     }
     public boolean posiciona_exercito(int qtd, Territorio destino) {
-    	//tem que conferir se qtd é < qtd_exercito
     	if(qtd>this.qtd_exercitos) {
     		return false;
     	}
@@ -204,7 +202,6 @@ class Jogador {
     	return false;
     }
     public boolean posiciona_exercito(int qtd, String destino) {
-    	//tem que conferir se qtd é < qtd_exercito
     	if(qtd>this.qtd_exercitos) {
     		return false;
     	}
@@ -212,7 +209,6 @@ class Jogador {
     		if(terr.get_nome() == destino) {
     			 terr.add_exercito(qtd);
     			 this.qtd_exercitos -=qtd;
-    			 System.out.println(terr.get_exercitos());
     			 return true;
     		}
     	}

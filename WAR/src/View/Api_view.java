@@ -1,15 +1,11 @@
 package View;
 import java.awt.event.ActionEvent;
-//import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 import Model.Observador;
 
@@ -19,9 +15,7 @@ public class Api_view {
 	JLabel qtd_exercito;
 	JLabel name_terr;
 	JLabel terr_atacante;
-	JLabel terr_atacado;
-	// protected Timer timer;
-	
+	JLabel terr_atacado;	
 	public Api_view() {
 		jogo = new Tela();
 		jogo.setTitle("War");
@@ -40,22 +34,11 @@ public class Api_view {
 		rotina_atual.set_terr(atacante,1);
 		rotina_atual.set_terr(atacado,2);
 		this.repinta_tela();
-//		terr_atacante = jogo.create_text_field_name_terr(atacante,355, 667, 117, 85);
-//		terr_atacado = jogo.create_text_field_name_terr(atacado,526, 667, 117, 85);
 	}
 	
 	public void change_name_terr_text(String name, int v) {
 		rotina_atual.set_terr(name,v);
 		this.repinta_tela();
-//		JLabel territorio = new JLabel(name);
-//		System.out.println(territorio.getFont());
-//		if(v == 0) {
-//			name_terr.setText(name);
-//		} else if(v == 1) {
-//			terr_atacante.setText(name);
-//		} else if(v == 2) {
-//			terr_atacado.setText(name);
-//		}
 		
 	}
 	
@@ -63,29 +46,13 @@ public class Api_view {
 		rotina_atual.set_terr(name,0);
 		rotina_atual.set_qtd_exerc(0,min);
 		rotina_atual.set_qtd_exerc(1,min);
-		//this.repinta_tela();
-//		qtd_exercito = jogo.create_text_field_qtd_exerc(min);
-//		name_terr = jogo.create_text_field_name_terr(name,429,624,126,16);
 	}
-	
-//	public void delete_numero_exercitos_text() { // AJUSTAR
-//		jogo.delete_text_field();
-//	}
 	
 	public String get_terr_sel(int v) {
 		return rotina_atual.get_terr(v);
-//		if(v == 0) {
-//			return name_terr.getText();
-//		} else if (v == 1) {
-//			return terr_atacante.getText();
-//		} else if (v == 2) {
-//			return terr_atacado.getText();
-//		}
-//		return null;
 	}
 	
 	public void set_rotina_layout(String layout) { 
-		// this.delete_numero_exercitos_text();
 		this.set_rotina_atual(layout);
 		this.repinta_tela();
 	}
@@ -115,7 +82,6 @@ public class Api_view {
 	}
 	
 	public void repinta_tela() {
-		//System.out.println("Rodou agr");
 		jogo.repaint();
 	}
 	
@@ -172,17 +138,8 @@ public class Api_view {
 	public String verifica_territorio_clicado(int x,int y) {
 		DesenhaTerritorioPoligono clicado = jogo.formas_geometricas_clicada(x,y);
         if(clicado!=null) {
-        	//System.out.println(clicado.get_nome());
         	return clicado.get_nome();
-        	//clicado.set_color(Color.WHITE);
-        } else {
-//        	if(x > 925 && x < 982 && y > 715 && y < 752) {
-//        		System.out.println("Aqui!");
-//        		Api_model.ataque();
-//	            DadoView.set_exibe(!DadoView.get_flag());
-//	            tela.repaint();
-//        	}
-        }
+        } 
         return null;
 	}
 	

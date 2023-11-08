@@ -29,8 +29,6 @@ class Exercito2D extends Ellipse2D.Double {
     
     public void draw(Graphics2D g2d, Color cor)
     {
-//        int ax = -4;
-//        int ay = 5;
         g2d.setColor((cor.equals(new Color(50,50,50)))  ? Color.WHITE: Color.BLACK);
         g2d.setStroke(new BasicStroke(2));
         g2d.draw(this.borda);

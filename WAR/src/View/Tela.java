@@ -28,8 +28,6 @@ class Tela extends JFrame {
 	protected List<String> rotina = new ArrayList<>(Arrays.asList("PER", "PE", "ATQ", "REP", "PASS"));
 	protected int rotina_ind;
 	protected RotinaJogadores rotina_atual = RotinaJogadores.getInstance();
-//	protected List<String> jogadores_nomes;
-//	protected List<String> jogadores_cores;
 	public Tela() {
 		setSize(LARG_DEFAULT,ALT_DEFAULT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -105,24 +103,13 @@ class Tela extends JFrame {
 		getContentPane().removeAll();
 	}
 	
-//	public static void next_cenario() {
-//		cenario++;
-//	}
 	protected void trocarParaJanelaJogo() {
         // Remova todos os componentes da tela atual, se necessário
-//		for(int i = 0; i < jogadores_nomes.size(); i++) {
-//			String nome = jogadores_nomes.get(i);
-//	        String cor = jogadores_cores.get(i);
-//			System.out.println("Jogador " + (i + 1) + ": Nome = " + nome + ", Cor = " + cor);
-//		}
-		
         getContentPane().removeAll();
         
         // Crie uma instância da JanelaJogo
         cenario = 1;
         this.rodada = 0;
-        //cenarios[1] = new JanelaJogo(this);
-
         // Adicione um novo MouseListener, se necessário
         // Redesenha a tela
         repaint();

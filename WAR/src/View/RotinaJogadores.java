@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.awt.geom.Rectangle2D;
 
-// import javax.swing.JButton;
-
 
 class RotinaJogadores {
 	private static RotinaJogadores instance = null;

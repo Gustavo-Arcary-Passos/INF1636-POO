@@ -218,6 +218,7 @@ class JanelaJogo extends LoadScene implements Observador {
 			//Dado.set_exibe(false);
 			ImagemInfo[] images_atk = DadoView.get_dados_atk();
 			ImagemInfo[] images_def = DadoView.get_dados_def();
+			// Exibindo o vetor images_def
 			int x = 366;
 			int y = 458;
 			int w = 132;

@@ -184,12 +184,26 @@ public class Controlador {
             			} else if((x > 322 && y > 620 && x < 686 && y < 800)) {
             				System.out.println("LAYOUT");
             				if(tela.get_terr_sel(2) != "" && (x > 452 && y > 645 && x < 562 && y < 674)) {
-            					System.out.println("ATACANDO");
             					// so permiti realizar ataque se tiver algum territorio selecionado para ser atacado e 
-            					// se territorio atacante possuir mais de 1 exercito
+            					if(jogo.get_exercito_terr(tela.get_terr_sel(1)) > 1) {
+            						// se territorio atacante possuir mais de 1 exercito
+            						System.out.println("ATACANDO");
+            						System.out.println("Quantidade de ataque" + jogo.get_qtd_exercito_def(tela.get_terr_sel(1)));
+            						System.out.println("Quantidade de defesa" + jogo.get_qtd_exercito_def(tela.get_terr_sel(2)));
+            						jogo.ataque(jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)),jogo.get_qtd_exercito_def(tela.get_terr_sel(2)));
+            						int[] res = jogo.qtd_vence_derrota();
+            						System.out.println("Vitorias = "+ res[0]);
+            						System.out.println("Derrotas = "+ res[1]);
+            						jogo.posiciona_exercitos_jogador_vez(-res[1],tela.get_terr_sel(1));
+            						jogo.baixas_da_defesa(tela.get_terr_sel(2),-res[0]);
+            						tela.realiza_ataque();
+            					}
             				}
-            				if(true) {
+            				if(jogo.get_exercito_terr(tela.get_terr_sel(2)) == 0) {
             					// se territorio atacado ficar sem exercito abrir "Distribui Exercitos"
+            					tela.set_rotina_atual("Distribui Exercitos");
+    		            		tela.repinta_tela();
+    		            		tela.create_numero_exercitos_text(tela.get_terr_sel(2),1);
             				}
             			}
             		} else if(tela.get_rotina_atual() == "Distribui Exercitos") {

@@ -8,6 +8,7 @@ public class Api_model {
 	public List<Regiao> mapa_mundo;
 	public List<Jogador> jogadores_ativos;
 	public DeckObjetivos deckobj;
+	public DadoModel dado;
 	public int vez;
 	
 	public static Api_model getInstance() {
@@ -23,6 +24,7 @@ public class Api_model {
 	
 	public Api_model() {
 		//cria mapa
+		dado= new DadoModel();
 		mapa_mundo = this.inicializa_mundo();
 		//cria jogadores
 		jogadores_ativos = new ArrayList<>();
@@ -121,6 +123,17 @@ public class Api_model {
 		}
 		
 		return qtd_total;
+	}
+	
+	public int get_exercito_terr(String terra) {
+		for(Regiao reg: mapa_mundo) {
+			for(Territorio terr: reg.get_paises()) {
+				if(terr.get_nome() == terra) {
+					return terr.get_exercitos();
+				}
+			}
+		}
+		return -1;
 	}
 	
 	public int get_vez_jogador_exercitos_distri() {
@@ -235,8 +248,41 @@ public class Api_model {
 //        return jogadores;
 //	}
 //	
+	public int[] qtd_vence_derrota() {
+		boolean[] arrayBoolean = this.confere_vencedor();
+		int vet[] = new int[2];
+		int vitorias = 0;
+		int derrotas = 0;
+        for (boolean valor : arrayBoolean) {
+            if(valor) {
+            	vitorias++;
+            } else {
+            	derrotas++;
+            }
+        }
+        vet[0] = vitorias;
+        vet[1] = derrotas;
+        return vet;
+	}
+	public Territorio get_terr(String terra) {
+		for(Regiao reg: mapa_mundo) {
+			for(Territorio terr: reg.get_paises()) {
+				if(terr.get_nome() == terra) {
+					return terr;
+				}
+			}
+		}
+		return null;
+	}
 	
-	public static boolean[] confere_vencedor(List<Integer> ataque, List<Integer> defesa) {
+	public void baixas_da_defesa(String terra,int qtd) {
+		Territorio atacado = this.get_terr(terra);
+		atacado.add_exercito(qtd);
+	}
+	
+	public boolean[] confere_vencedor() {
+		List<Integer> ataque = (List<Integer>)dado.get('a');
+		List<Integer> defesa = (List<Integer>)dado.get('d');
 		boolean[] batalhas = new boolean [(defesa.size() > ataque.size()) ? ataque.size() : defesa.size()];
 		int batalha=0;
 		while(defesa.size()!=0 && ataque.size()!=0) {
@@ -258,21 +304,46 @@ public class Api_model {
 			else{
 				batalhas[batalha]=false;
 			}
-			System.out.println(batalhas[batalha]);
+			//System.out.println(batalhas[batalha]);
 			batalha++;
 			ataque.remove(maioratk);
 			defesa.remove(maiordef);
 		}
 		return batalhas;
 	}
-	public static void ataque() {
-		//mock
-		Jogador jgd_atual = new Jogador("roberto","vermelho");
+	public int get_qtd_exercito_atq(String terra) {
+		for(Regiao reg: mapa_mundo) {
+			for(Territorio terr: reg.get_paises()) {
+				if(terr.get_nome() == terra) {
+					if(terr.get_exercitos() > 3) {
+						return 3;
+					} else {
+						return terr.get_exercitos()-1;
+					}
+				}
+			}
+		}
+		return -1;
+	}
+	public int get_qtd_exercito_def(String terra) {
+		for(Regiao reg: mapa_mundo) {
+			for(Territorio terr: reg.get_paises()) {
+				if(terr.get_nome() == terra) {
+					if(terr.get_exercitos() > 2) {
+						return 3;
+					} else {
+						return terr.get_exercitos();
+					}
+				}
+			}
+		}
+		return -1;
+	}
+	public void ataque(int qtd_ataque,int qtd_defesa) {
 		Observador view_do_dado = Api_view.Instancia_Observador("DadoView");
-		DadoModel dado= new DadoModel();
-		dado.add(view_do_dado);
-		dado.set_jogador(jgd_atual);
-		dado.lanca_dado(2,3);
+		this.dado.add(view_do_dado);
+		this.dado.set_jogador(jogadores_ativos.get(this.vez));
+		this.dado.lanca_dado(qtd_defesa,qtd_ataque);
 	}
 }
 

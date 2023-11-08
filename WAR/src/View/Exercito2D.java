@@ -29,8 +29,8 @@ class Exercito2D extends Ellipse2D.Double {
     
     public void draw(Graphics2D g2d, Color cor)
     {
-        int ax = -4;
-        int ay = 5;
+//        int ax = -4;
+//        int ay = 5;
         g2d.setColor((cor.equals(new Color(50,50,50)))  ? Color.WHITE: Color.BLACK);
         g2d.setStroke(new BasicStroke(2));
         g2d.draw(this.borda);
@@ -39,6 +39,8 @@ class Exercito2D extends Ellipse2D.Double {
         g2d.setColor((cor.equals(new Color(50,50,50)))  ? Color.WHITE: Color.BLACK);
         Font fonte = new Font("Dialog", Font.BOLD, 12);
         g2d.setFont(fonte);
-        g2d.drawString(Integer.toString(this.num_exercitos), (int)this.getCenterX() + ax, (int)this.getCenterY() + ay);
+        int larguraTexto = g2d.getFontMetrics().stringWidth(Integer.toString(this.num_exercitos));
+        int alturaTexto = g2d.getFontMetrics().getHeight();
+        g2d.drawString(Integer.toString(this.num_exercitos), (int)this.getCenterX() - larguraTexto / 2, (int)this.getCenterY() + alturaTexto / 4);
     }
 }

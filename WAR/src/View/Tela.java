@@ -50,7 +50,6 @@ class Tela extends JFrame {
 	public void next_rotina() {
 		
 		if(rodada == 0 && rotina_ind == 1) {
-			//System.out.println("Caiu aqui");
 			rotina_ind = 4;
 		}else {
 			rotina_ind++;

@@ -94,10 +94,10 @@ class RotinaJogadores {
 	public void show_layout(Graphics g) {
 		for(ImagemInfo layout : layout_jogador) {
 			if(layout.get_name() == layout_selected) {
+				Graphics2D g2d = (Graphics2D) g;
 				if(layout_selected == "Distribui Exercitos") {
 					// 436, 654
 					// 562, 672
-					Graphics2D g2d = (Graphics2D) g;
 					g2d.setColor(Color.WHITE);
 					Rectangle2D rect = new Rectangle2D.Double(436, 654, 128, 18);
 					g2d.fill(rect);
@@ -110,6 +110,20 @@ class RotinaJogadores {
 					g2d.setColor(Color.BLACK);
 					Font fonteExerc = new Font("Dialog", Font.BOLD, 24);
 					drawStringCentralized(fonteExerc,84,84,688-4,458,g,Integer.toString(qtd_exerc));
+				} else if(layout_selected == "Layout ataque") {
+					// 362,697,479,781
+					g2d.setColor(Color.WHITE);
+					Rectangle2D atacando_rect = new Rectangle2D.Double(362,697, 118, 84);
+					g2d.fill(atacando_rect);
+					g2d.setColor(Color.BLACK);
+					Font minhaFonte = new Font("Dialog", Font.BOLD, 13);
+					drawStringCentralized(minhaFonte,118,84,697,362,g,this.atacante);
+					// 532,697,649,781
+					g2d.setColor(Color.WHITE);
+					Rectangle2D atacado_rect = new Rectangle2D.Double(532,697, 118, 84);
+					g2d.fill(atacado_rect);
+					g2d.setColor(Color.BLACK);
+					drawStringCentralized(minhaFonte,118,84,697,532,g,this.atacado);
 				}
 		    	g.drawImage(layout.get_image(), layout.get_x(), layout.get_y(), layout.get_w(), layout.get_h(), null);
 			}

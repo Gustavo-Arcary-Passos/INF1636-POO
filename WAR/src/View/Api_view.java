@@ -115,7 +115,7 @@ public class Api_view {
 	}
 	
 	public void repinta_tela() {
-		System.out.println("Rodou agr");
+		//System.out.println("Rodou agr");
 		jogo.repaint();
 	}
 	
@@ -184,6 +184,12 @@ public class Api_view {
 //        	}
         }
         return null;
+	}
+	
+	public void realiza_ataque() {
+		//System.out.println("Aqui!");
+        DadoView.set_exibe(!DadoView.get_flag());
+        jogo.repaint();
 	}
 	
 	public void set_tela_mouseListener(MouseAdapter rotine) {

@@ -61,6 +61,9 @@ class Jogador {
     	}
     	return false;
     }
+    public void set_exercito(int qtd) {
+    	qtd_exercitos = qtd;
+    }
     
     public int get_exercito() {
     	return this.qtd_exercitos;
@@ -132,9 +135,11 @@ class Jogador {
     	this.conquistou_territorio_rodada = true;
     }
     public void add_exercito(int qtd) {
+//    	System.out.println("CHAMOU AUMENTA EXERCITO");
     	this.qtd_exercitos += qtd;
     }
     public void add_exercito() { //add exercito de acordo com metade dos territórios
+    	System.out.println("CHAMOU AUMENTA EXERCITO BASEADO TERRITORIO = " + this.domina.size()/2);
     	this.qtd_exercitos += this.domina.size()/2;
     }
     public int get__exercito_regiao(String regiao) {

@@ -55,7 +55,7 @@ class JanelaJogo extends LoadScene implements Observador {
 		count_images_loaded(new ImagemInfo ("war_tabela_bonus_continente.png",10,400,130,120));
 		count_images_loaded(new ImagemInfo ("war_tabela_troca.png",10,540,114,131));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_bottom.png",0,715,1024,85));
-		count_images_loaded(new ImagemInfo ("war_btnJogarDados.png",925,715,57,37));
+		//count_images_loaded(new ImagemInfo ("war_btnJogarDados.png",925,715,57,37));
 		//count_images_loaded(new ImagemInfo ("layout_distribui_exercitos_jogador.png",322,620,364,200));
 		//count_images_loaded(new ImagemInfo ("war_tabuleiro_mapa copy.png",0,0,1024,768));
 		
@@ -200,11 +200,11 @@ class JanelaJogo extends LoadScene implements Observador {
 		
 		
 		
-		g2d.setStroke(new BasicStroke(5));
-		g2d.setPaint(jogador_color);
-		Rectangle2D jogador_vez = new Rectangle2D.Double(920,710,65,50);
-		g2d.draw(jogador_vez);
-		g2d.setStroke(new BasicStroke(1));
+//		g2d.setStroke(new BasicStroke(5));
+//		g2d.setPaint(jogador_color);
+//		Rectangle2D jogador_vez = new Rectangle2D.Double(920,710,65,50);
+//		g2d.draw(jogador_vez);
+//		g2d.setStroke(new BasicStroke(1));
 		ImagemInfo carta;
 		int conta = 0;
 		for(String nome : jogadores_cartas) {

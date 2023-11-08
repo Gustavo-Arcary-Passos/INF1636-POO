@@ -17,7 +17,7 @@ class Asia extends Regiao{
         paises.add(new Territorio("China", "Ásia", new ArrayList<>(Arrays.asList("Turquia", "Cazaquistão", "Mongólia", "Coreia do Norte", "Coreia do Sul", "Paquistão", "Índia"))));
         paises.add(new Territorio("Coreia do Norte", "Ásia", new ArrayList<>(Arrays.asList("Japão", "China", "Coreia do Sul"))));
         paises.add(new Territorio("Coreia do Sul", "Ásia", new ArrayList<>(Arrays.asList("China", "Coreia do Norte", "Índia", "Bangladesh", "Tailândia"))));
-        paises.add(new Territorio("Índia", "Ásia", new ArrayList<>(Arrays.asList("Paquistão", "China", "Coreia do Sul", "Bangladesh"))));
+        paises.add(new Territorio("Índia", "Ásia", new ArrayList<>(Arrays.asList("Paquistão", "China", "Coreia do Sul", "Bangladesh","Indonésia"))));
         paises.add(new Territorio("Irã", "Ásia", new ArrayList<>(Arrays.asList("Iraque", "Síria", "Paquistão"))));
         paises.add(new Territorio("Iraque", "Ásia", new ArrayList<>(Arrays.asList("Arábia Saudita", "Jordânia", "Síria", "Irã"))));
         paises.add(new Territorio("Japão", "Ásia", new ArrayList<>(Arrays.asList("Cazaquistão", "Mongólia", "Coreia do Norte"))));

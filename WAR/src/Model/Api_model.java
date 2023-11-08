@@ -138,7 +138,7 @@ public class Api_model {
 	
 	public int get_vez_jogador_exercitos_distri() {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
-		//System.out.println("Qtd depois" + qtd_total);
+		System.out.println("Qtd depois " + jogador_da_vez.get_exercito());
 		return jogador_da_vez.get_exercito();
 	}
 	
@@ -168,6 +168,7 @@ public class Api_model {
 	
 	public void get_vez_jogador_add_exercito() {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		jogador_da_vez.set_exercito(0);
 		jogador_da_vez.add_exercito();
 		for(Regiao regiao : mapa_mundo) {
 			if(regiao.verifica_monopolio(jogador_da_vez)) {
@@ -189,6 +190,13 @@ public class Api_model {
 	public void next_jogador() {
 		this.vez++;
 		if(this.vez >= this.jogadores_ativos.size())this.vez = 0;
+		while(jogadores_ativos.get(this.vez).verifica_destruido()) {
+			this.vez++;
+			if(this.vez >= this.jogadores_ativos.size())this.vez = 0;
+			
+		}
+		
+		
 	}
 	
 	public boolean verifica_next_rodada() {
@@ -278,6 +286,26 @@ public class Api_model {
 	public void baixas_da_defesa(String terra,int qtd) {
 		Territorio atacado = this.get_terr(terra);
 		atacado.add_exercito(qtd);
+	}
+	
+	public void finaliza_conquista(String terra_conquistado,String terra_conquistador,int qtd) {
+		Territorio conquistado = this.get_terr(terra_conquistado);
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		conquistado.conquista(jogador_da_vez, qtd);
+		Territorio conquistador = this.get_terr(terra_conquistador);
+		conquistador.add_exercito(-qtd);
+	}
+	
+	public void conquistou_terr(String terra) {
+		Territorio conquistado = this.get_terr(terra);
+		Jogador perdeu_terra = conquistado.get_Jogador();
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		perdeu_terra.perde_territorio(conquistado);
+		if( perdeu_terra.qtd_territorios() == 0) {
+			perdeu_terra.jogador_destruido(jogador_da_vez);
+		}
+		jogador_da_vez.ganha_territorio(conquistado);
+		// conquistado.set_Jogador(jogador_da_vez);
 	}
 	
 	public boolean[] confere_vencedor() {

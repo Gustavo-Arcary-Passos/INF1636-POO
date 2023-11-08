@@ -201,6 +201,7 @@ public class Controlador {
             				}
             				if(jogo.get_exercito_terr(tela.get_terr_sel(2)) == 0) {
             					// se territorio atacado ficar sem exercito abrir "Distribui Exercitos"
+            					jogo.conquistou_terr(tela.get_terr_sel(2));
             					tela.set_rotina_atual("Distribui Exercitos");
     		            		tela.repinta_tela();
     		            		tela.create_numero_exercitos_text(tela.get_terr_sel(2),1);
@@ -208,8 +209,28 @@ public class Controlador {
             			}
             		} else if(tela.get_rotina_atual() == "Distribui Exercitos") {
             			// selecionar quantidade de exercitos que serao realocados
-            			// nao trocar de tela ate que seja confirmado quantidade realocada
-            			// depois de colocar exercitos trocar para "Layout ataque pass"
+            			if(x > 575 && y > 709 && x < 619 && y < 750) {
+	            			tela.change_numero_exercitos_text(1,jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)),1);
+	            		} else if(x > 380 && y > 718 && x < 424 && y < 741) {
+	            			tela.change_numero_exercitos_text(-1,jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)),1);
+	            		}
+            			if(tela.verifica_ok_clicado(x,y)) {
+	            			// pega territorio selecionado 
+	            			int qtd = tela.get_qtd_exerc_sel();
+	            			System.out.println("OK");
+	            			if(qtd > 0) {
+	            				// nao trocar de tela ate que seja confirmado quantidade realocada
+	                			// depois de colocar exercitos trocar para "Layout ataque pass"
+//	            				System.out.println(tela.get_terr_sel(0));
+//	            				System.out.println(tela.get_terr_sel(1));
+//	            				System.out.println(tela.get_terr_sel(2));
+	            				jogo.finaliza_conquista(tela.get_terr_sel(2),tela.get_terr_sel(1),qtd);
+//		            			System.out.println(jogo.posiciona_exercitos_jogador_vez(qtd,tela.get_terr_sel(0)));
+//		            			System.out.println(jogo.posiciona_exercitos_jogador_vez(-qtd,tela.get_terr_sel(1)));
+//		            			// System.out.println(tela.get_terr_sel(0));
+		            			tela.set_rotina_layout("Layout ataque pass");
+	            			}
+	            		}
             		}
             	} else if(e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual() == "REP" ) {
             		if(tela.verifica_passar_ataque_clicado(x,y)) {

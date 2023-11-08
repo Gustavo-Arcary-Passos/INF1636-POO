@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.*;
-import View.Api_view;
 
 public class Api_model {
 	private static Api_model instance = null;
@@ -367,9 +366,10 @@ public class Api_model {
 		}
 		return -1;
 	}
-	public void ataque(int qtd_ataque,int qtd_defesa) {
-		Observador view_do_dado = Api_view.Instancia_Observador("DadoView");
+	public void add_dado_view(Observador view_do_dado) {
 		this.dado.add(view_do_dado);
+	}
+	public void ataque(int qtd_ataque,int qtd_defesa) {
 		this.dado.set_jogador(jogadores_ativos.get(this.vez));
 		this.dado.lanca_dado(qtd_defesa,qtd_ataque);
 	}

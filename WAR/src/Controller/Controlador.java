@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import Model.Api_model;
+import Model.Observador;
 import View.Api_view;
 
 public class Controlador {
@@ -19,6 +20,8 @@ public class Controlador {
 	public Controlador() {
     	tela = new Api_view();
     	jogo = Api_model.getInstance();
+    	Observador view_do_dado = Api_view.Instancia_Observador("DadoView");
+    	jogo.add_dado_view(view_do_dado);
     	jogo.add_observadores_exercitos(tela.get_janelajogo());
     	listener_JanelaInicial(); // Inicializa jogadores, sorteia objetivo
 	}
@@ -44,7 +47,7 @@ public class Controlador {
 			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 			    	jogo.get_vez_jogador_add_exercito();
-			    	jogo.get_vez_jogador_territorios();
+			    	// jogo.get_vez_jogador_territorios();
 			    	listener_JanelaJogo();
 			    }
 		    }
@@ -72,7 +75,7 @@ public class Controlador {
 	            	if(tela.get_fase_atual() == "PER") {
 	            		if(jogo.get_vez_jogador_exercitos_reg() == 0) {
             				tela.set_next_rotina();
-            				System.out.println("PER -> PE");
+            				//System.out.println("PER -> PE");
             			} else {
             				if(jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos") {
             					tela.set_rotina_atual("Distribui Exercitos");
@@ -88,7 +91,7 @@ public class Controlador {
     			            		}
     			            		if(tela.verifica_ok_clicado(x,y)) {
     			            			int qtd = tela.get_qtd_exerc_sel();
-    			            			System.out.println("OK");
+    			            			//System.out.println("OK");
     			            			if(qtd > 0) {
     				            			jogo.posiciona_exercitos_reg_jogador_vez(qtd,tela.get_terr_sel(0));
     				            			tela.set_rotina_layout("Layout nao ver cartas");
@@ -127,7 +130,7 @@ public class Controlador {
 			            		if(tela.verifica_ok_clicado(x,y)) {
 			            			// pega territorio selecionado 
 			            			int qtd = tela.get_qtd_exerc_sel();
-			            			System.out.println("OK");
+			            			//System.out.println("OK");
 			            			if(qtd > 0) {
 				            			jogo.posiciona_exercitos_jogador_vez(qtd,tela.get_terr_sel(0));
 				            			System.out.println(tela.get_terr_sel(0));
@@ -187,16 +190,19 @@ public class Controlador {
             					// so permiti realizar ataque se tiver algum territorio selecionado para ser atacado e 
             					if(jogo.get_exercito_terr(tela.get_terr_sel(1)) > 1) {
             						// se territorio atacante possuir mais de 1 exercito
-            						System.out.println("ATACANDO");
-            						System.out.println("Quantidade de ataque" + jogo.get_qtd_exercito_def(tela.get_terr_sel(1)));
-            						System.out.println("Quantidade de defesa" + jogo.get_qtd_exercito_def(tela.get_terr_sel(2)));
+//            						System.out.println("ATACANDO");
+//            						System.out.println("Quantidade de ataque" + jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)));
+//            						System.out.println("Quantidade de defesa" + jogo.get_qtd_exercito_def(tela.get_terr_sel(2)));
+            						System.out.println("AQUI ->");
             						jogo.ataque(jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)),jogo.get_qtd_exercito_def(tela.get_terr_sel(2)));
             						int[] res = jogo.qtd_vence_derrota();
-            						System.out.println("Vitorias = "+ res[0]);
-            						System.out.println("Derrotas = "+ res[1]);
+            						
+//            						System.out.println("Vitorias = "+ res[0]);
+//            						System.out.println("Derrotas = "+ res[1]);
             						jogo.posiciona_exercitos_jogador_vez(-res[1],tela.get_terr_sel(1));
             						jogo.baixas_da_defesa(tela.get_terr_sel(2),-res[0]);
             						tela.realiza_ataque();
+            						System.out.println("<- AQUI");
             					}
             				}
             				if(jogo.get_exercito_terr(tela.get_terr_sel(2)) == 0) {
@@ -217,7 +223,7 @@ public class Controlador {
             			if(tela.verifica_ok_clicado(x,y)) {
 	            			// pega territorio selecionado 
 	            			int qtd = tela.get_qtd_exerc_sel();
-	            			System.out.println("OK");
+	            			//System.out.println("OK");
 	            			if(qtd > 0) {
 	            				// nao trocar de tela ate que seja confirmado quantidade realocada
 	                			// depois de colocar exercitos trocar para "Layout ataque pass"
@@ -239,21 +245,21 @@ public class Controlador {
         			}
             	}
             	if (tela.get_fase_atual() == "PASS") {
-            		System.out.println("Proximo jogador");
-    				System.out.println(tela.get_fase_atual());
+//            		System.out.println("Proximo jogador");
+//    				System.out.println(tela.get_fase_atual());
 	            	if(jogo.verifica_vez_jogador_objetivo()) {
 	            		tela.encerrar_partida(); // Nao criado
 	            	} else { // trocar para proximo jogador
 	            		if(jogo.verifica_next_rodada()) {
 	            			// proxima rodada
-	            			System.out.println("Proxima rodada");
+	            			//System.out.println("Proxima rodada");
 	            			tela.next_rodada();
 	            		}
 	            		jogo.next_jogador();
 	            		tela.set_jogador_vez(jogo.get_vez_jogador_color());
 				    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 				    	jogo.get_vez_jogador_add_exercito();
-				    	jogo.get_vez_jogador_territorios();
+				    	//jogo.get_vez_jogador_territorios();
 				    	tela.set_next_rotina();
 	            	}
 	            }

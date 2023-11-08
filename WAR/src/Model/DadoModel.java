@@ -4,8 +4,8 @@ import java.util.*;
 
 class DadoModel implements Observado {
 	List<Observador> lst;
-	List<Integer> valoresatk;
-	List<Integer> valoresdef;
+	List<Integer> valoresatk = new ArrayList<Integer>();
+	List<Integer> valoresdef = new ArrayList<Integer>();
 	Jogador jgd_atual;
 	public DadoModel() {
 		lst= new ArrayList<Observador>();
@@ -35,19 +35,25 @@ class DadoModel implements Observado {
 	}
 	
 	protected void lanca_dado(int qtd_dados_defesa, int qtd_dados_ataque){
-		List<Integer> valores = new ArrayList<Integer>();
-		List<Integer> valores2 = new ArrayList<Integer>();
+		System.out.println(qtd_dados_defesa + " | "  + qtd_dados_ataque);
+		valoresatk.clear();
+		valoresdef.clear();
 		Random rand = new Random();
-		for(int i = 0; i<qtd_dados_ataque;i++) {
-			valores.add(rand.nextInt(6)+1);
-		}
-		valoresatk=valores;
-		for(int i = 0; i<qtd_dados_defesa;i++) {
-			valores2.add(rand.nextInt(6)+1);
-		}
-		valoresdef=valores2;
+		for (int i = 0; i < qtd_dados_ataque; i++) {
+	        if (valoresatk.size() < qtd_dados_ataque) { // Verifique o tamanho antes de adicionar
+	            valoresatk.add(rand.nextInt(6) + 1);
+	        }
+	    }
+
+	    for (int i = 0; i < qtd_dados_defesa; i++) {
+	        if (valoresdef.size() < qtd_dados_defesa) { // Verifique o tamanho antes de adicionar
+	            valoresdef.add(rand.nextInt(6) + 1);
+	        }
+	    }
+		//valoresdef=valores2;
 		for(Observador el : lst ) {
 			el.notify(this);
 		}
+		
 	}
 }

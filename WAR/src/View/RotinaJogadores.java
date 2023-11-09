@@ -15,7 +15,7 @@ class RotinaJogadores {
 	private static RotinaJogadores instance = null;
 	protected List<ImagemInfo> layout_jogador = new ArrayList<>();
 	protected List<String> rotina = new ArrayList<>(Arrays.asList("PER", "PE", "ATQ", "REP", "PASS"));
-	protected List<String> lista_carta = new ArrayList<>(Arrays.asList("UMACARTA")); // Carrega as cartas
+	protected List<String> lista_carta = null; // alterei 
 	protected String layout_selected;
 	protected String atacante;
 	protected String atacado;
@@ -149,17 +149,51 @@ class RotinaJogadores {
 		    	g.drawImage(layout.get_image(), layout.get_x(), layout.get_y(), layout.get_w(), layout.get_h(), null);
 				if(layout_selected == "Layout nao ver cartas") {
 					// PODE COLOCAR AS IMAGENS AQUI E USAR UM AS CARTAS DE COSTAS 
-					for(String carta : lista_carta) {
-						CartaInfo verso = CartasView.get_carta("Verso");
-						if(verso != null) {
-							g.drawImage(verso.get_image(), 342, 693, 50, 80, null);
-							System.out.println(verso.get_name());
-						} else {
-							System.out.println("CHUVANISTAIGER");
+					lista_carta.clear();
+					lista_carta.add("Egito");
+					lista_carta.add(null);
+					lista_carta.add("Perth");
+					System.out.println("Lista de cartas: " + lista_carta.toString());
+
+
+					int desloc_x = 0; // usada para desenhar cada carta no lugar certo
+					for (String carta : lista_carta)
+					{
+						
+						if (carta != null) {
+							carta = "Verso";
+						}  // se ela existe "vira do avesso"
+
+						CartaInfo cartaInfo = CartasView.get_carta(carta); // a unica diferença é que mostra todas as cartas de costas
+						if (cartaInfo != null)
+						{
+							g.drawImage(cartaInfo.get_image(), 342 + desloc_x, 693, 50, 80, null); // coordenada inicial
+							System.out.println(cartaInfo.get_name());
 						}
+
+						desloc_x += 70; // calculado na mão
 					}
 				} else if(layout_selected == "Layout ver cartas") {
 					// PODE COLOCAR AS IMAGENS AQUI E USAR UMA List<String> para saber quais cartas carregar
+					lista_carta.clear();
+					lista_carta.add("Egito");
+					lista_carta.add(null);
+					lista_carta.add("Perth");
+					System.out.println("Lista de cartas: " + lista_carta.toString());
+
+
+					int desloc_x = 0; // usada para desenhar cada carta no lugar certo
+					for (String carta : lista_carta)
+					{
+						CartaInfo cartaInfo = CartasView.get_carta(carta); // <-- aqui pegamos a carta de frente
+						if (cartaInfo != null)
+						{
+							g.drawImage(cartaInfo.get_image(), 342 + desloc_x, 693, 50, 80, null); // coordenada inicial
+							System.out.println(cartaInfo.get_name());
+						}
+
+						desloc_x += 70; // calculado na mão
+					}
 				}
 			}
 		}

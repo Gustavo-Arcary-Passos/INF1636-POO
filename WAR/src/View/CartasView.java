@@ -102,31 +102,4 @@ class CartasView {
 	}
 
 
-	public void desenha_objetivo(Graphics g, Objetivo obj) {
-		switch(obj) {
-			case DESTRUIR_VERMELHOS:
-				images[0].desenha(g);
-				break;
-			case DESTRUIR_AMARELOS:
-				images[1].desenha(g);
-				break;
-			case DESTRUIR_VERDES:
-				images[2].desenha(g);
-				break;
-			case DESTRUIR_AZUIS:
-				images[3].desenha(g);
-				break;
-			case DESTRUIR_PRETOS:
-				images[4].desenha(g);
-				break;
-			case DESTRUIR_BRANCOS:
-				images[5].desenha(g);
-				break;
-		}
-	}
-
-	public void some(Graphics g) 
-	{
-		images[0].apaga(g);
-	}
 }

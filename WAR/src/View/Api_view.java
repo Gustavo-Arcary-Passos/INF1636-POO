@@ -178,7 +178,11 @@ public class Api_view {
 	}
 	
 	public void set_cartas(List<String> paises) {
-		JanelaJogo.set_jogadores_cartas(paises);
+		rotina_atual.set_lista_carta(paises);
+	}
+	
+	public List<String> get_cartas(){
+		return rotina_atual.get_lista_carta();
 	}
 	
 	public void reposicionamento_selected_lose(String pais) {

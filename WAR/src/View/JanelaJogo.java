@@ -19,7 +19,6 @@ import Model.Observado;
 
 class JanelaJogo extends LoadScene implements Observador {
 	protected static Color jogador_color = Color.WHITE;
-	protected static List<String> jogadores_cartas = new ArrayList<>();
 	protected static List<String> jogadores_name;
 	protected static List<String> jogadores_color;
 	protected static List<JButton> button = new ArrayList<>();
@@ -34,10 +33,6 @@ class JanelaJogo extends LoadScene implements Observador {
 				el.set_color(colorido_resp.get(colorido.indexOf((String)o.get('c'))));
 			}
 		}
-	}
-	
-	public static void set_jogadores_cartas(List<String> cartas) {
-		jogadores_cartas = cartas;
 	}
 	
 	public static void set_jogador_color(String cor) {
@@ -171,17 +166,6 @@ class JanelaJogo extends LoadScene implements Observador {
 		    	}
 		    }
 	    }
-		
-		g2d.setPaint(jogador_color);
-		Rectangle2D jogador_layout = new Rectangle2D.Double(338,635,75,50);
-		g2d.fill(jogador_layout);
-		ImagemInfo carta;
-		int conta = 0;
-		for(String nome : jogadores_cartas) {
-			carta = CartasView.get_carta(nome);
-	    	g.drawImage(carta.get_image(), 333+(conta*70), 680, carta.get_w()/2, carta.get_h()/2, null);
-	    	conta++;
-		}
 
 		//Condicional de plot de dados
 		if(DadoView.get_flag()) {

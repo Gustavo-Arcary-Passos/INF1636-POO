@@ -67,11 +67,12 @@ class CartasView {
 		add_cartaconquista(new CartaInfo("war_carta_oc_indonesia.png",132,218,"Indonésia"));
 		add_cartaconquista(new CartaInfo("war_carta_oc_novazelandia.png",132,218,"Nova Zelândia"));
 		add_cartaconquista(new CartaInfo("war_carta_oc_perth.png",132,218,"Perth"));
-		
+		//Costas
+		add_cartaconquista(new CartaInfo("war_carta_verso.png", 132, 218,"Verso"));
 	}
 	
 	public static CartaInfo get_carta(String carta) {
-		for(int i = 0; i < images.length; i++) {
+		for(int i = 0; i < count_cartas; i++) {
 			if(carta == images[i].get_name()) {
 				return images[i];
 			}

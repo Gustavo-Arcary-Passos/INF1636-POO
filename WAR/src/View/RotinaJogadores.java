@@ -15,11 +15,20 @@ class RotinaJogadores {
 	private static RotinaJogadores instance = null;
 	protected List<ImagemInfo> layout_jogador = new ArrayList<>();
 	protected List<String> rotina = new ArrayList<>(Arrays.asList("PER", "PE", "ATQ", "REP", "PASS"));
+	protected List<String> lista_carta = new ArrayList<>(Arrays.asList("UMACARTA")); // Carrega as cartas
 	protected String layout_selected;
 	protected String atacante;
 	protected String atacado;
 	protected String terr;
 	protected int qtd_exerc,qtd_exerc_min,qtd_exerc_max;
+	
+	public List<String> get_lista_carta (){
+		return this.lista_carta;
+	}
+	
+	public void set_lista_carta (List<String> jogador_cartas){
+		this.lista_carta = jogador_cartas;
+	}
 	
 	public static RotinaJogadores getInstance() {
         if (instance == null) {
@@ -124,6 +133,20 @@ class RotinaJogadores {
 					drawStringCentralized(minhaFonte,118,84,697,532,g,this.atacado);
 				}
 		    	g.drawImage(layout.get_image(), layout.get_x(), layout.get_y(), layout.get_w(), layout.get_h(), null);
+				if(layout_selected == "Layout nao ver cartas") {
+					// PODE COLOCAR AS IMAGENS AQUI E USAR UM AS CARTAS DE COSTAS 
+					for(String carta : lista_carta) {
+						CartaInfo verso = CartasView.get_carta("Verso");
+						if(verso != null) {
+							g.drawImage(verso.get_image(), 342, 693, 50, 80, null);
+							System.out.println(verso.get_name());
+						} else {
+							System.out.println("CHUVANISTAIGER");
+						}
+					}
+				} else if(layout_selected == "Layout ver cartas") {
+					// PODE COLOCAR AS IMAGENS AQUI E USAR UMA List<String> para saber quais cartas carregar
+				}
 			}
 		}
 	}

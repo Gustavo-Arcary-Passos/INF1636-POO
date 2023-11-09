@@ -12,7 +12,7 @@ class CartaInfo extends ImagemInfo {
     
     public CartaInfo(String caminho, int w, int h, String nome)
     {
-        super(caminho, 512, 384, w, h);
+        super(caminho, 512, 384, w, h,nome);
     }
 
     /**

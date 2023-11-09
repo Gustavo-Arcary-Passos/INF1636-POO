@@ -162,6 +162,7 @@ public class Api_view {
 	}
 	
 	public void set_jogador_vez(String cor) {
+		// System.out.println("Chamando");
 		JanelaJogo.set_jogador_color(cor); 
 	}
 	

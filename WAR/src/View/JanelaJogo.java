@@ -166,7 +166,10 @@ class JanelaJogo extends LoadScene implements Observador {
 		    	}
 		    }
 	    }
-
+		// Cor do jogador da vez
+		g2d.setPaint(jogador_color);
+		Rectangle2D jogador_rect=new Rectangle2D.Double(339,634,60,60);
+		g2d.fill(jogador_rect);
 		//Condicional de plot de dados
 		if(DadoView.get_flag()) {
 			ImagemInfo[] images_atk = DadoView.get_dados_atk();

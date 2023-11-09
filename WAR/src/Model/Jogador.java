@@ -13,6 +13,10 @@ class Jogador {
     private Objetivo objetivo;
     protected int qtd_exercitos;
     
+    public String get_objetivo_name() {
+    	return objetivo.get_nome();
+    }
+    
     public List<Territorio> get_list_terr(){
     	return this.domina;
     }

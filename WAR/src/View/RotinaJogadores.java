@@ -21,6 +21,20 @@ class RotinaJogadores {
 	protected String atacado;
 	protected String terr;
 	protected int qtd_exerc,qtd_exerc_min,qtd_exerc_max;
+	protected boolean objetivo;
+	protected String objetivo_jog;
+	
+	public void set_objetivo(String name) {
+		objetivo_jog = name;
+	}
+	
+	public void set_objetivo_status(boolean status) {
+		objetivo = status;
+	}
+	
+	public boolean get_objetivo_status() {
+		return objetivo;
+	}
 	
 	public List<String> get_lista_carta (){
 		return this.lista_carta;
@@ -99,9 +113,9 @@ class RotinaJogadores {
 	}
 	
 	public void show_layout(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
 		for(ImagemInfo layout : layout_jogador) {
 			if(layout.get_name() == layout_selected) {
-				Graphics2D g2d = (Graphics2D) g;
 				if(layout_selected == "Distribui Exercitos") {
 					// 436, 654
 					// 562, 672
@@ -149,6 +163,15 @@ class RotinaJogadores {
 				}
 			}
 		}
+		if(objetivo) {
+			g2d.setColor(new Color(0,0,0,225));
+			Rectangle2D atacado_rect = new Rectangle2D.Double(0,0,1024,800);
+			g2d.fill(atacado_rect);
+			CartaInfo objetivo_card = CartasView.get_carta(objetivo_jog);
+			int factor = 1;
+			g.drawImage(objetivo_card.get_image(), 1024/2-objetivo_card.get_w()/2*factor, 800/2-objetivo_card.get_h()/2*factor, objetivo_card.get_w()*factor, objetivo_card.get_h()*factor, null);
+		}
+		
 	}
 	public void drawStringCentralized(Font fonte,int retanguloLargura,int retanguloAltura,int retanguloY,int retanguloX,Graphics g,String texto) {
 		FontMetrics fontMetrics = g.getFontMetrics(fonte);

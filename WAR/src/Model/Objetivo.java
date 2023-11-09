@@ -6,11 +6,12 @@ abstract class Objetivo {
 	protected Jogador dono;
 	protected Regiao asia, europa, americasul, americanorte, africa, oceania;
 	protected List<Jogador> todos_jogadores;
+	protected String nome;
     // construtor
-    public Objetivo() {
-       
+    public Objetivo(String name) {
+       this.nome = name;
     }
-    public Objetivo(List<Jogador> todos_jogadores, List<Regiao> mapa) {
+    public Objetivo(List<Jogador> todos_jogadores, List<Regiao> mapa, String name) {
     	this.todos_jogadores = new ArrayList<Jogador>();
     	for(Jogador el : todos_jogadores) {
     		this.todos_jogadores.add(el);
@@ -35,6 +36,11 @@ abstract class Objetivo {
     			this.oceania = reg;
     		}
     	}
+    	this.nome = name;
+    }
+    
+    public String get_nome() {
+    	return this.nome;
     }
     	
     

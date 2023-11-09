@@ -6,7 +6,7 @@ class CartasView {
 	public static CartaInfo[] images;
 	private static int count_cartas;
 	static {
-		images = new CartaInfo[60];
+		images = new CartaInfo[80];
 		//Africa
 		add_cartaconquista(new CartaInfo("war_carta_af_africadosul.png", 132, 218,"África do Sul"));
 		add_cartaconquista(new CartaInfo("war_carta_af_angola.png",132,218,"Angola"));
@@ -69,6 +69,22 @@ class CartasView {
 		add_cartaconquista(new CartaInfo("war_carta_oc_perth.png",132,218,"Perth"));
 		//Costas
 		add_cartaconquista(new CartaInfo("war_carta_verso.png", 132, 218,"Verso"));
+		
+		//Objetivos
+		add_cartaconquista(new CartaInfo("obj_01.jpg",147,226,"Objetivo 1"));
+		add_cartaconquista(new CartaInfo("obj_02.jpg",147,226,"Objetivo 2"));
+		add_cartaconquista(new CartaInfo("obj_03.jpg",147,226,"Objetivo 3"));
+		add_cartaconquista(new CartaInfo("obj_04.jpg",147,226,"Objetivo 4"));
+		add_cartaconquista(new CartaInfo("obj_05.jpg",147,226,"Objetivo 5"));
+		add_cartaconquista(new CartaInfo("obj_06.jpg",147,226,"Objetivo 6"));
+		add_cartaconquista(new CartaInfo("obj_07.jpg",147,226,"Objetivo 7"));
+		add_cartaconquista(new CartaInfo("obj_08.jpg",147,226,"Objetivo 8"));
+		add_cartaconquista(new CartaInfo("obj_09.jpg",147,226,"Objetivo 9"));
+		add_cartaconquista(new CartaInfo("obj_10.jpg",147,226,"Objetivo 10"));
+		add_cartaconquista(new CartaInfo("obj_11.jpg",147,226,"Objetivo 11"));
+		add_cartaconquista(new CartaInfo("obj_12.jpg",147,226,"Objetivo 12"));
+		add_cartaconquista(new CartaInfo("obj_13.jpg",147,226,"Objetivo 13"));
+		add_cartaconquista(new CartaInfo("obj_14.jpg",147,226,"Objetivo 14"));
 	}
 	
 	public static CartaInfo get_carta(String carta) {

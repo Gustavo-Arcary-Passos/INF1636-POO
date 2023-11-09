@@ -18,6 +18,10 @@ public class Api_model {
         return instance;
     }
 	
+	public String get_obj_jgd_da_vez() {
+		return jogadores_ativos.get(this.vez).get_objetivo_name();
+	}
+	
 	public void add_jogador(String nome,String cor) {
 		jogadores_ativos.add(new Jogador(nome, cor));
 	}

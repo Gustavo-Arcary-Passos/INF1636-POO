@@ -18,6 +18,14 @@ public class Api_view {
 		jogo.setVisible(true);
 	}
 	
+	public void set_look_objetivo(boolean status) {
+		rotina_atual.set_objetivo_status(status);
+	}
+	
+	public boolean get_look_objetivo() {
+		return rotina_atual.get_objetivo_status();
+	}
+	
 	public Observador get_janelajogo() {
 		return jogo.get_janelajogo();
 	}
@@ -109,6 +117,20 @@ public class Api_view {
 	
 	public void encerrar_partida() {
 		
+	}
+	
+	public void set_objetivo_jogador_da_vez(String name) {
+		rotina_atual.set_objetivo(name);
+	}
+	
+	public boolean verifica_objetivo_clicado(int x , int y) {
+		int x1 = 942;
+		int y1 = 737;
+		double r = 30;
+		if((double)Math.sqrt(Math.pow((double)x - (double)x1, 2) + Math.pow((double)y - (double)y1, 2)) < r) {
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean verifica_ok_clicado(int x,int y) {

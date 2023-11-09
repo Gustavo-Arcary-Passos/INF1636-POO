@@ -11,11 +11,7 @@ import Model.Observador;
 
 public class Api_view {
 	Tela jogo;
-	RotinaJogadores rotina_atual = RotinaJogadores.getInstance();
-	JLabel qtd_exercito;
-	JLabel name_terr;
-	JLabel terr_atacante;
-	JLabel terr_atacado;	
+	RotinaJogadores rotina_atual = RotinaJogadores.getInstance();	
 	public Api_view() {
 		jogo = new Tela();
 		jogo.setTitle("War");
@@ -184,6 +180,34 @@ public class Api_view {
 	public void set_cartas(List<String> paises) {
 		JanelaJogo.set_jogadores_cartas(paises);
 	}
+	
+	public void reposicionamento_selected_lose(String pais) {
+		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
+		for(DesenhaTerritorioPoligono terra : terras) {
+			if(!terra.get_slctd() && terra.get_nome() == pais) {
+				terra.set_slctd(true);
+			}
+		}
+	}
+	
+	public void reposicionamento_selected_win(String pais) {
+		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
+		for(DesenhaTerritorioPoligono terra : terras) {
+			if(!terra.get_slctd() && terra.get_nome() == pais) {
+				terra.set_slctd(true);
+			}
+		}
+	}
+	
+	public void reset_all_selected() {
+		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
+		for(DesenhaTerritorioPoligono terra : terras) {
+			if(terra.get_slctd()) {
+				terra.set_slctd(false);
+			}
+		}
+	}
+	
 	/** Função que instancia um observador da view para ser usada na model, o parametro o se escreve igual ao nome da classe que você deseja instanciar
 	 **/
 	public static Observador Instancia_Observador(String o) {

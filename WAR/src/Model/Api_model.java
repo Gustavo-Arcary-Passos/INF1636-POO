@@ -8,6 +8,7 @@ public class Api_model {
 	public List<Jogador> jogadores_ativos;
 	public DeckObjetivos deckobj;
 	public DadoModel dado;
+	public List<Integer> reposicionamento;
 	public int vez;
 	
 	public static Api_model getInstance() {
@@ -322,6 +323,45 @@ public class Api_model {
 	public void ataque(int qtd_ataque,int qtd_defesa) {
 		this.dado.set_jogador(jogadores_ativos.get(this.vez));
 		this.dado.lanca_dado(qtd_defesa,qtd_ataque);
+	}
+	public void save_territorios() {
+		List<Integer> qtd = new ArrayList<>();
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		List<Territorio> terras = jogador_da_vez.get_list_terr();
+		for(Territorio terra : terras) {
+			qtd.add(terra.get_exercitos());
+		}
+		System.out.println(terras.size() + " " + qtd.size());
+		this.reposicionamento = qtd;
+	}
+	public int get_max_exerc(String pais) {
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		List<Territorio> terras = jogador_da_vez.get_list_terr();
+		int i = 0;
+		System.out.println(terras.size() + " " + reposicionamento.size());
+		for(Territorio terra : terras) {
+			if(terra.get_nome() == pais) {
+				return this.reposicionamento.get(i);
+			}
+			i++;
+		}
+		return 0;
+	}
+	public void realocate_exerc(int qtd,String de,String para) {
+		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
+		List<Territorio> terras = jogador_da_vez.get_list_terr();
+		int i = 0;
+		for(Territorio terra : terras) {
+			if(terra.get_nome() == de) {
+				int rep= this.reposicionamento.get(i);
+				rep = rep - qtd;
+				terra.add_exercito(-qtd);
+			}
+			if(terra.get_nome() == para) {
+				terra.add_exercito(qtd);
+			}
+			i++;
+		}
 	}
 }
 

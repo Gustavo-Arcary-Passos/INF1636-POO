@@ -161,6 +161,7 @@ public class Controlador {
             				// passa para proxima rotina se clicar na regiao do circulo
             				tela.set_next_rotina();
             				tela.set_rotina_layout("Layout reposiciona pass");
+            				jogo.save_territorios();
             			} else if (jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
             				// troca para "Layout ataque" se clicar em uma regiao que pertence ao jogador
             				tela.set_rotina_layout("Layout ataque");
@@ -224,10 +225,45 @@ public class Controlador {
 	            		}
             		}
             	} else if(e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual() == "REP" ) {
-            		if(tela.verifica_passar_ataque_clicado(x,y)) {
-        				tela.set_next_rotina();
-        				tela.set_rotina_layout("Layout nao ver cartas");
-        			}
+            		if(tela.get_rotina_atual() == "Layout reposiciona pass") {
+	            		if(tela.verifica_passar_ataque_clicado(x,y)) {
+	        				tela.set_next_rotina();
+	        				tela.set_rotina_layout("Layout nao ver cartas");
+	        			} else if((x > 322 && y > 620 && x < 686 && y < 800)) {
+	        				
+	        			} else if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && jogo.get_max_exerc(tela.verifica_territorio_clicado(x,y)) > 0) {
+	        				tela.reposicionamento_selected_lose(tela.verifica_territorio_clicado(x,y));
+	        				tela.set_rotina_atual("Distribui Exercitos");
+		            		tela.create_numero_exercitos_text("",0);
+		            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y),1);
+		            		tela.repinta_tela();
+	        			}
+            		} else if(tela.get_rotina_atual() == "Distribui Exercitos") {
+            			if((x > 322 && y > 620 && x < 686 && y < 800)) {
+            				if(x > 575 && y > 709 && x < 619 && y < 750) {
+            					int qtd = tela.get_qtd_exerc_sel();
+            					if(qtd+1 < jogo.get_exercito_terr(tela.get_terr_sel(1)))
+    	            			tela.change_numero_exercitos_text(1,jogo.get_max_exerc(tela.get_terr_sel(1)),0);
+    	            		} else if(x > 380 && y > 718 && x < 424 && y < 741) {
+    	            			tela.change_numero_exercitos_text(-1,jogo.get_max_exerc(tela.get_terr_sel(1)),0);
+    	            		}
+            				if(tela.verifica_ok_clicado(x,y)) {
+    	            			int qtd = tela.get_qtd_exerc_sel();
+    	            			if(qtd > 0) {
+    	            				tela.reset_all_selected();
+    	            				jogo.realocate_exerc(qtd,tela.get_terr_sel(1),tela.get_terr_sel(0));
+    		            			tela.set_rotina_layout("Layout reposiciona pass");
+    	            			}
+    	            		}
+	        			} else if(!jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
+	        				tela.reset_all_selected();
+            				tela.set_rotina_layout("Layout reposiciona pass");
+            			} else if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && jogo.verifica_territorio_jogador_fronteira(tela.get_terr_sel(1),tela.verifica_territorio_clicado(x,y))) {
+		            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),0);
+		            		tela.reposicionamento_selected_win(tela.verifica_territorio_clicado(x,y));
+		            		tela.repinta_tela();
+            			}
+            		}
             	}
             	if (tela.get_fase_atual() == "PASS") {
 	            	if(jogo.verifica_vez_jogador_objetivo()) {

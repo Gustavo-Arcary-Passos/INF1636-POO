@@ -13,6 +13,10 @@ abstract class LoadScene {
 	protected DesenhaTerritorioPoligono[] formas_geometricas;
 	protected int count_images,count_formas_geometricas;
 	
+	public DesenhaTerritorioPoligono[] get_formas() {
+		return formas_geometricas;
+	}
+	
 	public void set_count_images(int number) {
 		this.count_images = number;
 	}

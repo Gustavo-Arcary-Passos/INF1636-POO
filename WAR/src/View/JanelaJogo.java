@@ -140,9 +140,26 @@ class JanelaJogo extends LoadScene implements Observador {
 		    	g2d.setColor(formas_geometricas[i].get_cor());
 		    	g2d.fill(formas_geometricas[i].get_polygon());
 		    	g2d.setColor(formas_geometricas[i].get_border());
-		    	g2d.setStroke(new BasicStroke(2));
-		    	g2d.draw(formas_geometricas[i].get_polygon());
-		    	g2d.setStroke(new BasicStroke(1));
+		    	if(formas_geometricas[i].get_slctd()) {
+		    		Color originalColor = formas_geometricas[i].get_cor();
+		    		int factor = 50;
+		    		int red = originalColor.getRed() - factor;
+		            int green = originalColor.getGreen() - factor;
+		            int blue = originalColor.getBlue() - factor;
+
+		            red = Math.max(0, red);
+		            green = Math.max(0, green);
+		            blue = Math.max(0, blue);
+
+		            g2d.setColor(new Color(red, green, blue));
+		    		g2d.setStroke(new BasicStroke(4));
+			    	g2d.draw(formas_geometricas[i].get_polygon());
+			    	g2d.setStroke(new BasicStroke(1));
+		    	} else {
+			    	g2d.setStroke(new BasicStroke(2));
+			    	g2d.draw(formas_geometricas[i].get_polygon());
+			    	g2d.setStroke(new BasicStroke(1));
+		    	}
 				// desenha o exercito 2d
 		    	if(formas_geometricas[i].get_nome() ==  "Reino Unido") {
 					if(RU) {

@@ -13,6 +13,10 @@ class Jogador {
     private Objetivo objetivo;
     protected int qtd_exercitos;
     
+    public List<Territorio> get_list_terr(){
+    	return this.domina;
+    }
+    
     public String get_terr_reg(String pais) {
     	for (Territorio terr : this.domina) {
     		if(terr.get_nome() == pais) {

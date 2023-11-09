@@ -11,7 +11,16 @@ class DesenhaTerritorioPoligono {
 	protected boolean redesenha;
 	protected Path2D terra;
 	protected Exercito2D exercito;
-
+	protected boolean selected;
+	
+	public void set_slctd(boolean status) {
+		this.selected = status;
+	}
+	
+	public boolean get_slctd() {
+		return this.selected;
+	}
+	
 	public DesenhaTerritorioPoligono(int[] xs, int[] ys, Color color,Color border, String name) {
 		this.borda = border;
 		this.cor = color;

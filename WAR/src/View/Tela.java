@@ -126,6 +126,9 @@ class Tela extends JFrame {
             component.repaint();
         }
 	}
+	public DesenhaTerritorioPoligono[] get_terr() {
+		return cenarios[cenario].get_formas();
+	}
 	
 	@Override
 	public void paint(Graphics g) {

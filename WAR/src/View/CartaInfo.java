@@ -1,9 +1,12 @@
 package View;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
 
 class CartaInfo extends ImagemInfo {
 	protected String name;
+    private Rectangle bounds; // se torna algo quando a carta é desenhada com draw_store
 
     public CartaInfo(String caminho, int w, int h)
     {
@@ -24,12 +27,20 @@ class CartaInfo extends ImagemInfo {
         g.drawImage(imagem, x - (w / 2), y - (h / 2), w, h, null);
     }
 
-    /**
-     * Remove a imagem da tela
-     * @param g
-     */
-    public void apaga(Graphics g)
+    public void draw_store(Graphics g, int x, int y, int w, int h, ImageObserver observer)
     {
-        g.clearRect(x - (w / 2), y - (h / 2), w, h);
+        g.drawImage(imagem, x, y, w, h, observer);
+        bounds = new Rectangle(x, y, w, h);
+    }
+
+    /**
+     * Serve para checar clics.
+     * @return true se o ponto (x,y) está dentro da imagem, false caso contrário
+     */
+    public boolean coord_inbounds(int x, int y)
+    {
+        if (bounds == null)
+            return false;
+        return bounds.contains(x, y);
     }
 }

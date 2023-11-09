@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Graphics;
+import java.util.List;
 
 class CartasView {
 	public static CartaInfo[] images;
@@ -99,6 +100,10 @@ class CartasView {
 	private static void add_cartaconquista(CartaInfo img) {
 		count_cartas++;
 		images[count_cartas-1]=img;
+	}
+
+	public static List<String> get_cartas_clicadas(int x, int y) {
+		return null;
 	}
 
 

@@ -1,11 +1,10 @@
 package View;
-import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 import Model.Observador;
 
@@ -206,6 +205,10 @@ public class Api_view {
 	
 	public List<String> get_cartas(){
 		return rotina_atual.get_lista_carta();
+	}
+
+	public List<String> get_cartas_clicadas(int x, int y) {
+		return CartasView.get_cartas_clicadas(x, y);
 	}
 	
 	public void reposicionamento_selected_lose(String pais) {

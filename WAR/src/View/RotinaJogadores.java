@@ -188,8 +188,7 @@ class RotinaJogadores {
 						CartaInfo cartaInfo = CartasView.get_carta(carta); // <-- aqui pegamos a carta de frente
 						if (cartaInfo != null)
 						{
-							g.drawImage(cartaInfo.get_image(), 342 + desloc_x, 693, 50, 80, null); // coordenada inicial
-							System.out.println(cartaInfo.get_name());
+							cartaInfo.draw_store(g, 342 + desloc_x, 693, 50, 80, null); // coord inicial + desloc
 						}
 
 						desloc_x += 70; // calculado na mão

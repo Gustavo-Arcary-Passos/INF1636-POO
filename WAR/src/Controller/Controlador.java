@@ -6,8 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import Model.Api_model;
 import Model.Observador;
@@ -69,6 +67,9 @@ public class Controlador {
             	int x = e.getX();
 	            int y = e.getY();
 	            System.out.println(x+", "+y);
+
+				
+
 	            //cenario++;
 	            tela.Dado_verifica_ligado();
 	            if(tela.get_look_objetivo()) {
@@ -115,6 +116,7 @@ public class Controlador {
 	    		            		} else if (tela.get_rotina_atual() == "Layout ver cartas") {
 	    		            			if(x > 412 && y > 637 && x < 458 && y < 666)
 	    		            				tela.set_rotina_layout("Layout nao ver cartas");
+										
 	    		            		}
 	    		            		
 	    		            	} else if (tela.get_rotina_atual() == "Distribui Exercitos" && !jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y))) {

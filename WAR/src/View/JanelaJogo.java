@@ -50,7 +50,7 @@ class JanelaJogo extends LoadScene implements Observador {
 		count_images_loaded(new ImagemInfo ("war_tabela_bonus_continente.png",10,400,130,120));
 		count_images_loaded(new ImagemInfo ("war_tabela_troca.png",10,540,114,131));
 		count_images_loaded(new ImagemInfo ("war_tabuleiro_bottom.png",0,715,1024,85));
-		count_images_loaded(new ImagemInfo ("war_btnJogarDados.png",915,715,57,37));
+		count_images_loaded(new ImagemInfo ("show_objetivo.png",915,675,80,80));
 		
 		this.formas_geometricas = new DesenhaTerritorioPoligono[52];
 		Color padrao = new Color(75,75,75);

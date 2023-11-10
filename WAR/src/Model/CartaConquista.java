@@ -181,5 +181,6 @@ class CartaCirculo extends CartaConquista {
 class CartaCuringa extends CartaConquista {
 	public CartaCuringa() {
 		this.tipo = "Curinga";
+		this.pais = "Curinga";
 	}
 }

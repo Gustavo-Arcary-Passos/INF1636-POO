@@ -13,6 +13,10 @@ class Jogador {
     private Objetivo objetivo;
     protected int qtd_exercitos;
     
+    public int get_num_cartas() {
+    	return cartaTroca.size();
+    }
+    
     public String get_objetivo_name() {
     	return objetivo.get_nome();
     }
@@ -134,6 +138,7 @@ class Jogador {
     public boolean add_carta(CartaConquista carta) {
     	if(this.conquistou_territorio_rodada) {
     		this.conquistou_territorio_rodada = false;
+    		if(this.cartaTroca.size() < 5)
     		this.cartaTroca.add(carta);
     		return true;
     	}

@@ -75,6 +75,13 @@ public class Api_model {
 			System.out.println(jogadores.domina.size());
 		}
 	}
+	public int get_vez_jogador_num_cartas() {
+		return jogadores_ativos.get(this.vez).get_num_cartas();
+	}
+	
+	public String get_vez_jogador_nome() {
+		return jogadores_ativos.get(this.vez).get_nome();
+	}
 	
 	public void get_vez_jogador_territorios() {
 		jogadores_ativos.get(this.vez).show_all_terr();
@@ -213,9 +220,7 @@ public class Api_model {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
 		return jogador_da_vez.verifica_territorio_fronteira(terr, fronteira);
 	}
-	public void jogador_vez_conquistou_terr() {
-		jogadores_ativos.get(this.vez).conquistou_na_rodada();
-	}
+	
 	public void jogador_ganha_carta() {
 		deck.tira_uma_carta(jogadores_ativos.get(this.vez));
 	}

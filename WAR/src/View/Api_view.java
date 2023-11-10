@@ -114,6 +114,10 @@ public class Api_view {
         }
 	}
 	
+	public void jogador_ganhou(String nome) {
+		new ReiniciarJogo (nome);
+	}
+	
 	public void encerrar_partida() {
 		
 	}
@@ -123,9 +127,9 @@ public class Api_view {
 	}
 	
 	public boolean verifica_objetivo_clicado(int x , int y) {
-		int x1 = 942;
-		int y1 = 737;
-		double r = 30;
+		int x1 = 955;
+		int y1 = 715;
+		double r = 40;
 		if((double)Math.sqrt(Math.pow((double)x - (double)x1, 2) + Math.pow((double)y - (double)y1, 2)) < r) {
 			return true;
 		}

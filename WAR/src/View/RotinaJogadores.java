@@ -15,7 +15,7 @@ class RotinaJogadores {
 	private static RotinaJogadores instance = null;
 	protected List<ImagemInfo> layout_jogador = new ArrayList<>();
 	protected List<String> rotina = new ArrayList<>(Arrays.asList("PER", "PE", "ATQ", "REP", "PASS"));
-	protected List<String> lista_carta = null; // alterei 
+	protected List<String> lista_carta; // alterei 
 	protected String layout_selected;
 	protected String atacante;
 	protected String atacado;
@@ -149,11 +149,11 @@ class RotinaJogadores {
 		    	g.drawImage(layout.get_image(), layout.get_x(), layout.get_y(), layout.get_w(), layout.get_h(), null);
 				if(layout_selected == "Layout nao ver cartas") {
 					// PODE COLOCAR AS IMAGENS AQUI E USAR UM AS CARTAS DE COSTAS 
-					lista_carta.clear();
-					lista_carta.add("Egito");
-					lista_carta.add(null);
-					lista_carta.add("Perth");
-					System.out.println("Lista de cartas: " + lista_carta.toString());
+//					lista_carta.clear();
+//					lista_carta.add("Egito");
+//					lista_carta.add(null);
+//					lista_carta.add("Perth");
+//					System.out.println("Lista de cartas: " + lista_carta.toString());
 
 
 					int desloc_x = 0; // usada para desenhar cada carta no lugar certo
@@ -168,18 +168,18 @@ class RotinaJogadores {
 						if (cartaInfo != null)
 						{
 							g.drawImage(cartaInfo.get_image(), 342 + desloc_x, 693, 50, 80, null); // coordenada inicial
-							System.out.println(cartaInfo.get_name());
+							// System.out.println(cartaInfo.get_name());
 						}
 
 						desloc_x += 70; // calculado na mão
 					}
 				} else if(layout_selected == "Layout ver cartas") {
 					// PODE COLOCAR AS IMAGENS AQUI E USAR UMA List<String> para saber quais cartas carregar
-					lista_carta.clear();
-					lista_carta.add("Egito");
-					lista_carta.add(null);
-					lista_carta.add("Perth");
-					System.out.println("Lista de cartas: " + lista_carta.toString());
+//					lista_carta.clear();
+//					lista_carta.add("Egito");
+//					lista_carta.add(null);
+//					lista_carta.add("Perth");
+//					System.out.println("Lista de cartas: " + lista_carta.toString());
 
 
 					int desloc_x = 0; // usada para desenhar cada carta no lugar certo
@@ -201,10 +201,10 @@ class RotinaJogadores {
 			Rectangle2D atacado_rect = new Rectangle2D.Double(0,0,1024,800);
 			g2d.fill(atacado_rect);
 			CartaInfo objetivo_card = CartasView.get_carta(objetivo_jog);
-			int factor = 1;
-			g.drawImage(objetivo_card.get_image(), 1024/2-objetivo_card.get_w()/2*factor, 800/2-objetivo_card.get_h()/2*factor, objetivo_card.get_w()*factor, objetivo_card.get_h()*factor, null);
+			int factor_mult = 6;
+			int factor_div = 4;
+			g.drawImage(objetivo_card.get_image(), 1024/2-objetivo_card.get_w()/2*factor_mult/factor_div, 800/2-objetivo_card.get_h()/2*factor_mult/factor_div, objetivo_card.get_w()*factor_mult/factor_div, objetivo_card.get_h()*factor_mult/factor_div, null);
 		}
-		
 	}
 	public void drawStringCentralized(Font fonte,int retanguloLargura,int retanguloAltura,int retanguloY,int retanguloX,Graphics g,String texto) {
 		FontMetrics fontMetrics = g.getFontMetrics(fonte);

@@ -77,7 +77,6 @@ class ConjuntoCartaConquista {
 		Random rand = new Random();
 		CartaConquista carta = cartas.get(rand.nextInt(cartas.size()));
 		if(jogador.add_carta(carta)) {
-			
 			cartas.remove(carta);
 		}
 	}

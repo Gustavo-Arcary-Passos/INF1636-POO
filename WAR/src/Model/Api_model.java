@@ -8,6 +8,7 @@ public class Api_model {
 	public List<Jogador> jogadores_ativos;
 	public DeckObjetivos deckobj;
 	public DadoModel dado;
+	public ConjuntoCartaConquista deck;
 	public List<Integer> reposicionamento;
 	public int vez;
 	
@@ -28,6 +29,7 @@ public class Api_model {
 	
 	public Api_model() {
 		//cria mapa
+		deck = new ConjuntoCartaConquista();
 		dado= new DadoModel();
 		mapa_mundo = this.inicializa_mundo();
 		//cria jogadores
@@ -210,6 +212,12 @@ public class Api_model {
 	public boolean verifica_territorio_jogador_fronteira(String terr, String fronteira) {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
 		return jogador_da_vez.verifica_territorio_fronteira(terr, fronteira);
+	}
+	public void jogador_vez_conquistou_terr() {
+		jogadores_ativos.get(this.vez).conquistou_na_rodada();
+	}
+	public void jogador_ganha_carta() {
+		deck.tira_uma_carta(jogadores_ativos.get(this.vez));
 	}
 
 	public int[] qtd_vence_derrota() {

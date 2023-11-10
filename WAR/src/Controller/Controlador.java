@@ -211,6 +211,7 @@ public class Controlador {
 	            				}
 	            				if(jogo.get_exercito_terr(tela.get_terr_sel(2)) == 0) {
 	            					// se territorio atacado ficar sem exercito abrir "Distribui Exercitos"
+	            					jogo.jogador_vez_conquistou_terr();
 	            					jogo.conquistou_terr(tela.get_terr_sel(2));
 	            					tela.set_rotina_atual("Distribui Exercitos");
 	    		            		tela.repinta_tela();
@@ -290,6 +291,8 @@ public class Controlador {
 					    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 					    	jogo.get_vez_jogador_add_exercito();
 					    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
+					    	jogo.jogador_ganha_carta();
+					    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 					    	//jogo.get_vez_jogador_territorios();
 					    	tela.set_next_rotina();
 		            	}

@@ -25,6 +25,19 @@ class Jogador {
     	return this.domina;
     }
     
+    public void reset(ConjuntoCartaConquista deck,DeckObjetivos deckobj) {
+    	this.conquistou_territorio_rodada = false;
+    	this.destruido_por = null;
+    	this.qtd_exercitos = 0;
+    	for(CartaConquista carta : this.cartaTroca) {
+    		deck.carta_retorna_deck(carta);
+    	}
+    	deckobj.objetivo_retorna_deck(objetivo);
+    	this.objetivo = null;
+    	this.cartaTroca.clear();
+    	this.domina.clear();
+    }
+    
     public void ganha_cartas_jogador_destruido(List<CartaConquista> cartas,ConjuntoCartaConquista deck){
     	this.cartaTroca.addAll(cartas);
 		Random rand = new Random();

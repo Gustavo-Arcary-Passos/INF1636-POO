@@ -120,6 +120,10 @@ class Tela extends JFrame {
 	public int get_rodada() {
 		return this.rodada;
 	}
+	public void reset() {
+		this.rodada = 0;
+		this.rotina_ind = 0;
+	}
 	public void repinta_todos_componentes() {
 		Component[] components = this.getContentPane().getComponents();
         for (Component component : components) {

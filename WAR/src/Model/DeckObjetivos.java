@@ -32,6 +32,9 @@ class DeckObjetivos {
     	jogador.get_objetivo().ganha_dono(jogador);
     	objetivos.remove(jogador.get_objetivo());
     }
+    public void objetivo_retorna_deck(Objetivo objetivo) {
+    	objetivos.add(objetivo);
+    }
 }
 
 class Objetivo1 extends Objetivo {

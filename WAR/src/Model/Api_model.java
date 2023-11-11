@@ -394,6 +394,18 @@ public class Api_model {
 		}
 	}
 	
+	public void reset_all() {
+		for(Regiao reg: mapa_mundo) {
+			for(Territorio terr: reg.get_paises()) {
+				terr.reset();
+			}
+		}
+		for(Jogador jogadores : jogadores_ativos) {
+			jogadores.reset(deck,deckobj);
+		}
+		this.vez = 0;
+	}
+	
 }
 
 

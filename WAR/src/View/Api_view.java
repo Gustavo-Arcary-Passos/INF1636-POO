@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import Model.Observador;
 
@@ -116,12 +117,17 @@ public class Api_view {
         }
 	}
 	
-	public void jogador_ganhou(String nome) {
-		new ReiniciarJogo (nome);
+	public JOptionPane jogador_ganhou(String nome) {
+		return new ReiniciarJogo (nome);
+	}
+	
+	public void reset_all() {
+		// Talvez nao precisa disso
+		jogo.reset();
 	}
 	
 	public void encerrar_partida() {
-		
+		jogo.dispose();
 	}
 	
 	public void set_objetivo_jogador_da_vez(String name) {

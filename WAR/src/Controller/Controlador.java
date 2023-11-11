@@ -6,6 +6,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import Model.Api_model;
 import Model.Observador;
 import View.Api_view;
@@ -323,7 +325,22 @@ public class Controlador {
 	            	if (tela.get_fase_atual() == "PASS") {
 		            	if(jogo.verifica_vez_jogador_objetivo()) {
 		            		tela.jogador_ganhou(jogo.get_vez_jogador_nome());
-		            		tela.encerrar_partida(); // Nao criado
+		            		int resposta = JOptionPane.showConfirmDialog(null, "Clique em OK para continuar a jogar.", "Reiniciar", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		            		if (resposta == JOptionPane.OK_OPTION) {
+		                        System.out.println("Reiniciar.");
+		                        jogo.reset_all();
+		                        tela.reset_all();
+		                        jogo.sorteia_obj_todos_jogadores(jogo.jogadores_ativos,jogo.deckobj);
+		    			    	jogo.sorteia_todos_territorios(jogo.mapa_mundo, jogo.jogadores_ativos);
+		    			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
+		    			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
+		    			    	jogo.get_vez_jogador_add_exercito();
+		    			    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
+		    			    	tela.repinta_tela();
+		                    } else {
+		                        System.out.println("Encerrar.");
+		                        tela.encerrar_partida();
+		                    }
 		            	} else { // trocar para proximo jogador
 		            		if(jogo.verifica_next_rodada()) {
 		            			// proxima rodada

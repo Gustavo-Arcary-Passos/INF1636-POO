@@ -88,6 +88,11 @@ class Territorio implements Observado {
 	public Jogador get_Jogador() {
 		return this.jogador;
 	}
+	
+	public void reset() {
+		this.jogador = null;
+		this.exercitos = 0;
+	}
 
 	// DEBUG: set_jogador
 	public void set_Jogador(Jogador jgd) {

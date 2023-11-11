@@ -211,10 +211,6 @@ public class Api_view {
 		return rotina_atual.get_lista_carta();
 	}
 
-	public List<String> get_cartas_clicadas(int x, int y) {
-		return CartasView.get_cartas_clicadas(x, y);
-	}
-	
 	public void reposicionamento_selected_lose(String pais) {
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
 		for(DesenhaTerritorioPoligono terra : terras) {
@@ -254,4 +250,8 @@ public class Api_view {
 		}
 		
 	}
+
+    public int verifica_carta_clicada(int x, int y) {
+        return CartasView.get_carta_clicada(x, y);
+    }
 }

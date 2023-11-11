@@ -1,6 +1,5 @@
 package Controller;
 
-//import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,6 +14,13 @@ public class Controlador {
 	Api_model jogo;
 	Api_view tela;
 	
+	/**
+	 * Instancia o controlador e inicializa a tela (api view) e o jogo (api model)
+	 * Adiciona o observador do dado na lista de observadores do dado
+	 * Adiciona os observadores de exercitos na lista de observadores de exercitos
+	 * 
+	 * roda a rotina de inicializacao da janela inicial (inciar jogo, sortear objetivo)
+	 */
 	public Controlador() {
     	tela = new Api_view();
     	jogo = Api_model.getInstance();
@@ -24,6 +30,13 @@ public class Controlador {
     	listener_JanelaInicial(); // Inicializa jogadores, sorteia objetivo
 	}
 	
+
+	/**
+	 * Listener da janela inicial
+	 * 
+	 * Cria um action listener para o botao de iniciar jogo
+	 * Sorteia tudo e depois chama o listener da janela de jogo
+	 */
 	public void listener_JanelaInicial() {
 		ActionListener actionListenerClasseControle = new ActionListener() {
 		    @Override
@@ -155,9 +168,15 @@ public class Controlador {
 			            		} else if (tela.get_rotina_atual() == "Layout nao ver cartas") {
 			            			if(x > 412 && y > 637 && x < 458 && y < 666)
 			            				tela.set_rotina_layout("Layout ver cartas");
+
 			            		} else if (tela.get_rotina_atual() == "Layout ver cartas") {
+									int indice_carta_clicada = tela.verifica_carta_clicada(x,y);
+
+								System.out.println("CARTA CLICADA: " + indice_carta_clicada);
+
 			            			if(x > 412 && y > 637 && x < 458 && y < 666)
 			            				tela.set_rotina_layout("Layout nao ver cartas");
+
 			            		}
 			            		
 			            	} else if (tela.get_rotina_atual() == "Distribui Exercitos" && !jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {

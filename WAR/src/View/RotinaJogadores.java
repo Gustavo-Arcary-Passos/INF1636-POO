@@ -175,20 +175,22 @@ class RotinaJogadores {
 					}
 				} else if(layout_selected == "Layout ver cartas") {
 					// PODE COLOCAR AS IMAGENS AQUI E USAR UMA List<String> para saber quais cartas carregar
-//					lista_carta.clear();
-//					lista_carta.add("Egito");
-//					lista_carta.add(null);
-//					lista_carta.add("Perth");
-//					System.out.println("Lista de cartas: " + lista_carta.toString());
+					// lista_carta.clear();
+					// lista_carta.add("Egito");
+					// lista_carta.add("Perth");
+					System.out.println("Lista de cartas: " + lista_carta.toString());
 
 
 					int desloc_x = 0; // usada para desenhar cada carta no lugar certo
+					CartasView.clear_cartas_na_tela(); // limpa as cartas na tela
 					for (String carta : lista_carta)
 					{
 						CartaInfo cartaInfo = CartasView.get_carta(carta); // <-- aqui pegamos a carta de frente
 						if (cartaInfo != null)
 						{
+							CartasView.add_carta_na_tela(cartaInfo); // diz ao cartas view q tem uma nova carta na tela
 							cartaInfo.draw_store(g, 342 + desloc_x, 693, 50, 80, null); // coord inicial + desloc
+							// desenha e guarda as coordenadas para fazer a detecao do clique
 						}
 
 						desloc_x += 70; // calculado na mão

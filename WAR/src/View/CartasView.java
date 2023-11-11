@@ -6,8 +6,12 @@ import java.util.List;
 class CartasView {
 	public static CartaInfo[] images;
 	private static int count_cartas;
+
+	public static CartaInfo[] cartas_na_tela;
+	private static int count_cartas_na_tela;
 	static {
 		images = new CartaInfo[80];
+		cartas_na_tela = new CartaInfo[5];
 		//Africa
 		add_cartaconquista(new CartaInfo("war_carta_af_africadosul.png", 132, 218,"África do Sul"));
 		add_cartaconquista(new CartaInfo("war_carta_af_angola.png",132,218,"Angola"));
@@ -103,8 +107,63 @@ class CartasView {
 		images[count_cartas-1]=img;
 	}
 
-	public static List<String> get_cartas_clicadas(int x, int y) {
-		return null;
+
+	/**
+	 * Registra que uma carta esta na tela em exibicao
+	 * @param img
+	 */
+	public static void add_carta_na_tela(CartaInfo img) {
+		count_cartas_na_tela++;
+		cartas_na_tela[count_cartas_na_tela-1]=img;
+	}
+
+
+	/**
+	 * Remove uma carta da lista da tela
+	 * - vamos usar para remover as cartas que foram trocadas, talvez
+	 * @param img
+	 */
+	public static void remove_carta_na_tela(CartaInfo img) {
+		for(int i = 0; i < count_cartas_na_tela; i++) {
+			if(img == cartas_na_tela[i]) {
+				cartas_na_tela[i] = null;
+				count_cartas_na_tela--;
+				break;
+			}
+		}
+	}
+
+	public static void remove_carta_na_tela(int i) {
+		cartas_na_tela[i] = null;
+		count_cartas_na_tela--;
+	}
+
+	public static void remove_carta_na_tela(String carta) {
+		for(int i = 0; i < count_cartas_na_tela; i++) {
+			if(carta == cartas_na_tela[i].get_name()) {
+				cartas_na_tela[i] = null;
+				count_cartas_na_tela--;
+				break;
+			}
+		}
+	}
+
+	// Limpa a lista de cartas na tela, para nao misturar entre jogadores
+	public static void clear_cartas_na_tela() {
+		for(int i = 0; i < count_cartas_na_tela; i++) {
+			cartas_na_tela[i] = null;
+		}
+		count_cartas_na_tela = 0;
+	}
+
+	// Retorna a carta clicada, ou -1 se nenhuma carta foi clicada
+	public static int get_carta_clicada(int x, int y) {
+		for(int i = 0; i < count_cartas_na_tela; i++) {
+			if(cartas_na_tela[i].coord_inbounds(x, y)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 

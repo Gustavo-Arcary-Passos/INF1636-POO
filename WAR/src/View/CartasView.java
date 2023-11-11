@@ -56,8 +56,8 @@ class CartasView {
 		add_cartaconquista(new CartaInfo("war_carta_asl_peru.png",132,218,"Peru"));
 		add_cartaconquista(new CartaInfo("war_carta_asl_venezuela.png",132,218,"Venezuela"));
 		//curingas
-		add_cartaconquista(new CartaInfo("war_carta_coringa.png",132,218,"Curinga"));
-		add_cartaconquista(new CartaInfo("war_carta_coringa.png",132,218,"Curinga"));
+		add_cartaconquista(new CartaInfo("war_carta_coringa.png",132,218,"Curinga 1"));
+		add_cartaconquista(new CartaInfo("war_carta_coringa.png",132,218,"Curinga 2"));
 		//Europa
 		add_cartaconquista(new CartaInfo("war_carta_eu_espanha.png",132,218,"Espanha"));
 		add_cartaconquista(new CartaInfo("war_carta_eu_franca.png",132,218,"França"));

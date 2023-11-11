@@ -149,7 +149,7 @@ class Jogador {
     	return true;
     }
     public void jogador_destruido(Jogador destruidor) {
-    	destruido_por = destruidor;
+    	this.destruido_por = destruidor;
     }
     public Jogador get_destruido_por() {
     	return this.destruido_por;

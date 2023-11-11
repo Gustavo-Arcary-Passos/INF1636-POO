@@ -81,7 +81,7 @@ public class Controlador {
             public void mouseClicked(MouseEvent e) {
             	int x = e.getX();
 	            int y = e.getY();
-	            System.out.println(x+", "+y);
+	            //System.out.println(x+", "+y);
 	            //cenario++;
 	            tela.Dado_verifica_ligado();
 	            if(tela.get_look_objetivo()) {

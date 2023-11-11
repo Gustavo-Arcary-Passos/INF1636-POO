@@ -69,8 +69,8 @@ class ConjuntoCartaConquista {
 		cartas.add(new CartaCirculo("Perth"));//OK
 		//cartas.add(new CartaCirculo());
 		
-		cartas.add(new CartaCuringa());
-		cartas.add(new CartaCuringa());
+		cartas.add(new CartaCuringa("Curinga 1"));
+		cartas.add(new CartaCuringa("Curinga 2"));
     }
 	
 	public void tira_uma_carta(Jogador jogador){
@@ -183,8 +183,8 @@ class CartaCirculo extends CartaConquista {
 }
 
 class CartaCuringa extends CartaConquista {
-	public CartaCuringa() {
+	public CartaCuringa(String pais) {
 		this.tipo = "Curinga";
-		this.pais = "Curinga";
+		this.pais = pais;
 	}
 }

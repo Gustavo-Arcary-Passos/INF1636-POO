@@ -95,6 +95,11 @@ public class Controlador {
 		            	if(tela.get_fase_atual() == "PER") {
 		            		if(jogo.get_vez_jogador_exercitos_reg() == 0) {
 	            				tela.set_next_rotina();
+	            				if(jogo.get_vez_jogador_exercitos_distri() == 0) {
+		            				tela.set_next_rotina();
+		            				if(tela.get_fase_atual() == "ATQ")
+		            				tela.set_rotina_layout("Layout ataque pass");
+		            			}
 	            				//System.out.println("PER -> PE");
 	            			} else {
 	            				if(jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos" && jogo.get_vez_jogador_num_cartas() != 5) {
@@ -151,7 +156,7 @@ public class Controlador {
 		            	}
 		            	if(tela.get_fase_atual() == "PE") {
 		            		if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos" && jogo.get_vez_jogador_num_cartas() != 5){
-			            		tela.set_rotina_atual("Distribui Exercitos");
+		            			tela.set_rotina_atual("Distribui Exercitos");
 			            		tela.repinta_tela();
 			            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),0);
 			            	} else if (x > 322 && y > 620 && x < 686 && y < 800) {

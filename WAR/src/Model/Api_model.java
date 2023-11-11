@@ -274,7 +274,15 @@ public class Api_model {
 		Jogador perdeu_terra = conquistado.get_Jogador();
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
 		perdeu_terra.perde_territorio(conquistado);
-		if( perdeu_terra.qtd_territorios() == 0) {
+		if(perdeu_terra.qtd_territorios() == 0) {
+			System.out.println("Pegou cartas");
+			List<CartaConquista> cartas = perdeu_terra.get_all_cards();
+			jogador_da_vez.ganha_cartas_jogador_destruido(cartas,deck);
+			cartas = jogador_da_vez.get_carta();
+			for(CartaConquista carta : cartas) {
+				System.out.print(carta.get_pais());
+			}
+			System.out.println();
 			perdeu_terra.jogador_destruido(jogador_da_vez);
 		}
 		jogador_da_vez.ganha_territorio(conquistado);

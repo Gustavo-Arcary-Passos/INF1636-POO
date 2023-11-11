@@ -25,6 +25,21 @@ class Jogador {
     	return this.domina;
     }
     
+    public void ganha_cartas_jogador_destruido(List<CartaConquista> cartas,ConjuntoCartaConquista deck){
+    	this.cartaTroca.addAll(cartas);
+		Random rand = new Random();
+    	while(this.cartaTroca.size() > 5) {
+    		CartaConquista carta_escolhida = this.cartaTroca.remove(rand.nextInt(this.cartaTroca.size()));
+    		deck.carta_retorna_deck(carta_escolhida);
+    	}
+    }
+    
+    public List<CartaConquista> get_all_cards(){
+    	List<CartaConquista> cartas = this.get_carta();
+    	this.cartaTroca.clear();
+    	return cartas;
+    }
+    
     public String get_terr_reg(String pais) {
     	for (Territorio terr : this.domina) {
     		if(terr.get_nome() == pais) {

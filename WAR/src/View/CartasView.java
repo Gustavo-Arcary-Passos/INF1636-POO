@@ -74,8 +74,6 @@ class CartasView {
 		add_cartaconquista(new CartaInfo("war_carta_oc_perth.png",132,218,"Perth"));
 		//Costas
 		add_cartaconquista(new CartaInfo("war_carta_verso.png", 132, 218,"Verso"));
-		//Curinga
-		add_cartaconquista(new CartaInfo("war_carta_verso.png", 132, 218,"Curinga"));
 		//Objetivos
 		add_cartaconquista(new CartaInfo("obj_01.jpg",147,226,"Objetivo 1"));
 		add_cartaconquista(new CartaInfo("obj_02.jpg",147,226,"Objetivo 2"));

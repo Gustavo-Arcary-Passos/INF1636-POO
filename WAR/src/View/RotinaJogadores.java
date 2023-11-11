@@ -178,7 +178,7 @@ class RotinaJogadores {
 					// lista_carta.clear();
 					// lista_carta.add("Egito");
 					// lista_carta.add("Perth");
-					System.out.println("Lista de cartas: " + lista_carta.toString());
+					//System.out.println("Lista de cartas: " + lista_carta.toString());
 
 
 					int desloc_x = 0; // usada para desenhar cada carta no lugar certo

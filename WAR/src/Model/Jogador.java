@@ -151,7 +151,7 @@ class Jogador {
     	this.qtd_exercitos += qtd;
     }
     public void add_exercito() { //add exercito de acordo com metade dos territórios
-    	System.out.println("CHAMOU AUMENTA EXERCITO BASEADO TERRITORIO = " + this.domina.size()/2);
+    	//System.out.println("CHAMOU AUMENTA EXERCITO BASEADO TERRITORIO = " + this.domina.size()/2);
     	this.qtd_exercitos += this.domina.size()/2;
     }
     public int get__exercito_regiao(String regiao) {
@@ -188,17 +188,25 @@ class Jogador {
     	}
     	return false;
     }
-    public void troca_cartas_exercitos(int um,int dois,int tres,ConjuntoCartaConquista cartas) {
+    public void troca_cartas_exercitos(List<String> paises,ConjuntoCartaConquista cartas) {
     	List<CartaConquista> trocadas = new ArrayList<CartaConquista>();
-    	trocadas.add(this.cartaTroca.get(um));
-    	trocadas.add(this.cartaTroca.get(dois));
-    	trocadas.add(this.cartaTroca.get(tres));
+    	for(String pais : paises) {
+    		for(CartaConquista carta : cartaTroca) {
+    			if(carta.get_pais() == pais)
+    				trocadas.add(carta);
+    		}
+    	}
     	
     	if(cartas.verifica_troca(trocadas)) {
     		this.add_exercito(cartas.trocas(trocadas)) ;
-    		this.cartaTroca.remove(um);
-        	this.cartaTroca.remove(dois);
-        	this.cartaTroca.remove(tres);
+    		for(CartaConquista carta : trocadas) {
+    			this.cartaTroca.remove(carta);
+    			for (Territorio terr : this.domina) {
+    	    		if(terr.get_nome() == carta.get_pais()) {
+    	    			terr.add_exercito(2);
+    	    		}
+    	    	}
+    		}
     	}
     }
     public boolean posiciona_exercito(int qtd, Territorio destino) {

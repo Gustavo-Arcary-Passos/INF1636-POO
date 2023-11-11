@@ -137,7 +137,6 @@ public class Api_model {
 	
 	public int get_vez_jogador_exercitos_distri() {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
-		System.out.println("Qtd depois " + jogador_da_vez.get_exercito());
 		return jogador_da_vez.get_exercito();
 	}
 	
@@ -164,6 +163,11 @@ public class Api_model {
 		}
 		return cartas_jogador;
 	}
+	
+	public void jogador_vez_troca_cartas_exerc(List<String> paises) {
+		jogadores_ativos.get(this.vez).troca_cartas_exercitos(paises,deck);
+	}
+	
 	
 	public void get_vez_jogador_add_exercito() {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
@@ -348,14 +352,14 @@ public class Api_model {
 		for(Territorio terra : terras) {
 			qtd.add(terra.get_exercitos());
 		}
-		System.out.println(terras.size() + " " + qtd.size());
+		//System.out.println(terras.size() + " " + qtd.size());
 		this.reposicionamento = qtd;
 	}
 	public int get_max_exerc(String pais) {
 		Jogador jogador_da_vez = jogadores_ativos.get(this.vez);
 		List<Territorio> terras = jogador_da_vez.get_list_terr();
 		int i = 0;
-		System.out.println(terras.size() + " " + reposicionamento.size());
+		//System.out.println(terras.size() + " " + reposicionamento.size());
 		for(Territorio terra : terras) {
 			if(terra.get_nome() == pais) {
 				return this.reposicionamento.get(i);
@@ -372,6 +376,7 @@ public class Api_model {
 			if(terra.get_nome() == de) {
 				int rep= this.reposicionamento.get(i);
 				rep = rep - qtd;
+				this.reposicionamento.set(i, rep);
 				terra.add_exercito(-qtd);
 			}
 			if(terra.get_nome() == para) {
@@ -380,6 +385,7 @@ public class Api_model {
 			i++;
 		}
 	}
+	
 }
 
 

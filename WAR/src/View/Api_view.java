@@ -2,6 +2,7 @@ package View;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -10,7 +11,8 @@ import Model.Observador;
 
 public class Api_view {
 	Tela jogo;
-	RotinaJogadores rotina_atual = RotinaJogadores.getInstance();	
+	RotinaJogadores rotina_atual = RotinaJogadores.getInstance();
+	boolean curinga_slc;
 	public Api_view() {
 		jogo = new Tela();
 		jogo.setTitle("War");
@@ -145,6 +147,15 @@ public class Api_view {
 		}
 		return false;
 	}
+	public boolean verifica_trocar_carta_clicado(int x,int y) {
+		int x1 = 608;
+		int y1 = 654;
+		double r = 20;
+		if((double)Math.sqrt(Math.pow((double)x - (double)x1, 2) + Math.pow((double)y - (double)y1, 2)) < r) {
+			return true;
+		}
+		return false;
+	}
 	
 	public boolean verifica_passar_ataque_clicado(int x,int y) {
 		int x1 = 514;
@@ -230,12 +241,16 @@ public class Api_view {
 	}
 	
 	public void reset_all_selected() {
+		if(curinga_slc) {
+			curinga_slc = false;
+		}
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
 		for(DesenhaTerritorioPoligono terra : terras) {
 			if(terra.get_slctd()) {
 				terra.set_slctd(false);
 			}
 		}
+		CartasView.reset_carta_tela_selected();
 	}
 	
 	/** Função que instancia um observador da view para ser usada na model, o parametro o se escreve igual ao nome da classe que você deseja instanciar
@@ -248,10 +263,72 @@ public class Api_view {
 			//temos que mudar isso
 			return new DadoView();
 		}
+	}
+	
+	public void set_selected_terr(String pais) {
+		if(pais == "Curinga") {
+			curinga_slc = !curinga_slc;
+		}
 		
+		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
+		for(DesenhaTerritorioPoligono terra : terras) {
+			if(terra.get_nome() == pais) {
+				terra.set_slctd(!terra.get_slctd());
+			}
+		}
+	}
+	
+	public boolean get_selected_terr(String pais) {
+		if(pais == "Curinga") {
+			return curinga_slc;
+		}
+		
+		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
+		for(DesenhaTerritorioPoligono terra : terras) {
+			if(terra.get_nome() == pais) {
+				return terra.get_slctd();
+			}
+		}
+		return false;
+	}
+	
+	public int qtd_selected() {
+		int qtd = 0;
+		if(curinga_slc) {
+			qtd++;
+		}
+		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
+		for(DesenhaTerritorioPoligono terra : terras) {
+			if(terra.get_slctd()) {
+				qtd++;
+			}
+			if(terra.get_nome() == "Reino Unido" && qtd == 4 && terra.get_slctd()) {
+				qtd--;
+			}
+		}
+		return qtd;
+	}
+	public List<String> show_selected() {
+		List<String> selected = new ArrayList<>();
+		if(curinga_slc) {
+			selected.add("Curinga");
+		}
+		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
+		for(DesenhaTerritorioPoligono terra : terras) {
+			if(terra.get_slctd()) {
+				selected.add(terra.get_nome());
+			}
+		}
+		return selected;
 	}
 
-    public int verifica_carta_clicada(int x, int y) {
-        return CartasView.get_carta_clicada(x, y);
+    public String verifica_carta_clicada(int x, int y) {
+    	String carta = CartasView.get_carta_clicada(x, y);
+    	if(this.get_selected_terr(carta) || this.qtd_selected() < 3) {
+    		this.set_selected_terr(carta);
+    		this.repinta_tela();
+    	}
+    	this.show_selected();
+        return carta;
     }
 }

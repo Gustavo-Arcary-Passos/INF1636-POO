@@ -7,7 +7,16 @@ import java.awt.image.ImageObserver;
 class CartaInfo extends ImagemInfo {
 	protected String name;
     private Rectangle bounds; // se torna algo quando a carta é desenhada com draw_store
-
+    protected boolean click;
+    
+    public boolean get_clicked() {
+    	return this.click;
+    }
+    
+    public void set_clicked(boolean status) {
+    	this.click = status;
+    }
+    
     public CartaInfo(String caminho, int w, int h)
     {
         super(caminho, 512, 384, w, h);
@@ -28,9 +37,18 @@ class CartaInfo extends ImagemInfo {
     }
 
     public void draw_store(Graphics g, int x, int y, int w, int h, ImageObserver observer)
-    {
-        g.drawImage(imagem, x, y, w, h, observer);
-        bounds = new Rectangle(x, y, w, h);
+    {	
+    	if(this.click) {
+    		y -= 10;
+    		//System.out.println("TRUE");
+    		g.drawImage(imagem, x, y, w, h, observer);
+            bounds = new Rectangle(x, y, w, h);
+    	} else {
+    		//System.out.println("FALSE");
+    		g.drawImage(imagem, x, y, w, h, observer);
+            bounds = new Rectangle(x, y, w, h);
+    	}
+        
     }
 
     /**

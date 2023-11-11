@@ -80,9 +80,6 @@ public class Controlador {
             	int x = e.getX();
 	            int y = e.getY();
 	            System.out.println(x+", "+y);
-
-				
-
 	            //cenario++;
 	            tela.Dado_verifica_ligado();
 	            if(tela.get_look_objetivo()) {
@@ -127,8 +124,22 @@ public class Controlador {
 	    		            			if(x > 412 && y > 637 && x < 458 && y < 666)
 	    		            				tela.set_rotina_layout("Layout ver cartas");
 	    		            		} else if (tela.get_rotina_atual() == "Layout ver cartas") {
-	    		            			if(x > 412 && y > 637 && x < 458 && y < 666)
+	    		            			if(x > 412 && y > 637 && x < 458 && y < 666) {
+	    		            				tela.reset_all_selected();
 	    		            				tela.set_rotina_layout("Layout nao ver cartas");
+	    		            			} else if(tela.verifica_trocar_carta_clicado(x,y)) {
+	    		            				List<String> cartas = tela.show_selected();
+	    		            				System.out.println(cartas);
+		    		            			if(tela.qtd_selected() == 3) {
+		    		            				jogo.jogador_vez_troca_cartas_exerc(cartas);
+		    		            				tela.set_cartas(jogo.get_vez_jogador_cartas());
+		    		            			}
+		    		            			tela.reset_all_selected();
+	    		            				tela.repinta_tela();
+	    		            			} else {
+	    		            				tela.verifica_carta_clicada(x,y);
+	    		            				//System.out.println("CARTA CLICADA: " + tela.verifica_carta_clicada(x,y));
+	    		            			}
 	    		            		}
 	    		            		
 	    		            	} else if (tela.get_rotina_atual() == "Distribui Exercitos" && !jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y))) {
@@ -139,7 +150,7 @@ public class Controlador {
 	            			}
 		            	}
 		            	if(tela.get_fase_atual() == "PE") {
-		            		if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos"){
+		            		if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos" && jogo.get_vez_jogador_num_cartas() != 5){
 			            		tela.set_rotina_atual("Distribui Exercitos");
 			            		tela.repinta_tela();
 			            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),0);
@@ -156,7 +167,7 @@ public class Controlador {
 				            			//System.out.println("OK");
 				            			if(qtd > 0) {
 					            			jogo.posiciona_exercitos_jogador_vez(qtd,tela.get_terr_sel(0));
-					            			System.out.println(tela.get_terr_sel(0));
+					            			//System.out.println(tela.get_terr_sel(0));
 					            			tela.set_rotina_layout("Layout nao ver cartas");
 					            			if(jogo.get_vez_jogador_exercitos_distri() == 0) {
 					            				tela.set_next_rotina();
@@ -170,13 +181,22 @@ public class Controlador {
 			            				tela.set_rotina_layout("Layout ver cartas");
 
 			            		} else if (tela.get_rotina_atual() == "Layout ver cartas") {
-									int indice_carta_clicada = tela.verifica_carta_clicada(x,y);
-
-								System.out.println("CARTA CLICADA: " + indice_carta_clicada);
-
-			            			if(x > 412 && y > 637 && x < 458 && y < 666)
-			            				tela.set_rotina_layout("Layout nao ver cartas");
-
+			            			if(x > 412 && y > 637 && x < 458 && y < 666) {
+    		            				tela.reset_all_selected();
+    		            				tela.set_rotina_layout("Layout nao ver cartas");
+    		            			} else if(tela.verifica_trocar_carta_clicado(x,y)) {
+    		            				List<String> cartas = tela.show_selected();
+    		            				System.out.println(cartas);
+	    		            			if(tela.qtd_selected() == 3) {
+	    		            				jogo.jogador_vez_troca_cartas_exerc(cartas);
+	    		            				tela.set_cartas(jogo.get_vez_jogador_cartas());
+	    		            			}
+	    		            			tela.reset_all_selected();
+    		            				tela.repinta_tela();
+    		            			} else {
+    		            				tela.verifica_carta_clicada(x,y);
+    		            				//System.out.println("CARTA CLICADA: " + tela.verifica_carta_clicada(x,y));
+    		            			}
 			            		}
 			            		
 			            	} else if (tela.get_rotina_atual() == "Distribui Exercitos" && !jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {

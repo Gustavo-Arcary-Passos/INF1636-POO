@@ -51,12 +51,17 @@ public class TesteJogador {
 		jogador.conquistou_na_rodada();
 		deck.tira_uma_carta(jogador);
 		List<CartaConquista> cartas = new ArrayList<CartaConquista>();
+		List<String> nome = new ArrayList<>();
+		nome.add(jogador.cartaTroca.get(0).get_pais());
+		nome.add(jogador.cartaTroca.get(1).get_pais());
+		nome.add(jogador.cartaTroca.get(2).get_pais());
 		cartas.add(jogador.cartaTroca.get(0));
 		cartas.add(jogador.cartaTroca.get(1));
 		cartas.add(jogador.cartaTroca.get(2));
 		if(deck.verifica_troca(cartas)) {
-			jogador.troca_cartas_exercitos(0,1,2,deck);
+			jogador.troca_cartas_exercitos(nome,deck);
 			assertEquals(jogador.get_exercito(),4);
+			assertEquals(jogador.get_carta().size(),2);
 		}else {
 			assertEquals(jogador.get_exercito(),0);
 		}
@@ -114,8 +119,8 @@ public class TesteJogador {
 		assertTrue(amesul.verifica_monopolio(jogador));
 		assertFalse(amesul.verifica_monopolio(jogador2));
 		jogador.add_exercito_regiao("América do Sul",amesul.get_exercito_extra());
-		assertEquals(jogador.get__exercito_regiao("América do Sul"),3);
-		assertTrue(jogador.posiciona_exercito_regiao("América do Sul","Brasil",2));
+		assertEquals(jogador.get__exercito_regiao("América do Sul"),2);
+		assertTrue(jogador.posiciona_exercito_regiao("América do Sul","Brasil",1));
 		assertFalse(jogador.posiciona_exercito_regiao("América do Sul","México",1));
 		assertEquals(jogador.get__exercito_regiao("América do Sul"),1);
 		assertTrue(jogador.posiciona_exercito_regiao("América do Sul","Argentina",1));

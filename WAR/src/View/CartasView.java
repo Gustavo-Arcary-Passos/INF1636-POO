@@ -93,6 +93,14 @@ class CartasView {
 		add_cartaconquista(new CartaInfo("obj_14.jpg",147,226,"Objetivo 14"));
 	}
 	
+	public static void reset_carta_tela_selected() {
+		for(int i = 0; i < count_cartas_na_tela; i++) {
+			if(cartas_na_tela[i].get_clicked()) {
+				cartas_na_tela[i].set_clicked(!cartas_na_tela[i].get_clicked());
+			}
+		}
+	}
+	
 	public static CartaInfo get_carta(String carta) {
 		for(int i = 0; i < count_cartas; i++) {
 			if(carta == images[i].get_name()) {
@@ -157,13 +165,14 @@ class CartasView {
 	}
 
 	// Retorna a carta clicada, ou -1 se nenhuma carta foi clicada
-	public static int get_carta_clicada(int x, int y) {
+	public static String get_carta_clicada(int x, int y) {
 		for(int i = 0; i < count_cartas_na_tela; i++) {
 			if(cartas_na_tela[i].coord_inbounds(x, y)) {
-				return i;
+				cartas_na_tela[i].set_clicked(!cartas_na_tela[i].get_clicked());
+				return cartas_na_tela[i].get_name();
 			}
 		}
-		return -1;
+		return null;
 	}
 
 

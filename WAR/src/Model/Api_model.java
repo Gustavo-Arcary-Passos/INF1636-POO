@@ -4,13 +4,23 @@ import java.util.*;
 
 public class Api_model {
 	private static Api_model instance = null;
-	public List<Regiao> mapa_mundo;
-	public List<Jogador> jogadores_ativos;
-	public DeckObjetivos deckobj;
-	public DadoModel dado;
-	public ConjuntoCartaConquista deck;
-	public List<Integer> reposicionamento;
-	public int vez;
+	private List<Regiao> mapa_mundo;
+	private List<Jogador> jogadores_ativos;
+	private DeckObjetivos deckobj;
+	private DadoModel dado;
+	private ConjuntoCartaConquista deck;
+	private List<Integer> reposicionamento;
+	private int vez;
+	
+	public DeckObjetivos get_deck_obj(){
+		return this.deckobj;
+	}
+	public List<Regiao> get_mapa_mundo(){
+		return this.mapa_mundo;
+	}
+	public List<Jogador> get_jogadores_ativos(){
+		return this.jogadores_ativos;
+	}
 	
 	public static Api_model getInstance() {
         if (instance == null) {
@@ -352,6 +362,10 @@ public class Api_model {
 	public void ataque(int qtd_ataque,int qtd_defesa) {
 		this.dado.set_jogador(jogadores_ativos.get(this.vez));
 		this.dado.lanca_dado(qtd_defesa,qtd_ataque);
+	}
+	public void ataque_hack(int qtd_ataque,int qtd_defesa,List<Integer> hack_dados) {
+		this.dado.set_jogador(jogadores_ativos.get(this.vez));
+		this.dado.lanca_dado(qtd_defesa,qtd_ataque,hack_dados);
 	}
 	public void save_territorios() {
 		List<Integer> qtd = new ArrayList<>();

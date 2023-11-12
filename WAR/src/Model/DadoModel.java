@@ -57,4 +57,25 @@ class DadoModel implements Observado {
 		}
 		
 	}
+	
+	protected void lanca_dado(int qtd_dados_defesa, int qtd_dados_ataque,List<Integer> hack_dados){
+        List<Integer> resultados_defesa = new ArrayList<>();
+        List<Integer> resultados_ataque = new ArrayList<>();
+
+        for (int i = 0; i < qtd_dados_defesa; i++) {
+            resultados_defesa.add(hack_dados.get(i));
+        }
+
+        for (int i = 0; i < qtd_dados_ataque; i++) {
+            resultados_ataque.add(hack_dados.get(i+3));
+        }
+        
+        valoresdef = resultados_defesa;
+        valoresatk = resultados_ataque;
+		
+		for(Observador el : lst ) {
+			el.notify(this);
+		}
+		
+	}
 }

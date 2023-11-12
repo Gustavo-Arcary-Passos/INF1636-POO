@@ -54,13 +54,14 @@ public class Controlador {
 						jogo.add_jogador(nome,cor);
 					}
 			    	
-			    	jogo.sorteia_obj_todos_jogadores(jogo.jogadores_ativos,jogo.deckobj);
-			    	jogo.sorteia_todos_territorios(jogo.mapa_mundo, jogo.jogadores_ativos);
+			    	jogo.sorteia_obj_todos_jogadores(jogo.get_jogadores_ativos(),jogo.get_deck_obj());
+			    	jogo.sorteia_todos_territorios(jogo.get_mapa_mundo(), jogo.get_jogadores_ativos());
 			    	// Rotina de inicio da vez do jogador
 			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 			    	jogo.get_vez_jogador_add_exercito();
 			    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
+			    	tela.inicializa_hack_dados();
 			    	listener_JanelaJogo();
 			    }
 		    }
@@ -247,7 +248,11 @@ public class Controlador {
 	            					// so permiti realizar ataque se tiver algum territorio selecionado para ser atacado e 
 	            					if(jogo.get_exercito_terr(tela.get_terr_sel(1)) > 1) {
 	            						// se territorio atacante possuir mais de 1 exercito
-	            						jogo.ataque(jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)),jogo.get_qtd_exercito_def(tela.get_terr_sel(2)));
+	            						if(tela.get_hack_dados_active()) {
+	            							jogo.ataque_hack(jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)),jogo.get_qtd_exercito_def(tela.get_terr_sel(2)),tela.get_hack_dados());
+	            						} else {
+		            						jogo.ataque(jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)),jogo.get_qtd_exercito_def(tela.get_terr_sel(2)));
+	            						}
 	            						int[] res = jogo.qtd_vence_derrota();
 	            						tela.realiza_ataque();
 	            						jogo.posiciona_exercitos_jogador_vez(-res[1],tela.get_terr_sel(1));
@@ -332,8 +337,8 @@ public class Controlador {
 		                        System.out.println("Reiniciar.");
 		                        jogo.reset_all();
 		                        tela.reset_all();
-		                        jogo.sorteia_obj_todos_jogadores(jogo.jogadores_ativos,jogo.deckobj);
-		    			    	jogo.sorteia_todos_territorios(jogo.mapa_mundo, jogo.jogadores_ativos);
+		                        jogo.sorteia_obj_todos_jogadores(jogo.get_jogadores_ativos(),jogo.get_deck_obj());
+		    			    	jogo.sorteia_todos_territorios(jogo.get_mapa_mundo(), jogo.get_jogadores_ativos());
 		    			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 		    			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 		    			    	jogo.get_vez_jogador_add_exercito();

@@ -118,7 +118,7 @@ class JanelaJogo extends LoadScene implements Observador {
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{806,820,895,907,915,902,909,905}, new int[]{242,273,273,295,282,258,258,242}, padrao, asia, "Mongólia"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{718,709,751,741,763,785,754,762}, new int[]{274,290,365,380,380,344,293,274}, padrao, asia, "Paquistão"));
 		count_terras_loaded(new DesenhaTerritorioPoligono(new int[]{628,620,629,637,638,717,709,717,666,660,647,646}, new int[]{271,287,300,300,305,305,291,273,273,269,269,271}, padrao, asia, "Síria"));
-
+		
 		tela.repaint();
 	}
 	public void desenha(Graphics g) {

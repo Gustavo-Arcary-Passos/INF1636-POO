@@ -1,6 +1,6 @@
 package Model;
 
-public class ExercitoRegiao {
+class ExercitoRegiao {
 	protected int exercito;
 	protected String regiao;
 	

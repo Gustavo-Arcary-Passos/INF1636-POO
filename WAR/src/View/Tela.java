@@ -106,7 +106,7 @@ class Tela extends JFrame {
 	protected void trocarParaJanelaJogo() {
         // Remova todos os componentes da tela atual, se necessário
         getContentPane().removeAll();
-        
+        Hack.getInstance(this,1024,75);
         // Crie uma instância da JanelaJogo
         cenario = 1;
         this.rodada = 0;

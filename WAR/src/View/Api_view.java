@@ -11,13 +11,27 @@ import javax.swing.JOptionPane;
 import Model.Observador;
 
 public class Api_view {
-	Tela jogo;
-	RotinaJogadores rotina_atual = RotinaJogadores.getInstance();
-	boolean curinga_slc_1,curinga_slc_2;
+	private Tela jogo;
+	private RotinaJogadores rotina_atual = RotinaJogadores.getInstance();
+	private Hack hack_dados;
+	private boolean curinga_slc_1,curinga_slc_2;
+	
 	public Api_view() {
 		jogo = new Tela();
 		jogo.setTitle("War");
 		jogo.setVisible(true);
+	}
+	
+	public void inicializa_hack_dados() {
+		hack_dados = Hack.getInstance(jogo,1024,75);
+	}
+	
+	public boolean get_hack_dados_active() {
+		return hack_dados.get_active();
+	}
+	
+	public List<Integer> get_hack_dados(){
+		return hack_dados.get_text_fields();
 	}
 	
 	public void set_look_objetivo(boolean status) {
@@ -122,7 +136,6 @@ public class Api_view {
 	}
 	
 	public void reset_all() {
-		// Talvez nao precisa disso
 		jogo.reset();
 	}
 	

@@ -35,7 +35,7 @@ class ConjuntoCartaConquista {
 		
 		cartas.add(new CartaQuadrado("Angola"));//OK
 		cartas.add(new CartaQuadrado("Somália"));//OK
-		cartas.add(new CartaQuadrado("California"));//OK
+		cartas.add(new CartaQuadrado("Califórnia"));//OK
 		cartas.add(new CartaQuadrado("México"));//OK
 		cartas.add(new CartaQuadrado("Nova York"));//OK
 		cartas.add(new CartaQuadrado("China"));//OK

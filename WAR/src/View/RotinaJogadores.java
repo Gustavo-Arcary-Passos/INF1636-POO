@@ -161,6 +161,7 @@ class RotinaJogadores {
 					{
 						
 						if (carta != null) {
+							System.out.println(carta);
 							carta = "Verso";
 						}  // se ela existe "vira do avesso"
 

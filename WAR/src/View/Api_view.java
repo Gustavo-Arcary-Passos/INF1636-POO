@@ -13,7 +13,7 @@ import Model.Observador;
 public class Api_view {
 	Tela jogo;
 	RotinaJogadores rotina_atual = RotinaJogadores.getInstance();
-	boolean curinga_slc;
+	boolean curinga_slc_1,curinga_slc_2;
 	public Api_view() {
 		jogo = new Tela();
 		jogo.setTitle("War");
@@ -247,8 +247,11 @@ public class Api_view {
 	}
 	
 	public void reset_all_selected() {
-		if(curinga_slc) {
-			curinga_slc = false;
+		if(curinga_slc_1) {
+			curinga_slc_1 = false;
+		}
+		if(curinga_slc_2) {
+			curinga_slc_2 = false;
 		}
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
 		for(DesenhaTerritorioPoligono terra : terras) {
@@ -272,8 +275,10 @@ public class Api_view {
 	}
 	
 	public void set_selected_terr(String pais) {
-		if(pais == "Curinga") {
-			curinga_slc = !curinga_slc;
+		if(pais == "Curinga 1") {
+			this.curinga_slc_1 = !this.curinga_slc_1 ;
+		} else if(pais == "Curinga 2") {
+			this.curinga_slc_2 = !this.curinga_slc_1 ;
 		}
 		
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
@@ -285,8 +290,10 @@ public class Api_view {
 	}
 	
 	public boolean get_selected_terr(String pais) {
-		if(pais == "Curinga") {
-			return curinga_slc;
+		if(pais == "Curinga 1") {
+			return this.curinga_slc_1;
+		} else if(pais == "Curinga 2") {
+			return this.curinga_slc_2;
 		}
 		
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
@@ -300,7 +307,9 @@ public class Api_view {
 	
 	public int qtd_selected() {
 		int qtd = 0;
-		if(curinga_slc) {
+		if(curinga_slc_1) {
+			qtd++;
+		} else if(curinga_slc_2) {
 			qtd++;
 		}
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
@@ -309,6 +318,7 @@ public class Api_view {
 				qtd++;
 			}
 			if(terra.get_nome() == "Reino Unido" && qtd == 4 && terra.get_slctd()) {
+				System.out.println();
 				qtd--;
 			}
 		}
@@ -316,13 +326,16 @@ public class Api_view {
 	}
 	public List<String> show_selected() {
 		List<String> selected = new ArrayList<>();
-		if(curinga_slc) {
-			selected.add("Curinga");
+		if(curinga_slc_1) {
+			selected.add("Curinga 1");
+		} else if(curinga_slc_2) {
+			selected.add("Curinga 2");
 		}
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
 		for(DesenhaTerritorioPoligono terra : terras) {
 			if(terra.get_slctd()) {
-				selected.add(terra.get_nome());
+				if(!selected.contains(terra.get_nome()))
+					selected.add(terra.get_nome());
 			}
 		}
 		return selected;
@@ -330,10 +343,18 @@ public class Api_view {
 
     public String verifica_carta_clicada(int x, int y) {
     	String carta = CartasView.get_carta_clicada(x, y);
-    	if(this.get_selected_terr(carta) || this.qtd_selected() < 3) {
-    		this.set_selected_terr(carta);
-    		this.repinta_tela();
+    	if(carta == "Reino Unido"){
+    		if(this.get_selected_terr(carta) || this.qtd_selected() < 4) {
+        		this.set_selected_terr(carta);
+        		this.repinta_tela();
+        	}
+    	} else {
+    		if(this.get_selected_terr(carta) || this.qtd_selected() < 3) {
+        		this.set_selected_terr(carta);
+        		this.repinta_tela();
+        	}
     	}
+    	
     	this.show_selected();
         return carta;
     }

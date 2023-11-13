@@ -109,7 +109,7 @@ public class Api_model {
 		}
 	}
 	
-	protected List<Regiao> inicializa_mundo(){
+	public List<Regiao> inicializa_mundo(){
 		List<Regiao> mundo = new ArrayList<Regiao>();
 		mundo.add(new Asia());
 		mundo.add(new Europa());

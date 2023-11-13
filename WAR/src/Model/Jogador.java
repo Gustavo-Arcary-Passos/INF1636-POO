@@ -148,6 +148,7 @@ class Jogador {
     	}
     	return true;
     }
+    
     public void jogador_destruido(Jogador destruidor) {
     	this.destruido_por = destruidor;
     }
@@ -156,6 +157,7 @@ class Jogador {
     }
     public void recebe_objetivo(Objetivo obj) {
     	objetivo = obj;
+    	obj.ganha_dono(this);
     }
     public Objetivo get_objetivo() {
     	return objetivo;

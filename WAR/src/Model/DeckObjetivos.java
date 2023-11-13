@@ -35,6 +35,10 @@ class DeckObjetivos {
     public void objetivo_retorna_deck(Objetivo objetivo) {
     	objetivos.add(objetivo);
     }
+    
+    public Objetivo get_objetivo(int index) {
+    	return objetivos.get(index-1);
+    }
 }
 
 class Objetivo1 extends Objetivo {
@@ -120,9 +124,11 @@ class Objetivo4 extends Objetivo {
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
 			if(el.get_cor()=="verde") {
+				System.out.println(dono);
 				if(el.get_destruido_por().equals(dono)) {
 					return true;
 				}
+				System.out.println("entrou");
 				if(el.get_destruido_por()==null) {
 					return false;
 				}

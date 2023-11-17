@@ -45,7 +45,11 @@ public class Api_model {
 		//cria jogadores
 		jogadores_ativos = new ArrayList<>();
 		
-		deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
+		//deckobj = new DeckObjetivos(mapa_mundo,jogadores_ativos);
+	}
+	
+	public void instancia_deckobj() {
+		deckobj = new DeckObjetivos(this.mapa_mundo,this.jogadores_ativos);
 	}
 	
 	public void add_observadores_exercitos(Observador o) {

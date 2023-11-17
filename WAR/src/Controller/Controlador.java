@@ -53,7 +53,7 @@ public class Controlador {
 						System.out.println("Jogador " + (i + 1) + ": Nome = " + nome + ", Cor = " + cor);
 						jogo.add_jogador(nome,cor);
 					}
-			    	
+			    	jogo.instancia_deckobj();
 			    	jogo.sorteia_obj_todos_jogadores(jogo.get_jogadores_ativos(),jogo.get_deck_obj());
 			    	jogo.sorteia_todos_territorios(jogo.get_mapa_mundo(), jogo.get_jogadores_ativos());
 			    	// Rotina de inicio da vez do jogador

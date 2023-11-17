@@ -25,6 +25,10 @@ class DeckObjetivos {
     	objetivos.add(new Objetivo12(todos_jogadores, mapa,"Objetivo 12"));
     	objetivos.add(new Objetivo13("Objetivo 13"));
     	objetivos.add(new Objetivo14("Objetivo 14"));
+    	System.out.println("Objetivo foi criado");
+    	for(Jogador jg : todos_jogadores) {
+    		System.out.println(jg.get_cor());
+    	}
     }
     public void sorteia_objetivo(Jogador jogador){
     	Random rand = new Random();
@@ -48,12 +52,13 @@ class Objetivo1 extends Objetivo {
 	//exterminar o azul, se for o azul ou outro jogador tiver eliminado o azul, 24 territorios
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
+			System.out.println(el.get_cor());
 			if(el.get_cor()=="azul") {
-				if(el.get_destruido_por().equals(dono)) {
-					return true;
-				}
 				if(el.get_destruido_por()==null) {
 					return false;
+				}
+				if(el.get_destruido_por().equals(dono)) {
+					return true;
 				}
 			}
 		}
@@ -73,12 +78,13 @@ class Objetivo2 extends Objetivo {
 	 //exterminar o amarelo, se for o amarelo ou outro jogador tiver eliminado o amarelo, 24 territorios
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
+			System.out.println(el.get_cor());
 			if(el.get_cor()=="amarelo") {
-				if(el.get_destruido_por().equals(dono)) {
-					return true;
-				}
 				if(el.get_destruido_por()==null) {
 					return false;
+				}
+				if(el.get_destruido_por().equals(dono)) {
+					return true;
 				}
 			}
 		}
@@ -98,12 +104,13 @@ class Objetivo3 extends Objetivo {
 	//exterminar o branco, se for o branco ou outro jogador tiver eliminado o branco, 24 territorios
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
+			System.out.println(el.get_cor());
 			if(el.get_cor()=="branco") {
-				if(el.get_destruido_por().equals(dono)) {
-					return true;
-				}
 				if(el.get_destruido_por()==null) {
 					return false;
+				}
+				if(el.get_destruido_por().equals(dono)) {
+					return true;
 				}
 			}
 		}
@@ -123,14 +130,13 @@ class Objetivo4 extends Objetivo {
 	//exterminar o verde, se for o verde ou outro jogador tiver eliminado o verde, 24 territorios 
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
+			System.out.println(el.get_cor());
 			if(el.get_cor()=="verde") {
-				System.out.println(dono);
-				if(el.get_destruido_por().equals(dono)) {
-					return true;
-				}
-				System.out.println("entrou");
 				if(el.get_destruido_por()==null) {
 					return false;
+				}
+				if(el.get_destruido_por().equals(dono)) {
+					return true;
 				}
 			}
 		}
@@ -149,12 +155,13 @@ class Objetivo5 extends Objetivo {
 	}
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
+			System.out.println(el.get_cor());
 			if(el.get_cor()=="preto") {
-				if(el.get_destruido_por().equals(dono)) {
-					return true;
-				}
 				if(el.get_destruido_por()==null) {
 					return false;
+				}
+				if(el.get_destruido_por().equals(dono)) {
+					return true;
 				}
 			}
 		}
@@ -176,12 +183,13 @@ class Objetivo6 extends Objetivo {
 	//exterminar o vermelho, se for o vermelho ou outro jogador tiver eliminado o vermelho, 24 territorios
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
+			System.out.println(el.get_cor());
 			if(el.get_cor()=="vermelho") {
-				if(el.get_destruido_por().equals(dono)) {
-					return true;
-				}
 				if(el.get_destruido_por()==null) {
 					return false;
+				}
+				if(el.get_destruido_por().equals(dono)) {
+					return true;
 				}
 			}
 		}

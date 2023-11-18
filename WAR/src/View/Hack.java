@@ -105,7 +105,7 @@ class Hack {
     public List<Integer> get_text_fields(){
     	List<Integer> dados = new ArrayList<>();
     	for(JTextField textfield : textFields) {
-    		if(textfield.getText() == "") {
+    		if(((CharSequence) textfield).isEmpty()) {
     			dados.add(1);
     		} else {
     			dados.add(Integer.parseInt(textfield.getText()));

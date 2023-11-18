@@ -54,6 +54,7 @@ class Tela extends JFrame {
 			if(rotina_ind > 4) {
 				rotina_ind = 0;
 			}
+			rotina_atual.set_rotina_ind(rotina_ind);
 			this.repaint();
 		}
 	}

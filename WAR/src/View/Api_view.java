@@ -98,7 +98,9 @@ public class Api_view {
 			rotina_atual.set_qtd_exerc(0,value);
 			this.repinta_tela();
 		}
-		
+	}
+	public void set_max_exerc_text(int limit) {
+		rotina_atual.set_qtd_exerc(2,limit);
 	}
 	
 	public void repinta_tela() {

@@ -59,7 +59,12 @@ public class Controlador {
 			    	// Rotina de inicio da vez do jogador
 			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
-			    	jogo.get_vez_jogador_add_exercito();
+			    	jogo.get_vez_jogador_add_exercito(); // AQUI
+			    	tela.set_max_exerc_text(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)));
+			    	if(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)) == 0) {
+			    		tela.set_next_rotina();
+			    		tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
+			    	}
 			    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
 			    	tela.inicializa_hack_dados();
 			    	listener_JanelaJogo();
@@ -99,6 +104,7 @@ public class Controlador {
 		            		if(jogo.get_vez_jogador_exercitos_reg() == 0) {
 	            				tela.set_next_rotina();
 	            				if(jogo.get_vez_jogador_exercitos_distri() == 0) {
+	            					tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 		            				tela.set_next_rotina();
 		            				if(tela.get_fase_atual() == "ATQ")
 		            				tela.set_rotina_layout("Layout ataque pass");
@@ -182,6 +188,7 @@ public class Controlador {
 					            				if(tela.get_fase_atual() == "ATQ")
 					            				tela.set_rotina_layout("Layout ataque pass");
 					            			}
+					            			tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 				            			}
 				            		}
 			            		} else if (tela.get_rotina_atual() == "Layout nao ver cartas") {
@@ -341,7 +348,8 @@ public class Controlador {
 		    			    	jogo.sorteia_todos_territorios(jogo.get_mapa_mundo(), jogo.get_jogadores_ativos());
 		    			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 		    			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
-		    			    	jogo.get_vez_jogador_add_exercito();
+		    			    	jogo.get_vez_jogador_add_exercito(); // AQUI
+		    			    	tela.set_max_exerc_text(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)));
 		    			    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
 		    			    	tela.repinta_tela();
 		                    } else {
@@ -356,7 +364,12 @@ public class Controlador {
 		            		jogo.next_jogador();
 		            		tela.set_jogador_vez(jogo.get_vez_jogador_color());
 					    	tela.set_cartas(jogo.get_vez_jogador_cartas());
-					    	jogo.get_vez_jogador_add_exercito();
+					    	jogo.get_vez_jogador_add_exercito(); // AQUI
+					    	tela.set_max_exerc_text(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)));
+					    	if(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)) == 0) {
+					    		tela.set_next_rotina();
+					    		tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
+					    	}
 					    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
 					    	jogo.jogador_ganha_carta();
 					    	tela.set_cartas(jogo.get_vez_jogador_cartas());

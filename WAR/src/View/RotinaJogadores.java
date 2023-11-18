@@ -21,8 +21,13 @@ class RotinaJogadores {
 	protected String atacado;
 	protected String terr;
 	protected int qtd_exerc,qtd_exerc_min,qtd_exerc_max;
+	protected int rotina_ind;
 	protected boolean objetivo;
 	protected String objetivo_jog;
+	
+	public void set_rotina_ind(int rotine) {
+		rotina_ind = rotine;
+	}
 	
 	public void set_objetivo(String name) {
 		objetivo_jog = name;
@@ -59,6 +64,7 @@ class RotinaJogadores {
 		layout_jogador.add(new ImagemInfo ("layout_ataque_pass_jogador.png",322,620,364,200,"Layout ataque pass"));
 		layout_jogador.add(new ImagemInfo ("layout_ataque_jogador.png",322,620,364,200,"Layout ataque"));
 		layout_jogador.add(new ImagemInfo ("layout_reposiciona_pass_jogador.png",322,620,364,200,"Layout reposiciona pass"));
+		layout_jogador.add(new ImagemInfo ("layout_default_text.png",1024/2 - 835/2,0,835,75,"Layout default text"));
 		this.set_layout("Layout nao ver cartas");
 	}
 	
@@ -120,7 +126,6 @@ class RotinaJogadores {
 					// 436, 654
 					// 562, 672
 					g2d.setColor(Color.WHITE);
-					g2d.drawString("Você possui "+ Integer.toString(qtd_exerc_max)+ " exércitos restantes", 400, 620);//tá muito mal feito
 					Rectangle2D rect = new Rectangle2D.Double(436, 654, 128, 18);
 					g2d.fill(rect);
 					g2d.setColor(Color.BLACK);
@@ -199,6 +204,10 @@ class RotinaJogadores {
 					}
 				}
 			}
+			if(layout.get_name() == "Layout default text") {
+				this.DrawTextRotina(g,layout);
+				//g2d.setColor(Color.WHITE);
+			}
 		}
 		if(objetivo) {
 			g2d.setColor(new Color(0,0,0,225));
@@ -218,5 +227,22 @@ class RotinaJogadores {
         int x = retanguloX + (retanguloLargura - larguraTexto) / 2;
         int y = retanguloY + (retanguloAltura + alturaTexto) / 2;
         g.drawString(texto, x, y);
+	}
+	public void DrawTextRotina(Graphics g,ImagemInfo layout) {
+		g.drawImage(layout.get_image(), layout.get_x(), layout.get_y(), layout.get_w(), layout.get_h(), null);
+		Graphics2D g2d = (Graphics2D) g;
+		Font minhaFonte = new Font("Dialog", Font.BOLD, 13);
+		g2d.setColor(Color.BLACK);
+		if(this.rotina.get(this.rotina_ind) == "PER") {
+			drawStringCentralized(minhaFonte,835,75,10,1024/2 - 835/2,g,"Distribua seus " + Integer.toString(qtd_exerc_max) + " exercitos de regiao.");
+		} else if(this.rotina.get(this.rotina_ind) == "PE") {
+			drawStringCentralized(minhaFonte,835,75,10,1024/2 - 835/2,g,"Distribua seus " + Integer.toString(qtd_exerc_max) + " exercitos.");
+		} else if(this.rotina.get(this.rotina_ind) == "ATQ") {
+			drawStringCentralized(minhaFonte,835,75,10,1024/2 - 835/2,g,"Ataque");
+		} else if(this.rotina.get(this.rotina_ind) == "REP") {
+			drawStringCentralized(minhaFonte,835,75,10,1024/2 - 835/2,g,"Reposicionamento dos exercitos");
+		} else {
+			
+		}
 	}
 }

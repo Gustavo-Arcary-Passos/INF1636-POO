@@ -120,6 +120,7 @@ class RotinaJogadores {
 					// 436, 654
 					// 562, 672
 					g2d.setColor(Color.WHITE);
+					g2d.drawString("Você possui "+ Integer.toString(qtd_exerc_max)+ " exércitos restantes", 400, 620);//tá muito mal feito
 					Rectangle2D rect = new Rectangle2D.Double(436, 654, 128, 18);
 					g2d.fill(rect);
 					g2d.setColor(Color.BLACK);

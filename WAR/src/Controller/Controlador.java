@@ -66,7 +66,7 @@ public class Controlador {
 			    		tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 			    	}
 			    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
-			    	tela.inicializa_hack_dados();
+			    	tela.inicializa_hack_dados_save();
 			    	listener_JanelaJogo();
 			    }
 		    }
@@ -82,6 +82,13 @@ public class Controlador {
 	}
 	
 	public void listener_JanelaJogo() {
+		tela.get_button_save().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Chama metodo do controller para salvar info do arquivo
+			}
+        });
+		
 		tela.set_tela_mouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -127,6 +134,9 @@ public class Controlador {
 	    			            			int qtd = tela.get_qtd_exerc_sel();
 	    			            			//System.out.println("OK");
 	    			            			if(qtd > 0) {
+	    			            				if(tela.get_save_status()) {
+	    			            					tela.ajust_save_status();
+	    			            				}
 	    				            			jogo.posiciona_exercitos_reg_jogador_vez(qtd,tela.get_terr_sel(0));
 	    				            			tela.set_rotina_layout("Layout nao ver cartas");
 	    				            			if(jogo.get_vez_jogador_exercitos_reg() == 0) {
@@ -180,6 +190,9 @@ public class Controlador {
 				            			int qtd = tela.get_qtd_exerc_sel();
 				            			//System.out.println("OK");
 				            			if(qtd > 0) {
+				            				if(tela.get_save_status()) {
+    			            					tela.ajust_save_status();
+    			            				}
 					            			jogo.posiciona_exercitos_jogador_vez(qtd,tela.get_terr_sel(0));
 					            			//System.out.println(tela.get_terr_sel(0));
 					            			tela.set_rotina_layout("Layout nao ver cartas");
@@ -375,6 +388,7 @@ public class Controlador {
 					    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 					    	//jogo.get_vez_jogador_territorios();
 					    	tela.set_next_rotina();
+					    	tela.ajust_save_status();
 		            	}
 		            }
 	            }

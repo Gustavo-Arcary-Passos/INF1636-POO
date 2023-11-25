@@ -183,6 +183,9 @@ class Jogador {
     public void add_exercito() { //add exercito de acordo com metade dos territórios
     	//System.out.println("CHAMOU AUMENTA EXERCITO BASEADO TERRITORIO = " + this.domina.size()/2);
     	this.qtd_exercitos += this.domina.size()/2;
+    	if(this.qtd_exercitos == 0) {
+    		this.qtd_exercitos += 1;
+    	}
     }
     public int get__exercito_regiao(String regiao) {
     	for(ExercitoRegiao exercito : this.exercitos_regiao) {

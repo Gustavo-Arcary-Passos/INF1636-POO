@@ -13,6 +13,7 @@ import Model.Observador;
 public class Api_view {
 	private Tela jogo;
 	private RotinaJogadores rotina_atual = RotinaJogadores.getInstance();
+	private ViewSave save;
 	private Hack hack_dados;
 	private boolean curinga_slc_1,curinga_slc_2;
 	
@@ -22,8 +23,21 @@ public class Api_view {
 		jogo.setVisible(true);
 	}
 	
-	public void inicializa_hack_dados() {
+	public void inicializa_hack_dados_save() {
 		hack_dados = Hack.getInstance(jogo,1024,75);
+		save = ViewSave.getInstance(jogo);
+	}
+	
+	public JButton get_button_save() {
+		return save.get_button();
+	}
+	
+	public boolean get_save_status() {
+		return save.get_saving();
+	}
+	
+	public void ajust_save_status() {
+		save.set_saving(!save.get_saving());
 	}
 	
 	public boolean get_hack_dados_active() {
@@ -368,5 +382,9 @@ public class Api_view {
     	
     	this.show_selected();
         return carta;
+    }
+    
+    public void save_view() {
+    	
     }
 }

@@ -6,7 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Model.Api_model;
 import Model.Observador;
@@ -76,7 +78,30 @@ public class Controlador {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		    	tela.salva_jogador().actionPerformed(e);
-		    	actionListenerClasseControle.actionPerformed(e);
+		    	// actionListenerClasseControle.actionPerformed(e);
+		    }
+		});
+		
+		tela.get_button(0, 0).addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	JFileChooser fileChooser = new JFileChooser();
+		        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos de texto (.txt)", "txt");
+		        fileChooser.setFileFilter(filter);
+
+		        // Abre o seletor de arquivos e aguarda a interação do usuário
+		        int result = fileChooser.showOpenDialog(null);
+
+		        // Verifica se o usuário escolheu um arquivo
+		        if (result == JFileChooser.APPROVE_OPTION) {
+		        	tela.carrega_save();
+		        	// Carrega todas as informacoes do jogo
+		        	listener_JanelaJogo();
+		        } else {
+		            System.out.println("Nenhum arquivo selecionado.");
+		        }
+		    	// jogo.load_all_data("Chuva");
+		    	// listener_JanelaJogo();
 		    }
 		});
 	}
@@ -85,7 +110,7 @@ public class Controlador {
 		tela.get_button_save().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Chama metodo do controller para salvar info do arquivo
+				tela.saving_operation(jogo.get_all_data());
 			}
         });
 		

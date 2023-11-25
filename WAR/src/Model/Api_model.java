@@ -12,6 +12,15 @@ public class Api_model {
 	private List<Integer> reposicionamento;
 	private int vez;
 	
+	public void load_all_data(String content) {
+		// converte texto em informacao
+	}
+	
+	public String get_all_data() {
+		// Salvamento
+		return "PAPAPAPA";
+	}
+	
 	public DeckObjetivos get_deck_obj(){
 		return this.deckobj;
 	}

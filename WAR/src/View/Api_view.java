@@ -28,6 +28,25 @@ public class Api_view {
 		save = ViewSave.getInstance(jogo);
 	}
 	
+	public void carrega_save() {
+		jogo.trocarParaJanelaJogo();
+	}
+	
+	public void saving_operation(String text) {
+		if (save.get_clique()) {
+        	System.out.println("SUAVE!");
+        	save.criarNovoArquivo(text);
+        	save.set_clique(!save.get_clique());
+        } else { 
+        	save.salvarDadosNoArquivo(text);
+        }
+	}
+	
+	public void set_file_view(java.io.File file) {
+		save = ViewSave.getInstance(jogo);
+		save.set_file_selected(file);
+	}
+	
 	public JButton get_button_save() {
 		return save.get_button();
 	}
@@ -211,7 +230,6 @@ public class Api_view {
 	}
 	
 	public void realiza_ataque() {
-		//System.out.println("Aqui!");
         DadoView.set_exibe(!DadoView.get_flag());
         jogo.repaint();
 	}

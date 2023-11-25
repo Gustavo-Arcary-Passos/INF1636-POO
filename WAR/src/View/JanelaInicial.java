@@ -35,17 +35,16 @@ class JanelaInicial extends LoadScene {
         });
         
 		
-		// ***** DEBUG *****
-		JButton bskip = new JButton("pular para DEBUG");
+		JButton bskip = new JButton("Continuar");
 		bskip.setBounds(550, 550, 100, 30);
-		bskip.addActionListener( new ActionListener() {
+		/**bskip.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				set_count_images(0);
 				removeComponents(tela);
 				tela.trocarParaJanelaJogo();
 			}
-		});
+		});**/
 		JButton b3 = new JButton("3"); 
 		b3.setBounds(530, 250, 100, 30);
 

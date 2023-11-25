@@ -36,6 +36,18 @@ class DeckObjetivos {
     	jogador.get_objetivo().ganha_dono(jogador);
     	objetivos.remove(jogador.get_objetivo());
     }
+    public void devolve_objetivo_jogador(Jogador jogador, String objetivo){
+    	Objetivo obj_certo = null;
+    	for(Objetivo obj : objetivos) {
+    		if(objetivo.equals(obj.get_nome())) {
+    			obj_certo = obj;
+    		}
+    	}
+    	jogador.recebe_objetivo(obj_certo);
+    	jogador.get_objetivo().ganha_dono(jogador);
+    	objetivos.remove(jogador.get_objetivo());
+    }
+    
     public void objetivo_retorna_deck(Objetivo objetivo) {
     	objetivos.add(objetivo);
     }

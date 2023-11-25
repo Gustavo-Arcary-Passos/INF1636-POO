@@ -121,6 +121,9 @@ class Tela extends JFrame {
 	public int get_rodada() {
 		return this.rodada;
 	}
+	public void set_rodada(int value) {
+		this.rodada = value;
+	}
 	public void reset() {
 		this.rodada = 0;
 		this.rotina_ind = 0;

@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JFileChooser;
@@ -78,7 +83,7 @@ public class Controlador {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		    	tela.salva_jogador().actionPerformed(e);
-		    	// actionListenerClasseControle.actionPerformed(e);
+		    	actionListenerClasseControle.actionPerformed(e);
 		    }
 		});
 		
@@ -88,19 +93,45 @@ public class Controlador {
 		    	JFileChooser fileChooser = new JFileChooser();
 		        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos de texto (.txt)", "txt");
 		        fileChooser.setFileFilter(filter);
-
 		        // Abre o seletor de arquivos e aguarda a interação do usuário
 		        int result = fileChooser.showOpenDialog(null);
 
 		        // Verifica se o usuário escolheu um arquivo
 		        if (result == JFileChooser.APPROVE_OPTION) {
-		        	tela.carrega_save();
-		        	// Carrega todas as informacoes do jogo
+		        	File arquivoSelecionado = fileChooser.getSelectedFile();
+		        	BufferedReader br = null;
+		        	try {
+		                br = new BufferedReader(new FileReader(arquivoSelecionado));
+		                jogo.load_all_data(br);
+		                tela.carrega_save(br);
+		        	} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}  finally {
+		        		if(br != null) {
+		        			try {
+								br.close();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+		        		}
+		        	}
+		        	tela.set_jogador_vez(jogo.get_vez_jogador_color());
+			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
+			    	jogo.get_vez_jogador_add_exercito(); // AQUI
+			    	tela.set_max_exerc_text(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)));
+			    	if(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)) == 0) {
+			    		tela.set_next_rotina();
+			    		tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
+			    	}
+			    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
+			    	tela.inicializa_hack_dados_save();
 		        	listener_JanelaJogo();
 		        } else {
 		            System.out.println("Nenhum arquivo selecionado.");
 		        }
-		    	// jogo.load_all_data("Chuva");
+		    	// 
 		    	// listener_JanelaJogo();
 		    }
 		});
@@ -110,7 +141,7 @@ public class Controlador {
 		tela.get_button_save().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tela.saving_operation(jogo.get_all_data());
+				tela.saving_operation(jogo.get_all_data(tela.get_rodada()));
 			}
         });
 		
@@ -399,6 +430,7 @@ public class Controlador {
 		            			// proxima rodada
 		            			tela.next_rodada();
 		            		}
+		            		jogo.jogador_ganha_carta();
 		            		jogo.next_jogador();
 		            		tela.set_jogador_vez(jogo.get_vez_jogador_color());
 					    	tela.set_cartas(jogo.get_vez_jogador_cartas());
@@ -409,7 +441,6 @@ public class Controlador {
 					    		tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 					    	}
 					    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
-					    	jogo.jogador_ganha_carta();
 					    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 					    	//jogo.get_vez_jogador_territorios();
 					    	tela.set_next_rotina();

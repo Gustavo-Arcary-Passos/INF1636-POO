@@ -81,6 +81,18 @@ class ConjuntoCartaConquista {
 		}
 	}
 	
+	public void tira_uma_carta(Jogador jogador, String nome){
+		CartaConquista carta_devolvida = null;
+		for(CartaConquista carta : cartas) {
+			if(nome.equals(carta.get_pais())) {
+				carta_devolvida = carta;
+			}
+		}
+		if(jogador.add_carta(carta_devolvida)) {
+			cartas.remove(carta_devolvida);
+		}
+	}
+	
 	public void carta_retorna_deck(CartaConquista carta) {
 		this.cartas.add(carta);
 	}

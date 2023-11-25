@@ -163,9 +163,9 @@ class RotinaJogadores {
 
 
 					int desloc_x = 0; // usada para desenhar cada carta no lugar certo
+					
 					for (String carta : lista_carta)
 					{
-						
 						if (carta != null) {
 							System.out.println(carta);
 							carta = "Verso";
@@ -180,6 +180,7 @@ class RotinaJogadores {
 
 						desloc_x += 70; // calculado na mão
 					}
+					
 				} else if(layout_selected == "Layout ver cartas") {
 					// PODE COLOCAR AS IMAGENS AQUI E USAR UMA List<String> para saber quais cartas carregar
 					// lista_carta.clear();

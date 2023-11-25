@@ -2,6 +2,8 @@ package View;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,21 +25,34 @@ public class Api_view {
 		jogo.setVisible(true);
 	}
 	
+	public int get_rodada() {
+		return jogo.get_rodada();
+	}
+	
 	public void inicializa_hack_dados_save() {
 		hack_dados = Hack.getInstance(jogo,1024,75);
 		save = ViewSave.getInstance(jogo);
 	}
 	
-	public void carrega_save() {
+	public void carrega_save(BufferedReader content) throws IOException {
 		jogo.trocarParaJanelaJogo();
+		String linha;
+        while ((linha = content.readLine()) != null) {
+            String[] arrayDeStrings = linha.split(",");
+            if(arrayDeStrings[0].contains("->")) {
+            	String[] rodada = linha.split("->");
+            	jogo.set_rodada(Integer.parseInt(rodada[0]));
+            }
+        }
 	}
 	
 	public void saving_operation(String text) {
 		if (save.get_clique()) {
-        	System.out.println("SUAVE!");
+        	System.out.println(text);
         	save.criarNovoArquivo(text);
         	save.set_clique(!save.get_clique());
         } else { 
+        	System.out.println(text);
         	save.salvarDadosNoArquivo(text);
         }
 	}
@@ -48,6 +63,7 @@ public class Api_view {
 	}
 	
 	public JButton get_button_save() {
+		save = ViewSave.getInstance(jogo);
 		return save.get_button();
 	}
 	

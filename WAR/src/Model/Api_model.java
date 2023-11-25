@@ -1,5 +1,7 @@
 package Model;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.*;
 
 public class Api_model {
@@ -12,13 +14,91 @@ public class Api_model {
 	private List<Integer> reposicionamento;
 	private int vez;
 	
-	public void load_all_data(String content) {
-		// converte texto em informacao
+	public void load_all_data(BufferedReader content) throws IOException {
+		String linha;
+		Territorio escolhido;
+		List<String> objetivos = new ArrayList<>();
+        while ((linha = content.readLine()) != null) {
+            String[] arrayDeStrings = linha.split(",");
+            if(!arrayDeStrings[0].contains("->")) {
+            	System.out.println(arrayDeStrings[0] + " " + arrayDeStrings[1]);
+            	this.add_jogador(arrayDeStrings[0],arrayDeStrings[1]);
+            	objetivos.add(arrayDeStrings[2]);
+            	Jogador jogador = jogadores_ativos.get(jogadores_ativos.size()-1);
+            	int value = 0;
+            	for(int num = 3; num < arrayDeStrings.length; num++) {
+            		int indice_nome = arrayDeStrings[num].indexOf("(");
+            		int indice_num = arrayDeStrings[num+1].indexOf(")");
+            		if (indice_nome != -1 && indice_num != -1) {
+            			//System.out.println(arrayDeStrings[num].substring(indice_nome + 1) + "->" +  arrayDeStrings[num+1].substring(0,indice_num));
+            			for(Regiao reg : mapa_mundo) {
+            				escolhido = reg.get_territorio(arrayDeStrings[num].substring(indice_nome + 1));
+            				if(escolhido != null) {
+            					jogador.ganha_territorio(escolhido);
+            					escolhido.set_Jogador(jogador);
+            					escolhido.add_exercito(Integer.parseInt(arrayDeStrings[num+1].substring(0,indice_num)));
+            					break;
+            				}
+            			}
+            		}
+            		if(arrayDeStrings[num+1].contains("}")) {
+            			value = num;
+            			break;
+            		}
+            	}
+            	for(int num = value + 2; num < arrayDeStrings.length; num++) {
+            		int indice_chave = arrayDeStrings[num].indexOf("{");
+            		if(arrayDeStrings[num].contains("}")) {
+            			value = num;
+            			break;
+            		}
+            		if(indice_chave != -1) {
+            			System.out.println(arrayDeStrings[num].substring(indice_chave + 1));
+            			deck.tira_uma_carta(jogador, arrayDeStrings[num].substring(indice_chave + 1));
+            		} else {
+            			System.out.println(arrayDeStrings[num]);
+            			deck.tira_uma_carta(jogador, arrayDeStrings[num]);
+            		}
+            	}
+            } else {
+                String[] rodada = linha.split("->");
+                this.vez = Integer.parseInt(rodada[1]);
+            }
+        }
+        this.instancia_deckobj();
+        int num = 0;
+        for(String obj : objetivos) {
+        	Jogador jogador = jogadores_ativos.get(num);
+        	deckobj.devolve_objetivo_jogador(jogador,obj);
+        	num++;
+        }
 	}
 	
-	public String get_all_data() {
+	public String get_all_data(int rodada) {
 		// Salvamento
-		return "PAPAPAPA";
+		String all_info = "";
+		// ordem de jogador
+		// nome,cor,objetivo,terras,cartas
+		for(Jogador el : jogadores_ativos) {
+			all_info += el.get_nome() + ",";
+			all_info += el.get_cor() + ",";
+			all_info += el.get_objetivo_name() + ",";
+			List<Territorio> terras = el.get_list_terr();
+			all_info += "{";
+			for(Territorio terr : terras) {
+				all_info += "(" + terr.get_nome() + "," + String.valueOf(terr.get_exercitos()) + ")";
+			}
+			all_info += "},";
+			List<CartaConquista> cartas = el.get_carta();
+			all_info += "{";
+			for(CartaConquista carta : cartas) {
+				all_info += carta.get_pais() + ",";
+			}
+			all_info += "},";
+			all_info +=  "\n";
+		}
+		all_info += String.valueOf(rodada) + "->" + String.valueOf(this.vez);
+		return all_info;
 	}
 	
 	public DeckObjetivos get_deck_obj(){

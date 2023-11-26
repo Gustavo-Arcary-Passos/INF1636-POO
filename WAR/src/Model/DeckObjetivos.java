@@ -64,7 +64,7 @@ class Objetivo1 extends Objetivo {
 	//exterminar o azul, se for o azul ou outro jogador tiver eliminado o azul, 24 territorios
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
-			if(el.get_cor()=="azul") {
+			if(el.get_cor().equals("azul")) {
 				if(el.get_destruido_por()==null) {
 					return false;
 				}
@@ -89,7 +89,7 @@ class Objetivo2 extends Objetivo {
 	 //exterminar o amarelo, se for o amarelo ou outro jogador tiver eliminado o amarelo, 24 territorios
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
-			if(el.get_cor()=="amarelo") {
+			if(el.get_cor().equals("amarelo")) {
 				if(el.get_destruido_por()==null) {
 					return false;
 				}
@@ -114,7 +114,7 @@ class Objetivo3 extends Objetivo {
 	//exterminar o branco, se for o branco ou outro jogador tiver eliminado o branco, 24 territorios
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
-			if(el.get_cor()=="branco") {
+			if(el.get_cor().equals("branco")) {
 				if(el.get_destruido_por()==null) {
 					return false;
 				}
@@ -139,7 +139,9 @@ class Objetivo4 extends Objetivo {
 	//exterminar o verde, se for o verde ou outro jogador tiver eliminado o verde, 24 territorios 
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
-			if(el.get_cor()=="verde") {
+			System.out.println(el.get_cor().equals("verde"));
+			if(el.get_cor().equals("verde")) {
+				
 				if(el.get_destruido_por()==null) {
 					return false;
 				}
@@ -163,7 +165,7 @@ class Objetivo5 extends Objetivo {
 	}
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
-			if(el.get_cor()=="preto") {
+			if(el.get_cor().equals("preto")) {
 				if(el.get_destruido_por()==null) {
 					return false;
 				}
@@ -190,7 +192,7 @@ class Objetivo6 extends Objetivo {
 	//exterminar o vermelho, se for o vermelho ou outro jogador tiver eliminado o vermelho, 24 territorios
 	public boolean verifica_status() {
 		for(Jogador el : this.todos_jogadores) {
-			if(el.get_cor()=="vermelho") {
+			if(el.get_cor().equals("vermelho")) {
 				if(el.get_destruido_por()==null) {
 					return false;
 				}

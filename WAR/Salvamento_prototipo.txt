@@ -1,0 +1,3 @@
+[Nome do Jogador],[Cor do Jogador],[Objetivo do Jogador],{([Territorios Jogador], [Número de Exércitos])...()},{[Nome da carta do Jogador]},
+...
+[Rodada]->[Número do Jogador da vez]->[Número de trocas de carta realizada]

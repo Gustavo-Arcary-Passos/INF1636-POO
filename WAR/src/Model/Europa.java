@@ -13,7 +13,7 @@ class Europa extends Regiao{
 	        paises.add(new Territorio("Espanha", "Europa", new ArrayList<>(Arrays.asList("Argélia", "França"))));
 	        paises.add(new Territorio("Itália", "Europa", new ArrayList<>(Arrays.asList("França", "Argélia", "Polônia", "Romênia", "Suécia"))));
 	        paises.add(new Territorio("Suécia", "Europa", new ArrayList<>(Arrays.asList("França", "Itália", "Letônia", "Estônia"))));
-	        paises.add(new Territorio("Polônia", "Europa", new ArrayList<>(Arrays.asList("Itália", "Letônia", "Polônia", "Ucrânia"))));
+	        paises.add(new Territorio("Polônia", "Europa", new ArrayList<>(Arrays.asList("Itália", "Letônia", "Romênia", "Ucrânia"))));
 	        paises.add(new Territorio("Romênia", "Europa", new ArrayList<>(Arrays.asList("Egito", "Itália", "Polônia", "Ucrânia"))));
 	        paises.add(new Territorio("Ucrânia", "Europa", new ArrayList<>(Arrays.asList("Polônia", "Romênia", "Letônia", "Turquia"))));
 		}

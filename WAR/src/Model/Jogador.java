@@ -165,6 +165,14 @@ class Jogador {
     public List<CartaConquista> get_carta(){
     	return this.cartaTroca;
     }
+    public boolean add_carta_load(CartaConquista carta) {
+    	
+    	if(this.cartaTroca.size() < 5) {
+    		this.cartaTroca.add(carta);
+    		return true;
+    	}
+    	return false;
+    }
     public boolean add_carta(CartaConquista carta) {
     	if(this.conquistou_territorio_rodada) {
     		this.conquistou_territorio_rodada = false;

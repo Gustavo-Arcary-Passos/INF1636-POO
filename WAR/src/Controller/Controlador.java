@@ -67,8 +67,8 @@ public class Controlador {
 			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 			    	jogo.get_vez_jogador_add_exercito(); // AQUI
-			    	tela.set_max_exerc_text(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)));
-			    	if(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)) == 0) {
+			    	tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_reg());
+			    	if(jogo.get_vez_jogador_exercitos_reg() == 0) {
 			    		tela.set_next_rotina();
 			    		tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 			    	}
@@ -103,6 +103,7 @@ public class Controlador {
 		        	try {
 		                br = new BufferedReader(new FileReader(arquivoSelecionado));
 		                jogo.load_all_data(br);
+		                br = new BufferedReader(new FileReader(arquivoSelecionado));
 		                tela.carrega_save(br);
 		        	} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
@@ -120,8 +121,8 @@ public class Controlador {
 		        	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 			    	jogo.get_vez_jogador_add_exercito(); // AQUI
-			    	tela.set_max_exerc_text(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)));
-			    	if(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)) == 0) {
+			    	tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_reg());
+			    	if(jogo.get_vez_jogador_exercitos_reg() == 0) {
 			    		tela.set_next_rotina();
 			    		tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 			    	}
@@ -194,9 +195,11 @@ public class Controlador {
 	    			            					tela.ajust_save_status();
 	    			            				}
 	    				            			jogo.posiciona_exercitos_reg_jogador_vez(qtd,tela.get_terr_sel(0));
+	    				            			tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_reg());
 	    				            			tela.set_rotina_layout("Layout nao ver cartas");
 	    				            			if(jogo.get_vez_jogador_exercitos_reg() == 0) {
 	    				            				tela.set_next_rotina();
+	    				            				tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 	    				            			}
 	    			            			}
 	    			            		}
@@ -209,7 +212,7 @@ public class Controlador {
 	    		            				tela.set_rotina_layout("Layout nao ver cartas");
 	    		            			} else if(tela.verifica_trocar_carta_clicado(x,y)) {
 	    		            				List<String> cartas = tela.show_selected();
-	    		            				System.out.println(cartas);
+	    		            				// System.out.println(cartas);
 		    		            			if(tela.qtd_selected() == 3) {
 		    		            				jogo.jogador_vez_troca_cartas_exerc(cartas);
 		    		            				tela.set_cartas(jogo.get_vez_jogador_cartas());
@@ -418,7 +421,7 @@ public class Controlador {
 		    			    	tela.set_jogador_vez(jogo.get_vez_jogador_color());
 		    			    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 		    			    	jogo.get_vez_jogador_add_exercito(); // AQUI
-		    			    	tela.set_max_exerc_text(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)));
+		    			    	tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_reg());
 		    			    	tela.set_objetivo_jogador_da_vez(jogo.get_obj_jgd_da_vez());
 		    			    	tela.repinta_tela();
 		                    } else {
@@ -435,8 +438,8 @@ public class Controlador {
 		            		tela.set_jogador_vez(jogo.get_vez_jogador_color());
 					    	tela.set_cartas(jogo.get_vez_jogador_cartas());
 					    	jogo.get_vez_jogador_add_exercito(); // AQUI
-					    	tela.set_max_exerc_text(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)));
-					    	if(jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)) == 0) {
+					    	tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_reg());
+					    	if(jogo.get_vez_jogador_exercitos_reg() == 0) {
 					    		tela.set_next_rotina();
 					    		tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 					    	}

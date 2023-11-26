@@ -25,10 +25,10 @@ class DeckObjetivos {
     	objetivos.add(new Objetivo12(todos_jogadores, mapa,"Objetivo 12"));
     	objetivos.add(new Objetivo13("Objetivo 13"));
     	objetivos.add(new Objetivo14("Objetivo 14"));
-    	System.out.println("Objetivo foi criado");
-    	for(Jogador jg : todos_jogadores) {
-    		System.out.println(jg.get_cor());
-    	}
+    	//System.out.println("Objetivo foi criado");
+//    	for(Jogador jg : todos_jogadores) {
+//    		System.out.println(jg.get_cor());
+//    	}
     }
     public void sorteia_objetivo(Jogador jogador){
     	Random rand = new Random();

@@ -38,8 +38,7 @@ public class Api_view {
 		jogo.trocarParaJanelaJogo();
 		String linha;
         while ((linha = content.readLine()) != null) {
-            String[] arrayDeStrings = linha.split(",");
-            if(arrayDeStrings[0].contains("->")) {
+            if(linha.contains("->")) {
             	String[] rodada = linha.split("->");
             	jogo.set_rodada(Integer.parseInt(rodada[0]));
             }

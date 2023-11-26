@@ -86,9 +86,10 @@ class ConjuntoCartaConquista {
 		for(CartaConquista carta : cartas) {
 			if(nome.equals(carta.get_pais())) {
 				carta_devolvida = carta;
+				break;
 			}
 		}
-		if(jogador.add_carta(carta_devolvida)) {
+		if(jogador.add_carta_load(carta_devolvida)) {
 			cartas.remove(carta_devolvida);
 		}
 	}
@@ -99,6 +100,14 @@ class ConjuntoCartaConquista {
 	
 	public List<CartaConquista> get_cartas() {
 		return this.cartas;
+	}
+	
+	public void set_trocas(int trocas) {
+		this.troca = trocas;
+	}
+	
+	public int get_trocas() {
+		return this.troca;
 	}
 	
 	public int get_max_cartas() {

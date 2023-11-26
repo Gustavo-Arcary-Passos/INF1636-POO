@@ -21,7 +21,7 @@ public class Api_model {
         while ((linha = content.readLine()) != null) {
             String[] arrayDeStrings = linha.split(",");
             if(!arrayDeStrings[0].contains("->")) {
-            	System.out.println(arrayDeStrings[0] + " " + arrayDeStrings[1]);
+            	//System.out.println(arrayDeStrings[0] + " " + arrayDeStrings[1]);
             	this.add_jogador(arrayDeStrings[0],arrayDeStrings[1]);
             	objetivos.add(arrayDeStrings[2]);
             	Jogador jogador = jogadores_ativos.get(jogadores_ativos.size()-1);
@@ -30,7 +30,7 @@ public class Api_model {
             		int indice_nome = arrayDeStrings[num].indexOf("(");
             		int indice_num = arrayDeStrings[num+1].indexOf(")");
             		if (indice_nome != -1 && indice_num != -1) {
-            			//System.out.println(arrayDeStrings[num].substring(indice_nome + 1) + "->" +  arrayDeStrings[num+1].substring(0,indice_num));
+            			// System.out.println(arrayDeStrings[num].substring(indice_nome + 1) + "->" +  arrayDeStrings[num+1].substring(0,indice_num));
             			for(Regiao reg : mapa_mundo) {
             				escolhido = reg.get_territorio(arrayDeStrings[num].substring(indice_nome + 1));
             				if(escolhido != null) {
@@ -53,16 +53,17 @@ public class Api_model {
             			break;
             		}
             		if(indice_chave != -1) {
-            			System.out.println(arrayDeStrings[num].substring(indice_chave + 1));
+            			//System.out.println(arrayDeStrings[num].substring(indice_chave + 1));
             			deck.tira_uma_carta(jogador, arrayDeStrings[num].substring(indice_chave + 1));
             		} else {
-            			System.out.println(arrayDeStrings[num]);
+            			//System.out.println(arrayDeStrings[num]);
             			deck.tira_uma_carta(jogador, arrayDeStrings[num]);
             		}
             	}
             } else {
                 String[] rodada = linha.split("->");
                 this.vez = Integer.parseInt(rodada[1]);
+                deck.set_trocas(Integer.parseInt(rodada[2]));
             }
         }
         this.instancia_deckobj();
@@ -97,7 +98,7 @@ public class Api_model {
 			all_info += "},";
 			all_info +=  "\n";
 		}
-		all_info += String.valueOf(rodada) + "->" + String.valueOf(this.vez);
+		all_info += String.valueOf(rodada) + "->" + String.valueOf(this.vez) + "->" + String.valueOf(deck.get_trocas());
 		return all_info;
 	}
 	

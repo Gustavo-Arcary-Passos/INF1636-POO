@@ -27,7 +27,7 @@ class JanelaJogo extends LoadScene implements Observador {
 	
 	public void notify(Observado o) {
 		for(DesenhaTerritorioPoligono el : this.formas_geometricas) {
-			if(el.get_nome()== (String)o.get('n')) {
+			if(el.get_nome().equals((String)o.get('n'))) {
 				el.get_exercito_2d().muda_exercito((Integer)o.get('e'));
 				//muda a cor
 				el.set_color(colorido_resp.get(colorido.indexOf((String)o.get('c'))));
@@ -157,7 +157,7 @@ class JanelaJogo extends LoadScene implements Observador {
 			    	g2d.setStroke(new BasicStroke(1));
 		    	}
 				// desenha o exercito 2d
-		    	if(formas_geometricas[i].get_nome() ==  "Reino Unido") {
+		    	if(formas_geometricas[i].get_nome().equals( "Reino Unido")) {
 					if(RU) {
 						formas_geometricas[i].get_exercito_2d().draw(g2d,formas_geometricas[i].get_cor());
 		    		}

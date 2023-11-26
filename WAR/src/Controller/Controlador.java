@@ -163,25 +163,25 @@ public class Controlador {
 		            	tela.repinta_tela();
 	            		return;
 	            	}
-		            if (e.getButton() == MouseEvent.BUTTON1 && (tela.get_fase_atual() == "PER" || tela.get_fase_atual() == "PE")) {
-		            	if(tela.get_fase_atual() == "PER") {
+		            if (e.getButton() == MouseEvent.BUTTON1 && (tela.get_fase_atual().equals("PER") || tela.get_fase_atual().equals("PE"))) {
+		            	if(tela.get_fase_atual().equals("PER")) {
 		            		if(jogo.get_vez_jogador_exercitos_reg() == 0) {
 	            				tela.set_next_rotina();
 	            				if(jogo.get_vez_jogador_exercitos_distri() == 0) {
 	            					tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 		            				tela.set_next_rotina();
-		            				if(tela.get_fase_atual() == "ATQ")
+		            				if(tela.get_fase_atual().equals("ATQ"))
 		            				tela.set_rotina_layout("Layout ataque pass");
 		            			}
 	            				//System.out.println("PER -> PE");
 	            			} else {
-	            				if(jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos" && jogo.get_vez_jogador_num_cartas() != 5) {
+	            				if(jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y)) && !tela.get_rotina_atual().equals("Distribui Exercitos") && jogo.get_vez_jogador_num_cartas() != 5) {
 	            					tela.set_rotina_atual("Distribui Exercitos");
 	    		            		tela.repinta_tela();
 	    		            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),0);
 	            				} else if (x > 322 && y > 620 && x < 686 && y < 800) {
 	            					// verificar daqui pra baixo
-	    		            		if(tela.get_rotina_atual() == "Distribui Exercitos") {
+	    		            		if(tela.get_rotina_atual().equals("Distribui Exercitos")) {
 	    		            			if(x > 575 && y > 709 && x < 619 && y < 750) {
 	    			            			tela.change_numero_exercitos_text(1,jogo.get_vez_jogador_exerc_reg(tela.get_terr_sel(0)),0);
 	    			            		} else if(x > 380 && y > 718 && x < 424 && y < 741) {
@@ -203,10 +203,10 @@ public class Controlador {
 	    				            			}
 	    			            			}
 	    			            		}
-	    		            		} else if (tela.get_rotina_atual() == "Layout nao ver cartas") {
+	    		            		} else if (tela.get_rotina_atual().equals("Layout nao ver cartas")) {
 	    		            			if(x > 412 && y > 637 && x < 458 && y < 666)
 	    		            				tela.set_rotina_layout("Layout ver cartas");
-	    		            		} else if (tela.get_rotina_atual() == "Layout ver cartas") {
+	    		            		} else if (tela.get_rotina_atual().equals("Layout ver cartas")) {
 	    		            			if(x > 412 && y > 637 && x < 458 && y < 666) {
 	    		            				tela.reset_all_selected();
 	    		            				tela.set_rotina_layout("Layout nao ver cartas");
@@ -225,20 +225,20 @@ public class Controlador {
 	    		            			}
 	    		            		}
 	    		            		
-	    		            	} else if (tela.get_rotina_atual() == "Distribui Exercitos" && !jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y))) {
+	    		            	} else if (tela.get_rotina_atual().equals("Distribui Exercitos") && !jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y))) {
 	    		            		tela.set_rotina_layout("Layout nao ver cartas");
 	    		            	} else if (jogo.verifica_territorio_jogador_reg(tela.verifica_territorio_clicado(x,y))) {
 	    		            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y),0);
 	    		            	}
 	            			}
 		            	}
-		            	if(tela.get_fase_atual() == "PE") {
-		            		if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && tela.get_rotina_atual() != "Distribui Exercitos" && jogo.get_vez_jogador_num_cartas() != 5){
+		            	if(tela.get_fase_atual().equals("PE")) {
+		            		if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y)) && !tela.get_rotina_atual().equals("Distribui Exercitos") && jogo.get_vez_jogador_num_cartas() != 5){
 		            			tela.set_rotina_atual("Distribui Exercitos");
 			            		tela.repinta_tela();
 			            		tela.create_numero_exercitos_text(tela.verifica_territorio_clicado(x,y),0);
 			            	} else if (x > 322 && y > 620 && x < 686 && y < 800) {
-			            		if(tela.get_rotina_atual() == "Distribui Exercitos") {
+			            		if(tela.get_rotina_atual().equals("Distribui Exercitos")) {
 			            			if(x > 575 && y > 709 && x < 619 && y < 750) {
 				            			tela.change_numero_exercitos_text(1,jogo.get_vez_jogador_exercitos_distri(),0);
 				            		} else if(x > 380 && y > 718 && x < 424 && y < 741) {
@@ -257,17 +257,17 @@ public class Controlador {
 					            			tela.set_rotina_layout("Layout nao ver cartas");
 					            			if(jogo.get_vez_jogador_exercitos_distri() == 0) {
 					            				tela.set_next_rotina();
-					            				if(tela.get_fase_atual() == "ATQ")
+					            				if(tela.get_fase_atual().equals("ATQ"))
 					            				tela.set_rotina_layout("Layout ataque pass");
 					            			}
 					            			tela.set_max_exerc_text(jogo.get_vez_jogador_exercitos_distri());
 				            			}
 				            		}
-			            		} else if (tela.get_rotina_atual() == "Layout nao ver cartas") {
+			            		} else if (tela.get_rotina_atual().equals("Layout nao ver cartas")) {
 			            			if(x > 412 && y > 637 && x < 458 && y < 666)
 			            				tela.set_rotina_layout("Layout ver cartas");
 
-			            		} else if (tela.get_rotina_atual() == "Layout ver cartas") {
+			            		} else if (tela.get_rotina_atual().equals("Layout ver cartas")) {
 			            			if(x > 412 && y > 637 && x < 458 && y < 666) {
     		            				tela.reset_all_selected();
     		            				tela.set_rotina_layout("Layout nao ver cartas");
@@ -286,14 +286,14 @@ public class Controlador {
     		            			}
 			            		}
 			            		
-			            	} else if (tela.get_rotina_atual() == "Distribui Exercitos" && !jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
+			            	} else if (tela.get_rotina_atual().equals("Distribui Exercitos") && !jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
 			            		tela.set_rotina_layout("Layout nao ver cartas");
 			            	} else if (jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
 			            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y),0);
 			            	}
 		            	}
-		            } else if(e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual() == "ATQ" ) {
-	            		if(tela.get_rotina_atual() == "Layout ataque pass") {
+		            } else if(e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual().equals("ATQ") ) {
+	            		if(tela.get_rotina_atual().equals("Layout ataque pass")) {
 	            			if(tela.verifica_passar_ataque_clicado(x,y)) {
 	            				// passa para proxima rotina se clicar na regiao do circulo
 	            				tela.set_next_rotina();
@@ -304,13 +304,13 @@ public class Controlador {
 	            				tela.set_rotina_layout("Layout ataque");
 	            				tela.create_ataque_compose_text(tela.verifica_territorio_clicado(x,y), "");
 	            			}
-	            		} else if(tela.get_rotina_atual() == "Layout ataque") {
+	            		} else if(tela.get_rotina_atual().equals("Layout ataque")) {
 	            			if(!(x > 322 && y > 620 && x < 686 && y < 800) && tela.verifica_territorio_clicado(x,y) == null) {
 	            				// se clicar fora do layout e fora de qualquer territorio troca para "Layout ataque pass"
 	            				tela.set_rotina_layout("Layout ataque pass");
 	            			} else if(jogo.verifica_territorio_jogador(tela.verifica_territorio_clicado(x,y))) {
 	            				// se clicar em um territorio que pertence ao jogador 
-	            				if(tela.verifica_territorio_clicado(x,y) != tela.get_terr_sel(1)) {
+	            				if(!tela.verifica_territorio_clicado(x,y).equals(tela.get_terr_sel(1))) {
 	            					// se territorio for diferente do anterior troca regiao que ataca e reseta territorio atacado
 	            					tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y),1);
 	            					tela.change_name_terr_text("",2);
@@ -323,7 +323,7 @@ public class Controlador {
 	            				}
 	            			} else if((x > 322 && y > 620 && x < 686 && y < 800)) {
 	            				//System.out.println("LAYOUT");
-	            				if(tela.get_terr_sel(2) != "" && (x > 452 && y > 645 && x < 562 && y < 674)) {
+	            				if(!tela.get_terr_sel(2).equals("") && (x > 452 && y > 645 && x < 562 && y < 674)) {
 	            					// so permiti realizar ataque se tiver algum territorio selecionado para ser atacado e 
 	            					if(jogo.get_exercito_terr(tela.get_terr_sel(1)) > 1) {
 	            						// se territorio atacante possuir mais de 1 exercito
@@ -346,7 +346,7 @@ public class Controlador {
 	    		            		tela.create_numero_exercitos_text(tela.get_terr_sel(2),1);
 	            				}
 	            			}
-	            		} else if(tela.get_rotina_atual() == "Distribui Exercitos") {
+	            		} else if(tela.get_rotina_atual().equals("Distribui Exercitos")) {
 	            			// selecionar quantidade de exercitos que serao realocados
 	            			if(x > 575 && y > 709 && x < 619 && y < 750) {
 		            			tela.change_numero_exercitos_text(1,jogo.get_qtd_exercito_atq(tela.get_terr_sel(1)),1);
@@ -365,8 +365,8 @@ public class Controlador {
 		            			}
 		            		}
 	            		}
-	            	} else if(e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual() == "REP" ) {
-	            		if(tela.get_rotina_atual() == "Layout reposiciona pass") {
+	            	} else if(e.getButton() == MouseEvent.BUTTON1 && tela.get_fase_atual().equals("REP") ) {
+	            		if(tela.get_rotina_atual().equals("Layout reposiciona pass")) {
 		            		if(tela.verifica_passar_ataque_clicado(x,y)) {
 		        				tela.set_next_rotina();
 		        				tela.set_rotina_layout("Layout nao ver cartas");
@@ -379,9 +379,9 @@ public class Controlador {
 			            		tela.change_name_terr_text(tela.verifica_territorio_clicado(x,y),1);
 			            		tela.repinta_tela();
 		        			}
-	            		} else if(tela.get_rotina_atual() == "Distribui Exercitos") {
+	            		} else if(tela.get_rotina_atual().equals("Distribui Exercitos")) {
 	            			if((x > 322 && y > 620 && x < 686 && y < 800)) {
-	            				if(x > 575 && y > 709 && x < 619 && y < 750 && tela.get_terr_sel(0) != "") {
+	            				if(x > 575 && y > 709 && x < 619 && y < 750 && !tela.get_terr_sel(0).equals("")) {
 	            					int qtd = tela.get_qtd_exerc_sel();
 	            					if(qtd+1 < jogo.get_exercito_terr(tela.get_terr_sel(1)))
 	    	            			tela.change_numero_exercitos_text(1,jogo.get_max_exerc(tela.get_terr_sel(1)),0);
@@ -408,7 +408,7 @@ public class Controlador {
 	            			}
 	            		}
 	            	}
-	            	if (tela.get_fase_atual() == "PASS") {
+	            	if (tela.get_fase_atual().equals("PASS")) {
 		            	if(jogo.verifica_vez_jogador_objetivo()) {
 		            		tela.jogador_ganhou(jogo.get_vez_jogador_nome());
 		            		int resposta = JOptionPane.showConfirmDialog(null, "Clique em OK para continuar a jogar.", "Reiniciar", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);

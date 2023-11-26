@@ -161,7 +161,7 @@ public class Api_view {
 	
 	public void set_next_rotina() {
 		jogo.next_rotina();
-		if(get_fase_atual() != "PASS") {
+		if(!get_fase_atual().equals("PASS")) {
 			this.repinta_tela();
 		}
 	}
@@ -293,7 +293,7 @@ public class Api_view {
 	public void reposicionamento_selected_lose(String pais) {
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
 		for(DesenhaTerritorioPoligono terra : terras) {
-			if(!terra.get_slctd() && terra.get_nome() == pais) {
+			if(!terra.get_slctd() && terra.get_nome().equals(pais)) {
 				terra.set_slctd(true);
 			}
 		}
@@ -302,7 +302,7 @@ public class Api_view {
 	public void reposicionamento_selected_win(String pais) {
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
 		for(DesenhaTerritorioPoligono terra : terras) {
-			if(!terra.get_slctd() && terra.get_nome() == pais) {
+			if(!terra.get_slctd() && terra.get_nome().equals(pais)) {
 				terra.set_slctd(true);
 			}
 		}
@@ -327,7 +327,7 @@ public class Api_view {
 	/** Função que instancia um observador da view para ser usada na model, o parametro o se escreve igual ao nome da classe que você deseja instanciar
 	 **/
 	public static Observador Instancia_Observador(String o) {
-		if(o == "DadoView") {
+		if(o.equals("DadoView")) {
 			return new DadoView();
 		}
 		else {
@@ -337,30 +337,30 @@ public class Api_view {
 	}
 	
 	public void set_selected_terr(String pais) {
-		if(pais == "Curinga 1") {
+		if(pais.equals("Curinga 1")) {
 			this.curinga_slc_1 = !this.curinga_slc_1 ;
-		} else if(pais == "Curinga 2") {
+		} else if(pais.equals("Curinga 2")) {
 			this.curinga_slc_2 = !this.curinga_slc_2 ;
 		}
 		
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
 		for(DesenhaTerritorioPoligono terra : terras) {
-			if(terra.get_nome() == pais) {
+			if(terra.get_nome().equals(pais)) {
 				terra.set_slctd(!terra.get_slctd());
 			}
 		}
 	}
 	
 	public boolean get_selected_terr(String pais) {
-		if(pais == "Curinga 1") {
+		if(pais.equals("Curinga 1")) {
 			return this.curinga_slc_1;
-		} else if(pais == "Curinga 2") {
+		} else if(pais.equals("Curinga 2")) {
 			return this.curinga_slc_2;
 		}
 		
 		DesenhaTerritorioPoligono[] terras = jogo.get_terr();
 		for(DesenhaTerritorioPoligono terra : terras) {
-			if(terra.get_nome() == pais) {
+			if(terra.get_nome().equals(pais)) {
 				return terra.get_slctd();
 			}
 		}
@@ -380,7 +380,7 @@ public class Api_view {
 			if(terra.get_slctd()) {
 				qtd++;
 			}
-			if(terra.get_nome() == "Reino Unido" && qtd == 4 && terra.get_slctd()) {
+			if(terra.get_nome().equals("Reino Unido") && qtd == 4 && terra.get_slctd()) {
 				System.out.println();
 				qtd--;
 			}

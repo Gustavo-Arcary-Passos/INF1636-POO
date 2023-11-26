@@ -31,7 +31,7 @@ public class TesteDeckObjetivos {
 		jogadores.get(0).recebe_objetivo(model.get_deck_obj().get_objetivo(7));
 		assertFalse(jogadores.get(0).get_objetivo().verifica_status());
 		for(Regiao reg : model.get_mapa_mundo()) {
-			if(reg.get_nome() == "América do Norte" || reg.get_nome()=="África") {
+			if(reg.get_nome().equals("América do Norte") || reg.get_nome().equals("África")) {
 				for(Territorio terr : reg.get_paises()) {
 					terr.set_Jogador(jogadores.get(0));
 				}
@@ -50,7 +50,7 @@ public class TesteDeckObjetivos {
 		jogadores.get(0).recebe_objetivo(model.get_deck_obj().get_objetivo(13));
 		assertFalse(jogadores.get(0).get_objetivo().verifica_status());
 		for(Regiao reg : model.get_mapa_mundo()) {
-			if(reg.get_nome() == "Ásia") {
+			if(reg.get_nome().equals("Ásia")) {
 				for(Territorio terr : reg.get_paises()) {
 					jogadores.get(0).ganha_territorio(terr);
 					terr.add_exercito(2);
@@ -70,7 +70,7 @@ public class TesteDeckObjetivos {
 		jogadores.get(0).recebe_objetivo(model.get_deck_obj().get_objetivo(13));
 		assertFalse(jogadores.get(0).get_objetivo().verifica_status());
 		for(Regiao reg : model.get_mapa_mundo()) {
-			if(reg.get_nome() == "Ásia" || reg.get_nome() == "África") {
+			if(reg.get_nome().equals("Ásia") || reg.get_nome().equals("África")) {
 				for(Territorio terr : reg.get_paises()) {
 					jogadores.get(0).ganha_territorio(terr);
 					terr.add_exercito(2);

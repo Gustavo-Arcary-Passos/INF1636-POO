@@ -122,31 +122,31 @@ class ConjuntoCartaConquista {
 		CartaConquista cartaDois = descartadas.get(1);
 		CartaConquista cartaTres = descartadas.get(2);
 		
-		if(cartaUm.get_tipo() == cartaDois.get_tipo() && cartaUm.get_tipo() == cartaTres.get_tipo()) {
+		if(cartaUm.get_tipo().equals(cartaDois.get_tipo()) && cartaUm.get_tipo().equals(cartaTres.get_tipo())) {
 			return true;
-		} else if (cartaUm.get_tipo() != cartaDois.get_tipo() && cartaUm.get_tipo() != cartaTres.get_tipo() && cartaDois.get_tipo() != cartaTres.get_tipo()) {
+		} else if (!cartaUm.get_tipo().equals(cartaDois.get_tipo()) && !cartaUm.get_tipo().equals(cartaTres.get_tipo()) && !cartaDois.get_tipo().equals(cartaTres.get_tipo())) {
 			return true;
 		}
 		// Casos de alguma carta ou mais serem curingas
-		if(cartaUm.get_tipo() == "Curinga") {
-			if(cartaDois.get_tipo() == cartaTres.get_tipo()) {
+		if(cartaUm.get_tipo().equals("Curinga")) {
+			if(cartaDois.get_tipo().equals(cartaTres.get_tipo())) {
 				return true;
 			}
-			if(cartaDois.get_tipo() == "Curinga" || cartaTres.get_tipo() == "Curinga") {
+			if(cartaDois.get_tipo().equals("Curinga") || cartaTres.get_tipo().equals("Curinga")) {
 				return true;
 			}
-		} else if (cartaDois.get_tipo() == "Curinga") {
-			if(cartaUm.get_tipo() == cartaTres.get_tipo()) {
+		} else if (cartaDois.get_tipo().equals("Curinga")) {
+			if(cartaUm.get_tipo().equals(cartaTres.get_tipo())) {
 				return true;
 			}
-			if(cartaUm.get_tipo() == "Curinga" || cartaTres.get_tipo() == "Curinga") {
+			if(cartaUm.get_tipo().equals("Curinga") || cartaTres.get_tipo().equals("Curinga")) {
 				return true;
 			}
-		} else if (cartaTres.get_tipo() == "Curinga") {
-			if(cartaDois.get_tipo() == cartaUm.get_tipo()) {
+		} else if (cartaTres.get_tipo().equals("Curinga")) {
+			if(cartaDois.get_tipo().equals(cartaUm.get_tipo())) {
 				return true;
 			}
-			if(cartaDois.get_tipo() == "Curinga" || cartaUm.get_tipo() == "Curinga") {
+			if(cartaDois.get_tipo().equals("Curinga") || cartaUm.get_tipo().equals("Curinga")) {
 				return true;
 			}
 		}

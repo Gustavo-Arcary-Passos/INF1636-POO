@@ -101,7 +101,7 @@ class CartasView {
 	
 	public static CartaInfo get_carta(String carta) {
 		for(int i = 0; i < count_cartas; i++) {
-			if(carta == images[i].get_name()) {
+			if(carta.equals(images[i].get_name())) {
 				return images[i];
 			}
 		}
@@ -146,7 +146,7 @@ class CartasView {
 
 	public static void remove_carta_na_tela(String carta) {
 		for(int i = 0; i < count_cartas_na_tela; i++) {
-			if(carta == cartas_na_tela[i].get_name()) {
+			if(carta.equals(cartas_na_tela[i].get_name())) {
 				cartas_na_tela[i] = null;
 				count_cartas_na_tela--;
 				break;

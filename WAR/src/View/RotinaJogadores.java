@@ -121,8 +121,8 @@ class RotinaJogadores {
 	public void show_layout(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		for(ImagemInfo layout : layout_jogador) {
-			if(layout.get_name() == layout_selected) {
-				if(layout_selected == "Distribui Exercitos") {
+			if(layout.get_name().equals(layout_selected)) {
+				if(layout_selected.equals("Distribui Exercitos")) {
 					// 436, 654
 					// 562, 672
 					g2d.setColor(Color.WHITE);
@@ -137,7 +137,7 @@ class RotinaJogadores {
 					g2d.setColor(Color.BLACK);
 					Font fonteExerc = new Font("Dialog", Font.BOLD, 24);
 					drawStringCentralized(fonteExerc,84,84,688-4,458,g,Integer.toString(qtd_exerc));
-				} else if(layout_selected == "Layout ataque") {
+				} else if(layout_selected.equals("Layout ataque")) {
 					// 362,697,479,781
 					g2d.setColor(Color.WHITE);
 					Rectangle2D atacando_rect = new Rectangle2D.Double(362,697, 118, 84);
@@ -153,7 +153,7 @@ class RotinaJogadores {
 					drawStringCentralized(minhaFonte,118,84,697,532,g,this.atacado);
 				}
 		    	g.drawImage(layout.get_image(), layout.get_x(), layout.get_y(), layout.get_w(), layout.get_h(), null);
-				if(layout_selected == "Layout nao ver cartas") {
+				if(layout_selected.equals("Layout nao ver cartas")) {
 					// PODE COLOCAR AS IMAGENS AQUI E USAR UM AS CARTAS DE COSTAS 
 //					lista_carta.clear();
 //					lista_carta.add("Egito");
@@ -181,7 +181,7 @@ class RotinaJogadores {
 						desloc_x += 70; // calculado na mão
 					}
 					
-				} else if(layout_selected == "Layout ver cartas") {
+				} else if(layout_selected.equals("Layout ver cartas")) {
 					// PODE COLOCAR AS IMAGENS AQUI E USAR UMA List<String> para saber quais cartas carregar
 					// lista_carta.clear();
 					// lista_carta.add("Egito");
@@ -205,7 +205,7 @@ class RotinaJogadores {
 					}
 				}
 			}
-			if(layout.get_name() == "Layout default text") {
+			if(layout.get_name().equals("Layout default text")) {
 				this.DrawTextRotina(g,layout);
 				//g2d.setColor(Color.WHITE);
 			}
@@ -234,13 +234,13 @@ class RotinaJogadores {
 		Graphics2D g2d = (Graphics2D) g;
 		Font minhaFonte = new Font("Dialog", Font.BOLD, 13);
 		g2d.setColor(Color.BLACK);
-		if(this.rotina.get(this.rotina_ind) == "PER") {
+		if(this.rotina.get(this.rotina_ind).equals("PER")) {
 			drawStringCentralized(minhaFonte,835,75,10,1024/2 - 835/2,g,"Distribua seus " + Integer.toString(qtd_exerc_max) + " exercitos de regiao.");
-		} else if(this.rotina.get(this.rotina_ind) == "PE") {
+		} else if(this.rotina.get(this.rotina_ind).equals("PE")) {
 			drawStringCentralized(minhaFonte,835,75,10,1024/2 - 835/2,g,"Distribua seus " + Integer.toString(qtd_exerc_max) + " exercitos.");
-		} else if(this.rotina.get(this.rotina_ind) == "ATQ") {
+		} else if(this.rotina.get(this.rotina_ind).equals("ATQ")) {
 			drawStringCentralized(minhaFonte,835,75,10,1024/2 - 835/2,g,"Ataque");
-		} else if(this.rotina.get(this.rotina_ind) == "REP") {
+		} else if(this.rotina.get(this.rotina_ind).equals("REP")) {
 			drawStringCentralized(minhaFonte,835,75,10,1024/2 - 835/2,g,"Reposicionamento dos exercitos");
 		} else {
 			

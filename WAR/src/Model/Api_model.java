@@ -231,7 +231,7 @@ public class Api_model {
 	public int get_exercito_terr(String terra) {
 		for(Regiao reg: mapa_mundo) {
 			for(Territorio terr: reg.get_paises()) {
-				if(terr.get_nome() == terra) {
+				if(terr.get_nome().equals(terra)) {
 					return terr.get_exercitos();
 				}
 			}
@@ -352,7 +352,7 @@ public class Api_model {
 	public Territorio get_terr(String terra) {
 		for(Regiao reg: mapa_mundo) {
 			for(Territorio terr: reg.get_paises()) {
-				if(terr.get_nome() == terra) {
+				if(terr.get_nome().equals(terra)) {
 					return terr;
 				}
 			}
@@ -425,7 +425,7 @@ public class Api_model {
 	public int get_qtd_exercito_atq(String terra) {
 		for(Regiao reg: mapa_mundo) {
 			for(Territorio terr: reg.get_paises()) {
-				if(terr.get_nome() == terra) {
+				if(terr.get_nome().equals(terra)) {
 					if(terr.get_exercitos() > 3) {
 						return 3;
 					} else {
@@ -439,7 +439,7 @@ public class Api_model {
 	public int get_qtd_exercito_def(String terra) {
 		for(Regiao reg: mapa_mundo) {
 			for(Territorio terr: reg.get_paises()) {
-				if(terr.get_nome() == terra) {
+				if(terr.get_nome().equals(terra)) {
 					if(terr.get_exercitos() > 2) {
 						return 3;
 					} else {
@@ -477,7 +477,7 @@ public class Api_model {
 		int i = 0;
 		//System.out.println(terras.size() + " " + reposicionamento.size());
 		for(Territorio terra : terras) {
-			if(terra.get_nome() == pais) {
+			if(terra.get_nome().equals(pais)) {
 				return this.reposicionamento.get(i);
 			}
 			i++;
@@ -489,13 +489,13 @@ public class Api_model {
 		List<Territorio> terras = jogador_da_vez.get_list_terr();
 		int i = 0;
 		for(Territorio terra : terras) {
-			if(terra.get_nome() == de) {
+			if(terra.get_nome().equals(de)) {
 				int rep= this.reposicionamento.get(i);
 				rep = rep - qtd;
 				this.reposicionamento.set(i, rep);
 				terra.add_exercito(-qtd);
 			}
-			if(terra.get_nome() == para) {
+			if(terra.get_nome().equals(para)) {
 				terra.add_exercito(qtd);
 			}
 			i++;

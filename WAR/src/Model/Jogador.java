@@ -55,7 +55,7 @@ class Jogador {
     
     public String get_terr_reg(String pais) {
     	for (Territorio terr : this.domina) {
-    		if(terr.get_nome() == pais) {
+    		if(terr.get_nome().equals(pais)) {
     			return terr.get_Regiao();
     		}
     	}
@@ -64,7 +64,7 @@ class Jogador {
     
     public boolean verifica_territorio_fronteira(String pais, String fronteira) {
     	for (Territorio terr : this.domina) {
-    		if(terr.get_nome() == pais) {
+    		if(terr.get_nome().equals(pais)) {
     			return terr.faz_fronteira(fronteira);
     		}
     	}
@@ -81,7 +81,7 @@ class Jogador {
     }
     public boolean verifica_territorio(String pais) {
     	for (Territorio terr : this.domina) {
-    		if(terr.get_nome() == pais) {
+    		if(terr.get_nome().equals(pais)) {
     			return true;
     		}
     	}
@@ -90,9 +90,9 @@ class Jogador {
     
     public boolean verifica_territorio_reg(String pais) {
     	for (Territorio terr : this.domina) {
-    		if(terr.get_nome() == pais) {
+    		if(terr.get_nome().equals(pais)) {
     			for(ExercitoRegiao exer_reg : this.exercitos_regiao) {
-    				if((terr.get_Regiao() == exer_reg.get_regiao() && exer_reg.get_exercito() > 0)) {
+    				if((terr.get_Regiao().equals(exer_reg.get_regiao()) && exer_reg.get_exercito() > 0)) {
         				return true;
         			}
     			}
@@ -197,7 +197,7 @@ class Jogador {
     }
     public int get__exercito_regiao(String regiao) {
     	for(ExercitoRegiao exercito : this.exercitos_regiao) {
-    		if(exercito.get_regiao() == regiao) {
+    		if(exercito.get_regiao().equals(regiao)) {
     			return exercito.get_exercito();
     		}
     	}
@@ -205,7 +205,7 @@ class Jogador {
     }
     public void add_exercito_regiao(String regiao,int qtd) {
     	for(ExercitoRegiao exercito : this.exercitos_regiao) {
-    		if(exercito.get_regiao() == regiao) {
+    		if(exercito.get_regiao().equals(regiao)) {
     			exercito.add_exercito(qtd);
     		}
     	}
@@ -213,7 +213,7 @@ class Jogador {
     public boolean posiciona_exercito_regiao(String regiao,String territorio,int qtd) {
     	int exercitos_regiao = 0;
     	for(ExercitoRegiao exercito : this.exercitos_regiao) {
-    		if(exercito.get_regiao() == regiao) {
+    		if(exercito.get_regiao().equals(regiao)) {
     			exercitos_regiao = exercito.get_exercito();
     		}
     	}
@@ -233,7 +233,7 @@ class Jogador {
     	List<CartaConquista> trocadas = new ArrayList<CartaConquista>();
     	for(String pais : paises) {
     		for(CartaConquista carta : cartaTroca) {
-    			if(carta.get_pais() == pais)
+    			if(carta.get_pais().equals(pais))
     				trocadas.add(carta);
     		}
     	}
@@ -243,7 +243,7 @@ class Jogador {
     		for(CartaConquista carta : trocadas) {
     			this.cartaTroca.remove(carta);
     			for (Territorio terr : this.domina) {
-    	    		if(terr.get_nome() == carta.get_pais()) {
+    	    		if(terr.get_nome().equals(carta.get_pais())) {
     	    			terr.add_exercito(2);
     	    		}
     	    	}
@@ -268,7 +268,7 @@ class Jogador {
     		return false;
     	}
     	for(Territorio terr : this.domina) {
-    		if(terr.get_nome() == destino) {
+    		if(terr.get_nome().equals(destino)) {
     			 terr.add_exercito(qtd);
     			 this.qtd_exercitos -=qtd;
     			 return true;
